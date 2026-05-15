@@ -19,34 +19,65 @@
             --jp-border-color1: #e0e0e0;
             --jp-content-font-color0: #000000;
             --jp-content-font-color1: #333333;
+            --primary-color: #4a90e2;
+            --secondary-color: #7b68ee;
+            --accent-color: #ff6b6b;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: var(--jp-content-font-family);
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--jp-content-font-color0);
-            background-color: var(--jp-layout-color0);
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
         .notebook-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Cell structure */
         .cell {
             display: flex;
             flex-direction: row;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cell:hover {
+            transform: translateX(4px);
         }
 
         .cell-prompt {
@@ -54,10 +85,11 @@
             width: var(--jp-cell-prompt-width);
             font-family: var(--jp-code-font-family);
             font-size: 12px;
-            padding: 10px 8px 10px 0;
+            padding: 12px 8px 12px 0;
             text-align: right;
             flex-shrink: 0;
             user-select: none;
+            font-weight: 600;
         }
 
         .cell-content {
@@ -70,6 +102,7 @@
         .input-prompt {
             color: var(--jp-input-prompt-color);
             font-weight: bold;
+            text-shadow: 0 0 8px rgba(48, 127, 193, 0.3);
         }
 
         /* Output prompt styling - Jupyter red/orange */
@@ -80,20 +113,40 @@
 
         /* Code cell input area */
         .input-area {
-            background-color: var(--jp-cell-input-bg);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 2px;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
             overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .input-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .input-area:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
         }
 
         .input-area pre {
             margin: 0;
             font-family: var(--jp-code-font-family);
             font-size: 13px;
-            line-height: 1.4;
+            line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            color: #2c3e50;
         }
 
         /* Output area */
@@ -202,7 +255,12 @@
             font-weight: 600;
             margin: 0.67em 0;
             padding-bottom: 0.3em;
-            border-bottom: 1px solid var(--jp-border-color1);
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .markdown-cell h2 {
@@ -210,13 +268,16 @@
             font-weight: 600;
             margin: 0.83em 0;
             padding-bottom: 0.3em;
-            border-bottom: 1px solid var(--jp-border-color1);
+            border-bottom: 2px solid transparent;
+            border-image: var(--gradient-secondary) 1;
+            color: var(--secondary-color);
         }
 
         .markdown-cell h3 {
             font-size: 1.25em;
             font-weight: 600;
             margin: 1em 0;
+            color: var(--primary-color);
         }
 
         .markdown-cell h4 {
@@ -240,25 +301,27 @@
 
         .markdown-cell p {
             margin: 0 0 16px 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .markdown-cell code {
             font-family: var(--jp-code-font-family);
             font-size: 85%;
-            background-color: rgba(27, 31, 35, 0.05);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 0.2em 0.6em;
+            border-radius: 6px;
+            border: 1px solid #667eea30;
         }
 
         .markdown-cell pre {
-            background-color: var(--jp-cell-input-bg);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 3px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
             padding: 16px;
             overflow-x: auto;
             font-size: 85%;
             line-height: 1.45;
+            box-shadow: var(--shadow-sm);
         }
 
         .markdown-cell pre code {
@@ -266,13 +329,17 @@
             padding: 0;
             border-radius: 0;
             font-size: 100%;
+            border: none;
         }
 
         .markdown-cell blockquote {
             margin: 0 0 16px 0;
-            padding: 0 1em;
+            padding: 12px 20px;
             color: #6a737d;
-            border-left: 4px solid #dfe2e5;
+            border-left: 4px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
 
         .markdown-cell ul,
@@ -286,54 +353,146 @@
         }
 
         .markdown-cell a {
-            color: #0366d6;
+            color: var(--primary-color);
             text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .markdown-cell a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
 
         .markdown-cell a:hover {
-            text-decoration: underline;
+            color: var(--secondary-color);
+        }
+
+        .markdown-cell a:hover::after {
+            width: 100%;
         }
 
         .markdown-cell hr {
             border: 0;
-            border-top: 1px solid var(--jp-border-color1);
+            height: 2px;
+            background: var(--gradient-primary);
             margin: 24px 0;
+            border-radius: 2px;
         }
 
         .markdown-cell img {
             max-width: 100%;
             height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
         }
 
         .markdown-cell table {
-            border-collapse: collapse;
-            margin: 0 0 16px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            font-size: 14px;
+            background: white;
+        }
+
+        .markdown-cell table thead tr {
+            background: #f1f5f9;
+            color: var(--jp-content-font-color0);
+        }
+
+        /* 作业封面信息表：表头保留紫粉渐变 */
+        .markdown-cell table.assignment-meta-table thead tr {
+            background: var(--gradient-primary);
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th {
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th::after {
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .markdown-cell table th,
         .markdown-cell table td {
-            border: 1px solid #dfe2e5;
-            padding: 6px 13px;
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+            transition: all 0.2s ease;
         }
 
         .markdown-cell table th {
             font-weight: 600;
-            background-color: #f6f8fa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 13px;
+            position: relative;
         }
 
-        .markdown-cell table tr:nth-child(2n) {
-            background-color: #f6f8fa;
+        .markdown-cell table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+        }
+
+        .markdown-cell table tbody tr {
+            border-bottom: 1px solid #e8ecf1;
+        }
+
+        .markdown-cell table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .markdown-cell table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .markdown-cell table tbody tr:hover {
+            background: #e8f4f8;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+            cursor: pointer;
+        }
+
+        .markdown-cell table.assignment-meta-table tbody tr:hover {
+            background: #eef2ff;
+        }
+
+        .markdown-cell table tbody td {
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .markdown-cell table tbody td:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
         /* Raw cell styling */
         .raw-cell {
-            background-color: var(--jp-layout-color1);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 2px;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
             font-family: var(--jp-code-font-family);
             font-size: 13px;
             white-space: pre-wrap;
+            box-shadow: var(--shadow-sm);
         }
 
         /* Empty prompt placeholder */
@@ -341,22 +500,42 @@
             color: transparent;
         }
 
-        .export-footer {
-            margin-top: 32px;
-            padding-top: 16px;
-            border-top: 1px solid var(--jp-border-color1);
-            color: #555;
-            font-size: 13px;
-            text-align: center;
+        /* 嵌入已导出的 Plotly HTML（runcell 导出不含内联图表输出） */
+        .plotly-embed-cell p {
+            margin: 0 0 10px 0;
+            color: var(--jp-content-font-color1);
+        }
+        .plotly-embed-frame {
+            width: 100%;
+            max-width: 100%;
+            border: 1px solid var(--jp-border-color1);
+            border-radius: var(--border-radius);
+            background: var(--jp-layout-color0);
+            box-shadow: var(--shadow-sm);
+        }
+        .plotly-embed-frame--corr {
+            height: 760px;
         }
 
-        .export-footer a {
-            color: #0366d6;
-            text-decoration: none;
-        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
 
-        .export-footer a:hover {
-            text-decoration: underline;
+            .notebook-container {
+                padding: 20px;
+            }
+
+            .cell {
+                flex-direction: column;
+            }
+
+            .cell-prompt {
+                width: 100%;
+                text-align: left;
+                padding: 8px 0;
+            }
         }
     </style>
 </head>
@@ -365,7 +544,46 @@
         <div class="cell cell-markdown">
             <div class="cell-prompt prompt-empty">&nbsp;</div>
             <div class="cell-content">
-                <div class="markdown-cell">| 项目   | 内容 |<br>|--------|------|<br>| 课程   | 数据分析与经济决策（ds2026） |<br>| 题目   | ex_Team01：T-A2_美股七姐妹财务与股价对比 |<br>| 小组   | 第 3 组 |<br>| 成员   | 刘飞龙（25210190）、廖婉琼（25210178）、刘凤里（25210191）、高思远（25210133）、杨艺欣（25210279）、司徒靖（25210231）、莫福群（25210212）、甘立杰（25210131） |<br>| GitHub | https://github.com/ganlijie-code/ds2026-G03-T-A2 |<br>| Pages  | https://ganlijie-code.github.io/ds2026-G03-T-A2/|<br>| 日期   | 2026-05-13 |</div>
+                <div class="markdown-cell">
+                    <table class="assignment-meta-table">
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>课程</td>
+                                <td>数据分析与经济决策（ds2026）</td>
+                            </tr>
+                            <tr>
+                                <td>题目</td>
+                                <td>ex_Team01：T-A2_美股七姐妹财务与股价对比</td>
+                            </tr>
+                            <tr>
+                                <td>小组</td>
+                                <td>第 3 组</td>
+                            </tr>
+                            <tr>
+                                <td>成员</td>
+                                <td>刘飞龙（25210190）、廖婉琼（25210178）、刘凤里（25210191）、高思远（25210133）、杨艺欣（25210279）、司徒靖（25210231）、莫福群（25210212）、甘立杰（25210131）</td>
+                            </tr>
+                            <tr>
+                                <td>GitHub</td>
+                                <td><a href="https://github.com/ganlijie-code/ds2026-G03-T-A2" target="_blank">https://github.com/ganlijie-code/ds2026-G03-T-A2</a></td>
+                            </tr>
+                            <tr>
+                                <td>Pages</td>
+                                <td><a href="https://ganlijie-code.github.io/ds2026-G03-T-A2/" target="_blank">https://ganlijie-code.github.io/ds2026-G03-T-A2/</a></td>
+                            </tr>
+                            <tr>
+                                <td>日期</td>
+                                <td>2026-05-13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="cell cell-markdown">
@@ -375,7 +593,7 @@
             </div>
         </div>
         <div class="cell cell-code">
-            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-prompt input-prompt"></div>
             <div class="cell-content">
                 <div class="input-area"><pre>import pandas as pd
 import numpy as np
@@ -562,18 +780,23 @@ Assessment: MODERATE Correlation. Some diversification benefits.
         <div class="cell cell-markdown">
             <div class="cell-prompt prompt-empty">&nbsp;</div>
             <div class="cell-content">
+                <div class="markdown-cell plotly-embed-cell">
+                    <iframe class="plotly-embed-frame plotly-embed-frame--corr" src="./output/correlation_heatmap.html" title="七姐妹相关系数矩阵交互热力图" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
                 <div class="markdown-cell">分析「七姐妹」内部的分散化效果？    </div>
             </div>
         </div>
         <div class="cell cell-markdown">
             <div class="cell-prompt prompt-empty">&nbsp;</div>
             <div class="cell-content">
-                <div class="markdown-cell">答：<br>1. 总体结论：分散化效果有限（中等偏弱）<br>从整体数据来看，这7只股票之间的相关系数普遍处于 0.41 到 0.63 之间。  <br>中度相关：大部分相关系数集中在 0.5 - 0.6 区间。在投资组合理论中，低于 0.3 才被视为具有较好的分散化效果，而高于 0.7 则视为高度联动。目前的数值表明，虽然它们不是完全同步（如指数基金内部那样接近 1.0），但行业集中度风险依然很高。持有这7只股票并不能有效规避科技板块的系统性风险。<br><br>2. 具体数据分析  <br>    A. 核心科技股的高联动性（分散化效果最差的部分）  <br>    以下几对股票的相关性最高，说明它们的业务模式、投资者群体或受宏观因素（如利率、AI叙事）的影响非常相似：  <br>    MSFT (微软) & AMZN (亚马逊): 0.626—— 两者在云计算领域（Azure vs AWS）是直接竞争对手，且都是大型综合科技巨头，走势高度一致。  <br>    GOOGL (谷歌) & AMZN (亚马逊): 0.614 —— 同样受到数字广告和云服务市场的双重驱动。  <br>    MSFT (微软) & NVDA (英伟达): 0.608 —— 反映了 AI 基础设施建设的紧密捆绑关系。    <br>    启示：同时持有 MSFT、AMZN 和 GOOGL 带来的边际分散化收益很低，因为它们本质上是在押注相同的宏观科技趋势。  <br>    B. TSLA (特斯拉) 是主要的分散化来源  <br>    最低相关性：TSLA 与其他所有股票的相关性都是最低的。  <br>    TSLA & META: 0.341(全表最低)  <br>    TSLA & MSFT: 0.411  <br>    TSLA & GOOGL: 0.417  <br>    原因：特斯拉不仅被视为科技股，更被视为汽车股和消费品股。其股价受电动车交付量、马斯克个人言论、汽车行业周期等非纯软件/互联网因素影响较大。  <br>    启示：在这7只股票的组合中，TSLA 提供了最大的特异性风险分散效果。如果科技股回调，TSLA 可能因为汽车行业的独立逻辑而表现不同（尽管它波动性极大）。    <br>    C. AAPL (苹果) 与 META (Meta) 的相对独立性<br>    AAPL & META: 0.463 —— 这是除 TSLA 涉及的对子外，相关性较低的一组。<br>    原因：苹果主要依赖硬件销售和生态系统服务，而 Meta 几乎完全依赖数字广告。两者的收入驱动因素差异较大。<br>    NVDA & AAPL: 0.500 —— 刚好处于中位数，说明虽然都在科技圈，但硬件供应链（Apple）与AI芯片（Nvidia）的周期并不完全重合。<br><br>1. 平均相关性分析<br>我们可以粗略计算每只股票与其他6只股票的平均相关系数，来评估其在组合中的“独特性”：  <br>TSLA: 平均约 0.426 (最独特，分散化贡献最大)  <br>META: 平均约 0.495 (较独特)  <br>AAPL: 平均约 0.522  <br>NVDA: 平均约 0.521  <br>GOOGL: 平均约0.523  <br>MSFT: 平均约 0.546  <br>AMZN: 平均约 0.559 (最跟随大盘/其他科技股，分散化贡献最小)  <br><br>1. 投资建议与总结  <br>1）不要误以为“买了7只就是分散”：虽然你持有7家公司，但它们都属于成长型科技。如果美联储加息或科技监管收紧，这7只股票很可能同时下跌。这个组合的 Beta 值（市场敏感度）依然很高。  <br>2）TSLA 的双刃剑作用：TSLA 提供了最好的分散化效果（低相关性），但它也是波动率最高的股票。它的低相关性部分源于其不可预测性，而非稳定的低风险属性。  <br>3）如何真正提高分散化：如果你希望降低风险，仅在这7只股票内部调整权重效果有限。建议引入与科技股相关性低甚至负相关的资产，例如：  <br>    价值股/传统行业：如金融 (JPM)、能源 (XOM)、医疗 (JNJ)。  <br>    固定收益：国债或高等级公司债。  <br>    小盘股：罗素2000指数成分股，其驱动因素与 mega-cap tech 不同。  <br>根据此相关矩阵，这7只股票构成的组合是一个高β、高集中度的科技成长组合。它们之间的分散化效果不足以抵消行业系统性风险，但在科技板块内部，TSLA 和 META 提供了一定的差异化缓冲。  </div>
+                <div class="markdown-cell">答：<br><br>一、总体结论：分散化效果有限（中等偏弱）<br><br>从整体数据来看，这7只股票之间的相关系数普遍处于 0.41 到 0.63 之间。<br><br>中度相关：大部分相关系数集中在 0.5 - 0.6 区间。在投资组合理论中，低于 0.3 才被视为具有较好的分散化效果，而高于 0.7 则视为高度联动。目前的数值表明，虽然它们不是完全同步（如指数基金内部那样接近 1.0），但行业集中度风险依然很高。持有这7只股票并不能有效规避科技板块的系统性风险。<br><br>二、具体数据分析<br><br>A. 核心科技股的高联动性（分散化效果最差的部分）<br><br>以下几对股票的相关性最高，说明它们的业务模式、投资者群体或受宏观因素（如利率、AI叙事）的影响非常相似：<br><br><table><thead><tr><th style="text-align:left">股票对</th><th style="text-align:right">相关系数</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left">MSFT &amp; AMZN</td><td style="text-align:right">0.626</td><td style="text-align:left">两者在云计算领域（Azure vs AWS）是直接竞争对手，且都是大型综合科技巨头，走势高度一致</td></tr><tr><td style="text-align:left">GOOGL &amp; AMZN</td><td style="text-align:right">0.614</td><td style="text-align:left">同样受到数字广告和云服务市场的双重驱动</td></tr><tr><td style="text-align:left">MSFT &amp; NVDA</td><td style="text-align:right">0.608</td><td style="text-align:left">反映了 AI 基础设施建设的紧密捆绑关系</td></tr></tbody></table><br><br>启示：同时持有 MSFT、AMZN 和 GOOGL 带来的边际分散化收益很低，因为它们本质上是在押注相同的宏观科技趋势。<br><br>B. TSLA (特斯拉) 是主要的分散化来源<br><br>最低相关性：TSLA 与其他所有股票的相关性都是最低的。<br><br><table><thead><tr><th style="text-align:left">股票对</th><th style="text-align:right">相关系数</th><th style="text-align:left">排名</th></tr></thead><tbody><tr><td style="text-align:left">TSLA &amp; META</td><td style="text-align:right">0.341</td><td style="text-align:left">全表最低</td></tr><tr><td style="text-align:left">TSLA &amp; MSFT</td><td style="text-align:right">0.411</td><td style="text-align:left">较低</td></tr><tr><td style="text-align:left">TSLA &amp; GOOGL</td><td style="text-align:right">0.417</td><td style="text-align:left">较低</td></tr></tbody></table><br><br>原因：特斯拉不仅被视为科技股，更被视为汽车股和消费品股。其股价受电动车交付量、马斯克个人言论、汽车行业周期等非纯软件/互联网因素影响较大。<br><br>启示：在这7只股票的组合中，TSLA 提供了最大的特异性风险分散效果。如果科技股回调，TSLA 可能因为汽车行业的独立逻辑而表现不同（尽管它波动性极大）。<br><br>C. AAPL (苹果) 与 META (Meta) 的相对独立性<br><br><table><thead><tr><th style="text-align:left">股票对</th><th style="text-align:right">相关系数</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left">AAPL &amp; META</td><td style="text-align:right">0.463</td><td style="text-align:left">除 TSLA 涉及的对子外，相关性较低的一组</td></tr><tr><td style="text-align:left">NVDA &amp; AAPL</td><td style="text-align:right">0.500</td><td style="text-align:left">刚好处于中位数，说明虽然都在科技圈，但硬件供应链（Apple）与AI芯片（Nvidia）的周期并不完全重合</td></tr></tbody></table><br><br>原因：苹果主要依赖硬件销售和生态系统服务，而 Meta 几乎完全依赖数字广告。两者的收入驱动因素差异较大。<br><br>三、平均相关性分析<br><br>我们可以粗略计算每只股票与其他6只股票的平均相关系数，来评估其在组合中的"独特性"：<br><br><table><thead><tr><th style="text-align:left">股票</th><th style="text-align:right">平均相关系数</th><th style="text-align:left">独特性评价</th></tr></thead><tbody><tr><td style="text-align:left">TSLA</td><td style="text-align:right">0.426</td><td style="text-align:left">最独特，分散化贡献最大</td></tr><tr><td style="text-align:left">META</td><td style="text-align:right">0.495</td><td style="text-align:left">较独特</td></tr><tr><td style="text-align:left">AAPL</td><td style="text-align:right">0.522</td><td style="text-align:left">中等</td></tr><tr><td style="text-align:left">NVDA</td><td style="text-align:right">0.521</td><td style="text-align:left">中等</td></tr><tr><td style="text-align:left">GOOGL</td><td style="text-align:right">0.523</td><td style="text-align:left">中等</td></tr><tr><td style="text-align:left">MSFT</td><td style="text-align:right">0.546</td><td style="text-align:left">较低</td></tr><tr><td style="text-align:left">AMZN</td><td style="text-align:right">0.559</td><td style="text-align:left">最跟随大盘/其他科技股，分散化贡献最小</td></tr></tbody></table><br><br>四、投资建议与总结<br><br>1. 不要误以为"买了7只就是分散"<br><br>虽然你持有7家公司，但它们都属于成长型科技。如果美联储加息或科技监管收紧，这7只股票很可能同时下跌。这个组合的 Beta 值（市场敏感度）依然很高。<br><br>2. TSLA 的双刃剑作用<br><br>TSLA 提供了最好的分散化效果（低相关性），但它也是波动率最高的股票。它的低相关性部分源于其不可预测性，而非稳定的低风险属性。<br><br>3. 如何真正提高分散化<br><br>如果你希望降低风险，仅在这7只股票内部调整权重效果有限。建议引入与科技股相关性低甚至负相关的资产，例如：<br><br>- 价值股/传统行业：如金融 (JPM)、能源 (XOM)、医疗 (JNJ)<br>- 固定收益：国债或高等级公司债<br>- 小盘股：罗素2000指数成分股，其驱动因素与 mega-cap tech 不同<br><br>根据此相关矩阵，这7只股票构成的组合是一个高β、高集中度的科技成长组合。它们之间的分散化效果不足以抵消行业系统性风险，但在科技板块内部，TSLA 和 META 提供了一定的差异化缓冲。<br></div>
             </div>
         </div>
     </div>
-    <footer class="export-footer">
-        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
-    </footer>
 </body>
 </html>

@@ -19,34 +19,65 @@
             --jp-border-color1: #e0e0e0;
             --jp-content-font-color0: #000000;
             --jp-content-font-color1: #333333;
+            --primary-color: #4a90e2;
+            --secondary-color: #7b68ee;
+            --accent-color: #ff6b6b;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: var(--jp-content-font-family);
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--jp-content-font-color0);
-            background-color: var(--jp-layout-color0);
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
         .notebook-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Cell structure */
         .cell {
             display: flex;
             flex-direction: row;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cell:hover {
+            transform: translateX(4px);
         }
 
         .cell-prompt {
@@ -54,10 +85,11 @@
             width: var(--jp-cell-prompt-width);
             font-family: var(--jp-code-font-family);
             font-size: 12px;
-            padding: 10px 8px 10px 0;
+            padding: 12px 8px 12px 0;
             text-align: right;
             flex-shrink: 0;
             user-select: none;
+            font-weight: 600;
         }
 
         .cell-content {
@@ -70,6 +102,7 @@
         .input-prompt {
             color: var(--jp-input-prompt-color);
             font-weight: bold;
+            text-shadow: 0 0 8px rgba(48, 127, 193, 0.3);
         }
 
         /* Output prompt styling - Jupyter red/orange */
@@ -80,20 +113,40 @@
 
         /* Code cell input area */
         .input-area {
-            background-color: var(--jp-cell-input-bg);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 2px;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
             overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .input-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .input-area:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
         }
 
         .input-area pre {
             margin: 0;
             font-family: var(--jp-code-font-family);
             font-size: 13px;
-            line-height: 1.4;
+            line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            color: #2c3e50;
         }
 
         /* Output area */
@@ -202,7 +255,12 @@
             font-weight: 600;
             margin: 0.67em 0;
             padding-bottom: 0.3em;
-            border-bottom: 1px solid var(--jp-border-color1);
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .markdown-cell h2 {
@@ -210,13 +268,16 @@
             font-weight: 600;
             margin: 0.83em 0;
             padding-bottom: 0.3em;
-            border-bottom: 1px solid var(--jp-border-color1);
+            border-bottom: 2px solid transparent;
+            border-image: var(--gradient-secondary) 1;
+            color: var(--secondary-color);
         }
 
         .markdown-cell h3 {
             font-size: 1.25em;
             font-weight: 600;
             margin: 1em 0;
+            color: var(--primary-color);
         }
 
         .markdown-cell h4 {
@@ -240,25 +301,27 @@
 
         .markdown-cell p {
             margin: 0 0 16px 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .markdown-cell code {
             font-family: var(--jp-code-font-family);
             font-size: 85%;
-            background-color: rgba(27, 31, 35, 0.05);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 0.2em 0.6em;
+            border-radius: 6px;
+            border: 1px solid #667eea30;
         }
 
         .markdown-cell pre {
-            background-color: var(--jp-cell-input-bg);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 3px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
             padding: 16px;
             overflow-x: auto;
             font-size: 85%;
             line-height: 1.45;
+            box-shadow: var(--shadow-sm);
         }
 
         .markdown-cell pre code {
@@ -266,13 +329,17 @@
             padding: 0;
             border-radius: 0;
             font-size: 100%;
+            border: none;
         }
 
         .markdown-cell blockquote {
             margin: 0 0 16px 0;
-            padding: 0 1em;
+            padding: 12px 20px;
             color: #6a737d;
-            border-left: 4px solid #dfe2e5;
+            border-left: 4px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
 
         .markdown-cell ul,
@@ -286,54 +353,147 @@
         }
 
         .markdown-cell a {
-            color: #0366d6;
+            color: var(--primary-color);
             text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .markdown-cell a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
 
         .markdown-cell a:hover {
-            text-decoration: underline;
+            color: var(--secondary-color);
+        }
+
+        .markdown-cell a:hover::after {
+
+            width: 100%;
         }
 
         .markdown-cell hr {
             border: 0;
-            border-top: 1px solid var(--jp-border-color1);
+            height: 2px;
+            background: var(--gradient-primary);
             margin: 24px 0;
+            border-radius: 2px;
         }
 
         .markdown-cell img {
             max-width: 100%;
             height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
         }
 
         .markdown-cell table {
-            border-collapse: collapse;
-            margin: 0 0 16px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            font-size: 14px;
+            background: white;
+        }
+
+        .markdown-cell table thead tr {
+            background: #f1f5f9;
+            color: var(--jp-content-font-color0);
+        }
+
+        /* 作业封面信息表：表头保留紫粉渐变 */
+        .markdown-cell table.assignment-meta-table thead tr {
+            background: var(--gradient-primary);
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th {
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th::after {
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .markdown-cell table th,
         .markdown-cell table td {
-            border: 1px solid #dfe2e5;
-            padding: 6px 13px;
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+            transition: all 0.2s ease;
         }
 
         .markdown-cell table th {
             font-weight: 600;
-            background-color: #f6f8fa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 13px;
+            position: relative;
         }
 
-        .markdown-cell table tr:nth-child(2n) {
-            background-color: #f6f8fa;
+        .markdown-cell table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+        }
+
+        .markdown-cell table tbody tr {
+            border-bottom: 1px solid #e8ecf1;
+        }
+
+        .markdown-cell table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .markdown-cell table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .markdown-cell table tbody tr:hover {
+            background: #e8f4f8;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+            cursor: pointer;
+        }
+
+        .markdown-cell table.assignment-meta-table tbody tr:hover {
+            background: #eef2ff;
+        }
+
+        .markdown-cell table tbody td {
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .markdown-cell table tbody td:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
         /* Raw cell styling */
         .raw-cell {
-            background-color: var(--jp-layout-color1);
-            border: 1px solid var(--jp-border-color1);
-            border-radius: 2px;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
             font-family: var(--jp-code-font-family);
             font-size: 13px;
             white-space: pre-wrap;
+            box-shadow: var(--shadow-sm);
         }
 
         /* Empty prompt placeholder */
@@ -341,22 +501,25 @@
             color: transparent;
         }
 
-        .export-footer {
-            margin-top: 32px;
-            padding-top: 16px;
-            border-top: 1px solid var(--jp-border-color1);
-            color: #555;
-            font-size: 13px;
-            text-align: center;
-        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
 
-        .export-footer a {
-            color: #0366d6;
-            text-decoration: none;
-        }
+            .notebook-container {
+                padding: 20px;
+            }
 
-        .export-footer a:hover {
-            text-decoration: underline;
+            .cell {
+                flex-direction: column;
+            }
+
+            .cell-prompt {
+                width: 100%;
+                text-align: left;
+                padding: 8px 0;
+            }
         }
     </style>
 </head>
@@ -365,17 +528,56 @@
         <div class="cell cell-markdown">
             <div class="cell-prompt prompt-empty">&nbsp;</div>
             <div class="cell-content">
-                <div class="markdown-cell">| 项目   | 内容 |<br>|--------|------|<br>| 课程   | 数据分析与经济决策（ds2026） |<br>| 题目   | ex_Team01：T-A2_美股七姐妹财务与股价对比 |<br>| 小组   | 第 3 组 |<br>| 成员   | 刘飞龙（25210190）、廖婉琼（25210178）、刘凤里（25210191）、高思远（25210133）、杨艺欣（25210279）、司徒靖（25210231）、莫福群（25210212）、甘立杰（25210131） |<br>| GitHub | https://github.com/ganlijie-code/ds2026-G03-T-A2 |<br>| Pages  | https://ganlijie-code.github.io/ds2026-G03-T-A2/|<br>| 日期   | 2026-05-13 |</div>
+                <div class="markdown-cell">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>课程</td>
+                                <td>数据分析与经济决策（ds2026）</td>
+                            </tr>
+                            <tr>
+                                <td>题目</td>
+                                <td>ex_Team01：T-A2_美股七姐妹财务与股价对比</td>
+                            </tr>
+                            <tr>
+                                <td>小组</td>
+                                <td>第 3 组</td>
+                            </tr>
+                            <tr>
+                                <td>成员</td>
+                                <td>刘飞龙（25210190）、廖婉琼（25210178）、刘凤里（25210191）、高思远（25210133）、杨艺欣（25210279）、司徒靖（25210231）、莫福群（25210212）、甘立杰（25210131）</td>
+                            </tr>
+                            <tr>
+                                <td>GitHub</td>
+                                <td><a href="https://github.com/ganlijie-code/ds2026-G03-T-A2" target="_blank">https://github.com/ganlijie-code/ds2026-G03-T-A2</a></td>
+                            </tr>
+                            <tr>
+                                <td>Pages</td>
+                                <td><a href="https://ganlijie-code.github.io/ds2026-G03-T-A2/" target="_blank">https://ganlijie-code.github.io/ds2026-G03-T-A2/</a></td>
+                            </tr>
+                            <tr>
+                                <td>日期</td>
+                                <td>2026-05-13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="cell cell-markdown">
             <div class="cell-prompt prompt-empty">&nbsp;</div>
             <div class="cell-content">
-                <div class="markdown-cell"><h2>任务：尝试用 OpenBB 获取机构持仓变化数据   （选做）</h2></div>
+                <div class="markdown-cell"><h3>任务：尝试用 OpenBB 获取机构持仓变化数据   （选做）</h3></div>
             </div>
         </div>
         <div class="cell cell-code">
-            <div class="cell-prompt input-prompt">In [ ]:</div>
+            <div class="cell-prompt input-prompt"></div>
             <div class="cell-content">
                 <div class="input-area"><pre>import yfinance as yf
 import pandas as pd
@@ -4709,8 +4911,5 @@ if (outputEl) {{
             </div>
         </div>
     </div>
-    <footer class="export-footer">
-        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
-    </footer>
 </body>
 </html>
