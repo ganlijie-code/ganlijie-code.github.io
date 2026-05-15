@@ -58,10 +58,10 @@
 
 ### 🔄 分析流程（在线查看）
 
-1. [获取美股七姐妹的原始股价和财务数据](https://ganlijie-code.github.io/ds2026-G03-T-A2/01_get_data1.html) ：获取美股七姐妹的原始股价和财务数据，数据来源：Yahoo Finance 等金融数据接口
-2. [处理缺失值和异常值](https://ganlijie-code.github.io/ds2026-G03-T-A2/02_data_clean.html) ：处理缺失值和异常值，数据格式标准化，生成清洗后的数据集
-3. [可视化分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/03_01_analysis_visualization.html) :使用 Matplotlib 生成静态图表,包含对应图表的问题分析与回答
-4. [生成交互式图表](https://ganlijie-code.github.io/ds2026-G03-T-A2/03_02_analysis_visualization_by_plotly.html) ： 使用 Plotly 生成交互式图表，支持悬停查看等交互功能
-5. [计算各股超额收益](https://ganlijie-code.github.io/ds2026-G03-T-A2/04_calculate_alpha_beta.html) ：以标普 500 指数（^GSPC）为基准，计算各股的超额收益（α）和风险系数（β）
-6. [相关性分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/05_calculate_correlation.html) ：计算两两相关系数矩阵，使用热力图展示"七姐妹"内部的分散化效果，并进行简单分析
-7. [机构持仓分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/06_openBB.html) ：使用 OpenBB 获取机构持仓数据，生成前 5 大机构对"七姐妹"持股的交互式图表
+1. [获取美股七姐妹的原始股价和财务数据](https://ganlijie-code.github.io/ds2026-G03-T-A2/01_get_data1.md) ：获取美股七姐妹的原始股价和财务数据，数据来源：Yahoo Finance 等金融数据接口
+2. [处理缺失值和异常值](https://ganlijie-code.github.io/ds2026-G03-T-A2/02_data_clean.md) ：处理缺失值和异常值，数据格式标准化，生成清洗后的数据集
+3. [可视化分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/03_01_analysis_visualization.md) :使用 Matplotlib 生成静态图表,包含对应图表的问题分析与回答
+4. [生成交互式图表](https://ganlijie-code.github.io/ds2026-G03-T-A2/03_02_analysis_visualization_by_plotly.md) ： 使用 Plotly 生成交互式图表，支持悬停查看等交互功能
+5. [计算各股超额收益](https://ganlijie-code.github.io/ds2026-G03-T-A2/04_calculate_alpha_beta.md) ：以标普 500 指数（^GSPC）为基准，计算各股的超额收益（α）和风险系数（β）
+6. [相关性分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/05_calculate_correlation.md) ：计算两两相关系数矩阵，使用热力图展示"七姐妹"内部的分散化效果，并进行简单分析
+7. [机构持仓分析](https://ganlijie-code.github.io/ds2026-G03-T-A2/06_openBB.md) ：使用 OpenBB 获取机构持仓数据，生成前 5 大机构对"七姐妹"持股的交互式图表
