@@ -38,9 +38,7 @@ plt.savefig('./output/fig_price_trend.png', dpi=150)
 plt.show()
 ```
 
-
-    
-![png](03_01_analysis_visualization_files/03_01_analysis_visualization_3_0.png)
+![fig_price_trend.png](output/fig_price_trend.png)
     
 
 
@@ -173,8 +171,8 @@ plt.show()
     
 
 
-    
-![png](03_01_analysis_visualization_files/03_01_analysis_visualization_7_1.png)
+
+![fig_return_heatmap.png](output/fig_return_heatmap.png)    
     
 
 
@@ -254,8 +252,8 @@ plt.savefig('./output/fig_risk_return.png', dpi=150)
 
 
     
-![png](03_01_analysis_visualization_files/03_01_analysis_visualization_11_0.png)
-    
+![fig_risk_return.png](output/fig_risk_return.png)    
+
 
 
 问题3.七家公司的估值是否处于合理区间？相互之间的差异如何解释？ 
@@ -360,8 +358,8 @@ plt.savefig('./output/fig_valuation.png', dpi=150)
 
 
     
-![png](03_01_analysis_visualization_files/03_01_analysis_visualization_15_0.png)
-    
+![fig_valuation.png](output/fig_valuation.png)
+
 
 
 问题4.你观察到哪些你认为值得深入研究的规律或异常？   

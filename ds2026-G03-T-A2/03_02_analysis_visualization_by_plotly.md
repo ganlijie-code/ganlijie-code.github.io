@@ -69,7 +69,9 @@ fig.write_html("./output/fig_price_trend_interactive.html")
     2  0.937762  
     3  0.908829  
     4  0.937524  
-    
+
+
+[fig_price_trend_interactive.html](output/fig_price_trend_interactive.html)  
 
 
 
@@ -129,6 +131,8 @@ fig.show()
 fig.write_html("./output/fig_return_heatmap_interactive.html")
 ```
 
+
+[fig_return_heatmap_interactive.html](output/fig_return_heatmap_interactive.html)
 
 
 图 3：风险-收益散点图  
@@ -226,6 +230,8 @@ fig.write_html("./output/fig_risk_return_interactive.html")
     TSLA     0
     dtype: int64
     
+
+[fig_risk_return_interactive.html](output/fig_risk_return_interactive.html)
 
 
 
@@ -335,7 +341,7 @@ print("交互式图表已保存至: ./output/fig_valuation_interactive.html")
 
 ```
 
-
+[fig_valuation_interactive.html](output/fig_valuation_interactive.html)
 
     交互式图表已保存至: ./output/fig_valuation_interactive.html
     
