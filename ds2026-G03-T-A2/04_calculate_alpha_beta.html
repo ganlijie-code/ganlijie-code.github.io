@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+            --primary-color: #4a90e2;
+            --secondary-color: #7b68ee;
+            --accent-color: #ff6b6b;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--jp-content-font-color0);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .notebook-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cell:hover {
+            transform: translateX(4px);
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 12px 8px 12px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+            font-weight: 600;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(48, 127, 193, 0.3);
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .input-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .input-area:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #2c3e50;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 2px solid transparent;
+            border-image: var(--gradient-secondary) 1;
+            color: var(--secondary-color);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+            color: var(--primary-color);
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.8;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 0.2em 0.6em;
+            border-radius: 6px;
+            border: 1px solid #667eea30;
+        }
+
+        .markdown-cell pre {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+            border: none;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 12px 20px;
+            color: #6a737d;
+            border-left: 4px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: var(--primary-color);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .markdown-cell a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .markdown-cell a:hover {
+            color: var(--secondary-color);
+        }
+
+        .markdown-cell a:hover::after {
+            width: 100%;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            margin: 24px 0;
+            border-radius: 2px;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .markdown-cell table {
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            font-size: 14px;
+            background: white;
+        }
+
+        .markdown-cell table thead tr {
+            background: #f1f5f9;
+            color: var(--jp-content-font-color0);
+        }
+
+        /* 作业封面信息表：表头保留紫粉渐变 */
+        .markdown-cell table.assignment-meta-table thead tr {
+            background: var(--gradient-primary);
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th {
+            color: #ffffff;
+        }
+
+        .markdown-cell table.assignment-meta-table thead th::after {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 13px;
+            position: relative;
+        }
+
+        .markdown-cell table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+        }
+
+        .markdown-cell table tbody tr {
+            border-bottom: 1px solid #e8ecf1;
+        }
+
+        .markdown-cell table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .markdown-cell table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .markdown-cell table tbody tr:hover {
+            background: #e8f4f8;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+            cursor: pointer;
+        }
+
+        .markdown-cell table.assignment-meta-table tbody tr:hover {
+            background: #eef2ff;
+        }
+
+        .markdown-cell table tbody td {
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .markdown-cell table tbody td:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 2px solid transparent;
+            border-image: var(--gradient-primary) 1;
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: var(--border-radius);
+            padding: 20px;
+        }
+
+        .export-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .export-footer a:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 嵌入已导出的 Plotly HTML（runcell 导出不含内联图表输出） */
+        .plotly-embed-cell p {
+            margin: 0 0 10px 0;
+            color: var(--jp-content-font-color1);
+        }
+        .plotly-embed-frame {
+            width: 100%;
+            max-width: 100%;
+            border: 1px solid var(--jp-border-color1);
+            border-radius: var(--border-radius);
+            background: var(--jp-layout-color0);
+            box-shadow: var(--shadow-sm);
+        }
+        .plotly-embed-frame--alpha {
+            height: 560px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .notebook-container {
+                padding: 20px;
+            }
+
+            .cell {
+                flex-direction: column;
+            }
+
+            .cell-prompt {
+                width: 100%;
+                text-align: left;
+                padding: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">
+                    <table class="assignment-meta-table">
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>课程</td>
+                                <td>数据分析与经济决策（ds2026）</td>
+                            </tr>
+                            <tr>
+                                <td>题目</td>
+                                <td>ex_Team01：T-A2_美股七姐妹财务与股价对比</td>
+                            </tr>
+                            <tr>
+                                <td>小组</td>
+                                <td>第 3 组</td>
+                            </tr>
+                            <tr>
+                                <td>成员</td>
+                                <td>刘飞龙（25210190）、廖婉琼（25210178）、刘凤里（25210191）、高思远（25210133）、杨艺欣（25210279）、司徒靖（25210231）、莫福群（25210212）、甘立杰（25210131）</td>
+                            </tr>
+                            <tr>
+                                <td>GitHub</td>
+                                <td><a href="https://github.com/ganlijie-code/ds2026-G03-T-A2" target="_blank">https://github.com/ganlijie-code/ds2026-G03-T-A2</a></td>
+                            </tr>
+                            <tr>
+                                <td>Pages</td>
+                                <td><a href="https://ganlijie-code.github.io/ds2026-G03-T-A2/" target="_blank">https://ganlijie-code.github.io/ds2026-G03-T-A2/</a></td>
+                            </tr>
+                            <tr>
+                                <td>日期</td>
+                                <td>2026-05-13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3>任务： 加入标普 500 指数（^GSPC）作为基准，计算各股的超额收益（α）  （选做） </h3><br>目标：下载标普500指数数据，并计算各股超额收益</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt"></div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import os
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import glob
+import yfinance as yf
+import statsmodels.api as sm
+import datetime
+
+# --- Configuration ---
+DATA_DIR = r'./data_raw'
+LOCAL_PRICE_FILE = os.path.join(DATA_DIR, 'prices_raw.csv')
+OUTPUT_FILE = os.path.join(DATA_DIR, 'alpha_results.csv')
+
+RISK_FREE_RATE_ANNUAL = 0.05  # 5% annual risk-free rate (approximate)
+TRADING_DAYS_PER_YEAR = 252
+MAG7_TICKERS = ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA']
+
+# Proxy settings if needed (uncomment if you are behind a proxy)
+proxy = 'http://127.0.0.1:7897'
+os.environ['HTTP_PROXY'] = proxy
+os.environ['HTTPS_PROXY'] = proxy
+
+def load_local_stock_data(filepath):
+    """Loads stock prices from the local CSV file."""
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"Local price file not found: {filepath}")
+    
+    print(f"Loading local stock data from {filepath}...")
+    # Assuming the CSV has Date as index or first column, and Tickers as columns
+    df = pd.read_csv(filepath, index_col=0, parse_dates=True)
+    
+    # Filter only for Magnificent 7 tickers to ensure we only process what we need
+    available_tickers = [t for t in MAG7_TICKERS if t in df.columns]
+    if not available_tickers:
+        print(f"Available columns in local file: {df.columns.tolist()}")
+        raise ValueError("None of the Magnificent 7 tickers found in the local CSV columns.")
+        
+    return df[available_tickers]
+
+def download_sp500_data(start_date, end_date):
+    """Downloads S&amp;P 500 (^GSPC) data and extracts the Adj Close price."""
+    print(f"Downloading S&amp;P 500 (^GSPC) data from {start_date} to {end_date}...")
+    try:
+        # Download data
+        sp500_df = yf.download('^GSPC', start=start_date, end=end_date, progress=False)
+        
+        if sp500_df.empty:
+            raise ValueError("Downloaded S&amp;P 500 data is empty.")
+            
+        # Handle potential MultiIndex columns in newer yfinance versions
+        if isinstance(sp500_df.columns, pd.MultiIndex):
+            # Try to get Adj Close first, then Close
+            if ('Adj Close', '^GSPC') in sp500_df.columns:
+                sp500_prices = sp500_df[('Adj Close', '^GSPC')]
+            elif ('Close', '^GSPC') in sp500_df.columns:
+                sp500_prices = sp500_df[('Close', '^GSPC')]
+            else:
+                raise KeyError("Could not find Price column in MultiIndex S&amp;P 500 data")
+        else:
+            # Standard single-level columns
+            if 'Adj Close' in sp500_df.columns:
+                sp500_prices = sp500_df['Adj Close']
+            elif 'Close' in sp500_df.columns:
+                sp500_prices = sp500_df['Close']
+            else:
+                raise KeyError("Could not find Price column in S&amp;P 500 data")
+
+        # Ensure it is a Series and name it correctly
+        sp500_prices = sp500_prices.squeeze()
+        sp500_prices.name = '^GSPC'
+        
+        print(f"S&amp;P 500 data downloaded. Shape: {sp500_prices.shape}")
+        return sp500_prices
+
+    except Exception as e:
+        raise Exception(f"Failed to download/process S&amp;P 500 data: {e}")
+
+def calculate_returns(prices):
+    """Calculates daily logarithmic returns."""
+    return np.log(prices / prices.shift(1)).dropna()
+
+def calculate_capm_metrics(stock_returns, market_returns, rf_daily):
+    """
+    Calculates Alpha and Beta using CAPM regression.
+    Model: R_stock - R_f = alpha + beta * (R_market - R_f) + error
+    """
+    # Merge stock and market returns on date index
+    merged = pd.merge(stock_returns, market_returns, left_index=True, right_index=True, how='inner')
+    merged.columns = ['Stock_Return', 'Market_Return']
+    merged.dropna(inplace=True)
+    
+    if len(merged) &lt; 10:
+        return np.nan, np.nan
+
+    # Calculate Excess Returns
+    merged['Excess_Stock'] = merged['Stock_Return'] - rf_daily
+    merged['Excess_Market'] = merged['Market_Return'] - rf_daily
+    
+    # Prepare for Regression (OLS)
+    X = sm.add_constant(merged['Excess_Market']) # Adds intercept term
+    y = merged['Excess_Stock']
+    
+    model = sm.OLS(y, X).fit()
+    
+    # Extract parameters
+    alpha_daily = model.params['const']
+    beta = model.params['Excess_Market']
+    
+    # Annualize Alpha (assuming daily alpha)
+    alpha_annual = alpha_daily * TRADING_DAYS_PER_YEAR
+    
+    return alpha_annual, beta
+
+def main():
+    try:
+        # 1. Load Local Stock Data
+        df_stocks = load_local_stock_data(LOCAL_PRICE_FILE)
+        
+        # Determine date range from local data to download matching SP500 data
+        start_date = df_stocks.index.min()
+        end_date = df_stocks.index.max()
+        start_str = start_date.strftime('%Y-%m-%d')
+        end_str = end_date.strftime('%Y-%m-%d')
+        
+        # 2. Download S&amp;P 500 Data
+        sp500_prices = download_sp500_data(start_str, end_str)
+        
+        # 3. Calculate Returns
+        print("Calculating returns...")
+        stock_returns = calculate_returns(df_stocks)
+        market_returns = calculate_returns(sp500_prices)
+        
+        # 4. Calculate Daily Risk-Free Rate
+        # Formula: (1 + R_annual)^(1/252) - 1
+        rf_daily = (1 + RISK_FREE_RATE_ANNUAL) ** (1/TRADING_DAYS_PER_YEAR) - 1
+        
+        # 5. Calculate Alpha and Beta for each stock
+        results = []
+        print("Calculating Alpha and Beta for each stock...")
+        
+        for ticker in df_stocks.columns:
+            if ticker not in stock_returns.columns:
+                continue
+                
+            s_ret = stock_returns[ticker]
+            alpha_annual, beta = calculate_capm_metrics(s_ret, market_returns, rf_daily)
+            
+            results.append({
+                'Ticker': ticker,
+                'Annualized_Alpha': alpha_annual,
+                'Beta': beta,
+                'Start_Date': start_str,
+                'End_Date': end_str
+            })
+            print(f"Processed {ticker}: Alpha = {alpha_annual:.4f}, Beta = {beta:.4f}")
+            
+        # 6. Save Results
+        df_results = pd.DataFrame(results)
+        # Sort by Alpha descending to see best performers first
+        df_results = df_results.sort_values(by='Annualized_Alpha', ascending=False)
+        
+        df_results.to_csv(OUTPUT_FILE, index=False)
+        print(f"\nResults successfully saved to {OUTPUT_FILE}")
+        
+        print("\n--- Summary of Alpha (Excess Return) ---")
+        print(df_results[['Ticker', 'Annualized_Alpha', 'Beta']].to_string(index=False))
+        
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        import traceback
+        traceback.print_exc()
+
+if __name__ == "__main__":
+    main()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Loading local stock data from ./data_raw\prices_raw.csv...
+Downloading S&amp;P 500 (^GSPC) data from 2021-05-10 to 2026-05-08...
+S&amp;P 500 data downloaded. Shape: (1255,)
+Calculating returns...
+Calculating Alpha and Beta for each stock...
+Processed AAPL: Alpha = 0.0427, Beta = 1.2185
+Processed MSFT: Alpha = -0.0066, Beta = 1.1433
+Processed NVDA: Alpha = 0.3568, Beta = 2.1418
+Processed GOOGL: Alpha = 0.1223, Beta = 1.2647
+Processed AMZN: Alpha = -0.0378, Beta = 1.4970
+Processed META: Alpha = -0.0096, Beta = 1.6176
+Processed TSLA: Alpha = -0.0406, Beta = 1.9954
+
+Results successfully saved to ./data_raw\alpha_results.csv
+
+--- Summary of Alpha (Excess Return) ---
+Ticker  Annualized_Alpha     Beta
+  NVDA          0.356775 2.141836
+ GOOGL          0.122295 1.264750
+  AAPL          0.042724 1.218485
+  MSFT         -0.006615 1.143319
+  META         -0.009647 1.617599
+  AMZN         -0.037786 1.497036
+  TSLA         -0.040600 1.995397
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">数据可视化：生成图表展示个股的超额收益可交互的图表   </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt"></div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+import plotly.graph_objects as go
+import os
+
+# --- Configuration ---
+DATA_DIR = r'./data_raw'
+
+INPUT_FILE = os.path.join(DATA_DIR, 'alpha_results.csv')
+
+def plot_fixed_horizontal_bar(filepath):
+    """
+    Generates a horizontal bar chart with fixed margins and axis ranges 
+    to prevent label clipping for extreme values.
+    """
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"Results file not found: {filepath}")
+    
+    # 1. Load Data
+    df = pd.read_csv(filepath)
+    
+    # Sort by Alpha ascending to place negative values at the bottom (optional, but clean)
+    # Or sort by descending to see best performers at top. Let's do descending.
+    df_sorted = df.sort_values(by='Annualized_Alpha', ascending=False).reset_index(drop=True)
+    
+    # Define colors: Green for positive, Red for negative
+    colors = ['#ef553b' if x &lt; 0 else '#00cc96' for x in df_sorted['Annualized_Alpha']]
+    
+    # Calculate dynamic range for padding
+    min_alpha = df_sorted['Annualized_Alpha'].min()
+    max_alpha = df_sorted['Annualized_Alpha'].max()
+    
+    # Add 5% padding to the range to ensure labels don't touch the edges
+    padding = 0.05 
+    x_range = [min_alpha - padding, max_alpha + padding]
+
+    # 2. Create Figure
+    fig = go.Figure()
+    
+    fig.add_trace(go.Bar(
+        y=df_sorted['Ticker'],
+        x=df_sorted['Annualized_Alpha'],
+        orientation='h',
+        marker_color=colors,
+        text=[f'{x:.2%}' for x in df_sorted['Annualized_Alpha']],
+        textposition='outside', # Places text outside the bar
+        hovertemplate=(
+            "&lt;b&gt;%{y}&lt;/b&gt;&lt;br&gt;" +
+            "Alpha: %{x:.2%}&lt;br&gt;" +
+            "Beta: %{customdata[0]:.2f}&lt;br&gt;" +
+            "&lt;extra&gt;&lt;/extra&gt;"
+        ),
+        customdata=df_sorted[['Beta']].values
+    ))
+    
+    # 3. Layout Configuration with Fixed Margins and Range
+    fig.update_layout(
+        title={
+            'text': "Magnificent 7: Annualized Alpha (Excess Return)",
+            'y':0.95,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        },
+        template='plotly_white',
+        height=500,
+        width=900,
+        
+        # --- KEY FIX 1: Increase Left Margin ---
+        # l=120 gives enough space for negative labels like "-4.06%"
+        margin=dict(l=120, r=50, t=50, b=50),
+        
+        xaxis=dict(
+            tickformat='.2%',
+            zeroline=True,
+            zerolinewidth=2,
+            zerolinecolor='black',
+            # --- KEY FIX 2: Set Explicit Range with Padding ---
+            range=x_range,
+            title="Annualized Alpha"
+        ),
+        yaxis=dict(
+            title="Stock Ticker"
+        ),
+        showlegend=False
+    )
+    
+    # 4. Show Plot
+    fig.show()
+
+    # Optional: Save as HTML for sharing
+    fig.write_html("./output/fig_annualized_alpha.html")
+
+# Execute the function
+try:
+    plot_fixed_horizontal_bar(INPUT_FILE)
+except Exception as e:
+    print(f"Error generating plot: {e}")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell plotly-embed-cell">
+                    <iframe class="plotly-embed-frame plotly-embed-frame--alpha" src="./output/fig_annualized_alpha.html" title="年化 Alpha（超额收益）交互柱状图" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
