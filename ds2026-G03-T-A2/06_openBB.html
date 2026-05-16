@@ -160,6 +160,11 @@
             margin-top: 4px;
         }
 
+        /* 导出 HTML 中输出序号栏常为空，但仍占 64px，导致图片相对 input-area 右移一格 */
+        .output-wrapper > .cell-prompt.output-prompt:empty {
+            display: none;
+        }
+
         .output-content {
             flex: 1;
             min-width: 0;
