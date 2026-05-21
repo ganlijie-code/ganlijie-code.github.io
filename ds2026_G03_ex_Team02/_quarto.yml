@@ -17,7 +17,7 @@ book:
       - icon: github
         href: https://github.com/ganlijie-code/ds2026_G03_ex_Team02
 
-  site-url: https://ganlijie-code.github.io/ds2026_G03_ex_Team02/
+  site-url: https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs
   editor: source
 
   chapters:
@@ -41,10 +41,6 @@ book:
         - body/06_section7_conclusions.md
         - body/07_section7_data_sources.md
         - body/08_figures.md
-
-    - part: "**部署说明**"
-      chapters:
-        - body/10_github_pages.md
 
 format:
   html:

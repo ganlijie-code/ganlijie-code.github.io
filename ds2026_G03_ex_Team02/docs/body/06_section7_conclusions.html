@@ -218,23 +218,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>部署说明</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/10_github_pages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">使用 GitHub Pages 发布</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -287,13 +270,118 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="capm-回归结论" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="capm-回归结论"><span class="header-section-number">9.2</span> 7.1 CAPM 回归结论</h2>
-<p>name beta r2 beta_pvalue 兆易创新 1.379771 0.238048 5.047312e-93 澜起科技 1.308004 0.205304 6.392440e-79 北京君正 1.425673 0.214674 6.752838e-83 中芯国际 1.042556 0.188715 6.877686e-66 北方华创 1.218371 0.195816 6.093787e-75</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>beta</th>
+<th>r2</th>
+<th>beta_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>兆易创新</td>
+<td>1.379771</td>
+<td>0.238048</td>
+<td>5.047312e-93</td>
+</tr>
+<tr class="even">
+<td>澜起科技</td>
+<td>1.308004</td>
+<td>0.205304</td>
+<td>6.392440e-79</td>
+</tr>
+<tr class="odd">
+<td>北京君正</td>
+<td>1.425673</td>
+<td>0.214674</td>
+<td>6.752838e-83</td>
+</tr>
+<tr class="even">
+<td>中芯国际</td>
+<td>1.042556</td>
+<td>0.188715</td>
+<td>6.877686e-66</td>
+</tr>
+<tr class="odd">
+<td>北方华创</td>
+<td>1.218371</td>
+<td>0.195816</td>
+<td>6.093787e-75</td>
+</tr>
+</tbody>
+</table>
 <p><strong>结论</strong>：存储产业链公司 Beta 多显著大于 1（p&lt;0.05），系统性风险高于市场；相对科创50 的 Beta 见 <code>fig7_capm_beta_dual_benchmark.png</code>。</p>
 </section>
 <section id="事件研究结论" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="事件研究结论"><span class="header-section-number">9.3</span> 7.2 事件研究结论</h2>
-<pre><code>             event  asset  car_event_end_pct  ar_mean_pct  ar_tstat  ar_pvalue est_window  n_ar</code></pre>
-<p>科创板 IPO 受理（上交所）|半导体指数 半导体指数 6.453236 0.496403 1.537695 0.150063 -120~-21 13 科创板 IPO 受理（上交所）|存储同业等权 存储同业等权 5.080757 0.390827 0.669756 0.515694 -120~-21 13 辅导工作完成（安徽证监局备案）|半导体指数 半导体指数 -0.507641 -0.033843 -0.116557 0.908866 -120~-21 15 辅导工作完成（安徽证监局备案）|存储同业等权 存储同业等权 -0.558093 -0.037206 -0.116245 0.909109 -120~-21 15</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>event</th>
+<th>asset</th>
+<th>car_event_end_pct</th>
+<th>ar_mean_pct</th>
+<th>ar_tstat</th>
+<th>ar_pvalue</th>
+<th>est_window</th>
+<th>n_ar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>科创板 IPO 受理（上交所）</td>
+<td>半导体指数</td>
+<td>6.453236</td>
+<td>0.496403</td>
+<td>1.537695</td>
+<td>0.150063</td>
+<td>-120~-21</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>科创板 IPO 受理（上交所）</td>
+<td>存储同业等权</td>
+<td>5.080757</td>
+<td>0.390827</td>
+<td>0.669756</td>
+<td>0.515694</td>
+<td>-120~-21</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>辅导工作完成（安徽证监局备案）</td>
+<td>半导体指数</td>
+<td>-0.507641</td>
+<td>-0.033843</td>
+<td>-0.116557</td>
+<td>0.908866</td>
+<td>-120~-21</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>辅导工作完成（安徽证监局备案）</td>
+<td>存储同业等权</td>
+<td>-0.558093</td>
+<td>-0.037206</td>
+<td>-0.116245</td>
+<td>0.909109</td>
+<td>-120~-21</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
 <p><strong>结论</strong>：以沪深300 为市场模型的 CAR 见 <code>fig7_event_study_car_detailed.png</code>；若事件窗 AR 的 p&gt;0.05，则异常收益<strong>统计上不显著</strong>，IPO 消息或已被预期。</p>
 </section>
 <section id="预测与财务回归" class="level2" data-number="9.4">
@@ -306,7 +394,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="同业-ps-回归隐含市值" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="同业-ps-回归隐含市值"><span class="header-section-number">9.5</span> 7.4 同业 PS 回归隐含市值</h2>
-<p>cxmt_revenue_2024_bn implied_mcap_bn_from_peer_ps implied_ps_ratio model_r2 ln_rev_coef 241.782487 1635.782084 6.765511 0.081503 0.229532</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 32%">
+<col style="width: 19%">
+<col style="width: 10%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>cxmt_revenue_2024_bn</th>
+<th>implied_mcap_bn_from_peer_ps</th>
+<th>implied_ps_ratio</th>
+<th>model_r2</th>
+<th>ln_rev_coef</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>241.782487</td>
+<td>1635.782084</td>
+<td>6.765511</td>
+<td>0.081503</td>
+<td>0.229532</td>
+</tr>
+</tbody>
+</table>
 <p><strong>结论</strong>：在可比公司历史 PS—收入对数关系下，长鑫 2024 收入对应<strong>模型隐含市值</strong>见上表；须与一级市场 1282—1584 亿报道区间交叉验证。</p>
 
 
@@ -386,7 +500,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/ganlijie-code\.github\.io\/ds2026_G03_ex_Team02\/");
+        var filterRegex = new RegExp("https:\/\/ganlijie-code\.github\.io\/ds2026_G03_ex_Team02\/docs");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

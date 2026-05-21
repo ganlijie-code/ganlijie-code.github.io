@@ -15,7 +15,7 @@ numbered: false
 | 分析输出 | 统计摘要、第 7 节结论、图表索引 |
 | 部署 | GitHub Pages 发布说明 |
 
-**在线访问**：[https://ganlijie-code.github.io/ds2026_G03_ex_Team02/](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/)
+**在线访问**：[https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs)
 
 **源码仓库**：[https://github.com/ganlijie-code/ds2026_G03_ex_Team02](https://github.com/ganlijie-code/ds2026_G03_ex_Team02)
 

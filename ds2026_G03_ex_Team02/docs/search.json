@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "长鑫科技合理估值分析",
     "section": "",
-    "text": "0.1 长鑫科技合理估值分析\n本电子书由 DS 数据科学项目 编译而成，基于网络下载的真实数据（招股书、A 股/美股行情、宏观与同业财务），对长鑫科技拟科创板 IPO 的估值区间与产业链影响进行实证研究。\n在线访问：https://ganlijie-code.github.io/ds2026_G03_ex_Team02/\n源码仓库：https://github.com/ganlijie-code/ds2026_G03_ex_Team02",
+    "text": "0.1 长鑫科技合理估值分析\n本电子书由 DS 数据科学项目 编译而成，基于网络下载的真实数据（招股书、A 股/美股行情、宏观与同业财务），对长鑫科技拟科创板 IPO 的估值区间与产业链影响进行实证研究。\n在线访问：https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs\n源码仓库：https://github.com/ganlijie-code/ds2026_G03_ex_Team02",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>首页</span>"
     ]
@@ -321,7 +321,18 @@
     "href": "body/05_summary_stats.html",
     "title": "8  长鑫科技合理估值分析 — 统计摘要",
     "section": "",
-    "text": "8.1 1. 长鑫财务（招股书，单位：亿元）\nperiod value_bn 2025 617.993215 2024 241.782487 2023 90.871472 2026Q1 508.001455 2025Q1 62.016905",
+    "text": "8.1 1. 长鑫财务（招股书，单位：亿元）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#长鑫财务招股书单位亿元",
+    "href": "body/05_summary_stats.html#长鑫财务招股书单位亿元",
+    "title": "8  长鑫科技合理估值分析 — 统计摘要",
+    "section": "",
+    "text": "period\nvalue_bn\n\n\n\n\n2025\n617.993215\n\n\n2024\n241.782487\n\n\n2023\n90.871472\n\n\n2026Q1\n508.001455\n\n\n2025Q1\n62.016905",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
@@ -332,7 +343,7 @@
     "href": "body/05_summary_stats.html#可比公司日收益",
     "title": "8  长鑫科技合理估值分析 — 统计摘要",
     "section": "8.2 2. 可比公司日收益",
-    "text": "8.2 2. 可比公司日收益\n      mean       std  count\nname\n中微公司 0.001681 0.036812 1533 中芯国际 0.000699 0.027121 1408 兆易创新 0.001463 0.033456 1542 北京君正 0.000958 0.036402 1542 北方华创 0.001993 0.032572 1542 华润微 0.000729 0.029338 1508 澜起科技 0.001403 0.034151 1542 韦尔股份 0.000357 0.028477 1542",
+    "text": "8.2 2. 可比公司日收益\n\n\n\nname\nmean\nstd\ncount\n\n\n\n\n中微公司\n0.001681\n0.036812\n1533\n\n\n中芯国际\n0.000699\n0.027121\n1408\n\n\n兆易创新\n0.001463\n0.033456\n1542\n\n\n北京君正\n0.000958\n0.036402\n1542\n\n\n北方华创\n0.001993\n0.032572\n1542\n\n\n华润微\n0.000729\n0.029338\n1508\n\n\n澜起科技\n0.001403\n0.034151\n1542\n\n\n韦尔股份\n0.000357\n0.028477\n1542",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
@@ -343,7 +354,7 @@
     "href": "body/05_summary_stats.html#capm-beta",
     "title": "8  长鑫科技合理估值分析 — 统计摘要",
     "section": "8.3 3. CAPM Beta",
-    "text": "8.3 3. CAPM Beta\nname beta alpha r2 兆易创新 1.379771 0.316899 0.238048 澜起科技 1.308004 0.303439 0.205304 北京君正 1.425673 0.188651 0.214674 中芯国际 1.042556 0.145595 0.188715 北方华创 1.218371 0.454132 0.195816 中微公司 1.315419 0.376629 0.179618 华润微 1.282845 0.130503 0.259997 韦尔股份 1.314295 0.039546 0.298116",
+    "text": "8.3 3. CAPM Beta\n\n\n\nname\nbeta\nalpha\nr2\n\n\n\n\n兆易创新\n1.379771\n0.316899\n0.238048\n\n\n澜起科技\n1.308004\n0.303439\n0.205304\n\n\n北京君正\n1.425673\n0.188651\n0.214674\n\n\n中芯国际\n1.042556\n0.145595\n0.188715\n\n\n北方华创\n1.218371\n0.454132\n0.195816\n\n\n中微公司\n1.315419\n0.376629\n0.179618\n\n\n华润微\n1.282845\n0.130503\n0.259997\n\n\n韦尔股份\n1.314295\n0.039546\n0.298116",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
@@ -354,7 +365,7 @@
     "href": "body/05_summary_stats.html#估值情景收入pe-示意亿元",
     "title": "8  长鑫科技合理估值分析 — 统计摘要",
     "section": "8.4 4. 估值情景（收入×PE 示意，亿元）",
-    "text": "8.4 4. 估值情景（收入×PE 示意，亿元）\nscenario pe_assumption revenue_2025_bn implied_valuation_bn 保守 8 617.993215 4943.945724 中性 15 617.993215 9269.898232 乐观 25 617.993215 15449.830387",
+    "text": "8.4 4. 估值情景（收入×PE 示意，亿元）\n\n\n\nscenario\npe_assumption\nrevenue_2025_bn\nimplied_valuation_bn\n\n\n\n\n保守\n8\n617.993215\n4943.945724\n\n\n中性\n15\n617.993215\n9269.898232\n\n\n乐观\n25\n617.993215\n15449.830387",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
@@ -387,7 +398,7 @@
     "href": "body/06_section7_conclusions.html#capm-回归结论",
     "title": "9  第7节 进阶分析结论（数据—图形—结论）",
     "section": "9.2 7.1 CAPM 回归结论",
-    "text": "9.2 7.1 CAPM 回归结论\nname beta r2 beta_pvalue 兆易创新 1.379771 0.238048 5.047312e-93 澜起科技 1.308004 0.205304 6.392440e-79 北京君正 1.425673 0.214674 6.752838e-83 中芯国际 1.042556 0.188715 6.877686e-66 北方华创 1.218371 0.195816 6.093787e-75\n结论：存储产业链公司 Beta 多显著大于 1（p&lt;0.05），系统性风险高于市场；相对科创50 的 Beta 见 fig7_capm_beta_dual_benchmark.png。",
+    "text": "9.2 7.1 CAPM 回归结论\n\n\n\nname\nbeta\nr2\nbeta_pvalue\n\n\n\n\n兆易创新\n1.379771\n0.238048\n5.047312e-93\n\n\n澜起科技\n1.308004\n0.205304\n6.392440e-79\n\n\n北京君正\n1.425673\n0.214674\n6.752838e-83\n\n\n中芯国际\n1.042556\n0.188715\n6.877686e-66\n\n\n北方华创\n1.218371\n0.195816\n6.093787e-75\n\n\n\n结论：存储产业链公司 Beta 多显著大于 1（p&lt;0.05），系统性风险高于市场；相对科创50 的 Beta 见 fig7_capm_beta_dual_benchmark.png。",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
@@ -398,7 +409,7 @@
     "href": "body/06_section7_conclusions.html#事件研究结论",
     "title": "9  第7节 进阶分析结论（数据—图形—结论）",
     "section": "9.3 7.2 事件研究结论",
-    "text": "9.3 7.2 事件研究结论\n             event  asset  car_event_end_pct  ar_mean_pct  ar_tstat  ar_pvalue est_window  n_ar\n科创板 IPO 受理（上交所）|半导体指数 半导体指数 6.453236 0.496403 1.537695 0.150063 -120~-21 13 科创板 IPO 受理（上交所）|存储同业等权 存储同业等权 5.080757 0.390827 0.669756 0.515694 -120~-21 13 辅导工作完成（安徽证监局备案）|半导体指数 半导体指数 -0.507641 -0.033843 -0.116557 0.908866 -120~-21 15 辅导工作完成（安徽证监局备案）|存储同业等权 存储同业等权 -0.558093 -0.037206 -0.116245 0.909109 -120~-21 15\n结论：以沪深300 为市场模型的 CAR 见 fig7_event_study_car_detailed.png；若事件窗 AR 的 p&gt;0.05，则异常收益统计上不显著，IPO 消息或已被预期。",
+    "text": "9.3 7.2 事件研究结论\n\n\n\n\n\n\n\n\n\n\n\n\n\nevent\nasset\ncar_event_end_pct\nar_mean_pct\nar_tstat\nar_pvalue\nest_window\nn_ar\n\n\n\n\n科创板 IPO 受理（上交所）\n半导体指数\n6.453236\n0.496403\n1.537695\n0.150063\n-120~-21\n13\n\n\n科创板 IPO 受理（上交所）\n存储同业等权\n5.080757\n0.390827\n0.669756\n0.515694\n-120~-21\n13\n\n\n辅导工作完成（安徽证监局备案）\n半导体指数\n-0.507641\n-0.033843\n-0.116557\n0.908866\n-120~-21\n15\n\n\n辅导工作完成（安徽证监局备案）\n存储同业等权\n-0.558093\n-0.037206\n-0.116245\n0.909109\n-120~-21\n15\n\n\n\n结论：以沪深300 为市场模型的 CAR 见 fig7_event_study_car_detailed.png；若事件窗 AR 的 p&gt;0.05，则异常收益统计上不显著，IPO 消息或已被预期。",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
@@ -420,7 +431,7 @@
     "href": "body/06_section7_conclusions.html#同业-ps-回归隐含市值",
     "title": "9  第7节 进阶分析结论（数据—图形—结论）",
     "section": "9.5 7.4 同业 PS 回归隐含市值",
-    "text": "9.5 7.4 同业 PS 回归隐含市值\ncxmt_revenue_2024_bn implied_mcap_bn_from_peer_ps implied_ps_ratio model_r2 ln_rev_coef 241.782487 1635.782084 6.765511 0.081503 0.229532\n结论：在可比公司历史 PS—收入对数关系下，长鑫 2024 收入对应模型隐含市值见上表；须与一级市场 1282—1584 亿报道区间交叉验证。",
+    "text": "9.5 7.4 同业 PS 回归隐含市值\n\n\n\n\n\n\n\n\n\n\ncxmt_revenue_2024_bn\nimplied_mcap_bn_from_peer_ps\nimplied_ps_ratio\nmodel_r2\nln_rev_coef\n\n\n\n\n241.782487\n1635.782084\n6.765511\n0.081503\n0.229532\n\n\n\n结论：在可比公司历史 PS—收入对数关系下，长鑫 2024 收入对应模型隐含市值见上表；须与一级市场 1282—1584 亿报道区间交叉验证。",
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
@@ -490,50 +501,6 @@
     "crumbs": [
       "**分析输出**",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
-    ]
-  },
-  {
-    "objectID": "body/10_github_pages.html",
-    "href": "body/10_github_pages.html",
-    "title": "12  使用 GitHub Pages 发布",
-    "section": "",
-    "text": "12.1 发布流程\n本章说明如何将本 Quarto Book 部署到 GitHub Pages，访问地址为：\nhttps://ganlijie-code.github.io/ds2026_G03_ex_Team02/\n等待数分钟后访问：https://ganlijie-code.github.io/ds2026_G03_ex_Team02/",
-    "crumbs": [
-      "**部署说明**",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
-    ]
-  },
-  {
-    "objectID": "body/10_github_pages.html#发布流程",
-    "href": "body/10_github_pages.html#发布流程",
-    "title": "12  使用 GitHub Pages 发布",
-    "section": "",
-    "text": "Step 1：确保 docs 文件夹在主分支\n\n\n运行 quarto render 后，HTML 输出位于项目根目录的 docs/ 文件夹。\n\n\nStep 2：推送本地代码到 GitHub\n\n\n在 GitHub Desktop 或命令行中提交更改。\n确保主分支（main）与远程仓库 ganlijie-code/ds2026_G03_ex_Team02 同步。\n\n\nStep 3：在 GitHub 仓库中启用 Pages\n\n\n打开仓库 Settings → Pages\nSource 选择 “Deploy from a branch”\nBranch：main（或当前主分支）\nFolder：/docs\n保存设置。\n\n\nStep 4：访问网页\n\n\n\n\n\n\n\n\nNote注意事项\n\n\n\n\n每次修改书稿后需重新运行 quarto render，并将更新后的 docs/ 推送到 GitHub。\n_quarto.yml 中的 site-url 须与上述 Pages 地址一致，否则站内链接可能错误。",
-    "crumbs": [
-      "**部署说明**",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
-    ]
-  },
-  {
-    "objectID": "body/10_github_pages.html#本地重新编译",
-    "href": "body/10_github_pages.html#本地重新编译",
-    "title": "12  使用 GitHub Pages 发布",
-    "section": "12.2 本地重新编译",
-    "text": "12.2 本地重新编译\n在项目根目录执行：\nquarto render\nWindows 下若未全局安装 Quarto，可使用本仓库同级的便携版：\nG:\\ganlijie\\page\\tools\\quarto\\bin\\quarto.exe render",
-    "crumbs": [
-      "**部署说明**",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
-    ]
-  },
-  {
-    "objectID": "body/10_github_pages.html#参考文档",
-    "href": "body/10_github_pages.html#参考文档",
-    "title": "12  使用 GitHub Pages 发布",
-    "section": "12.3 参考文档",
-    "text": "12.3 参考文档\n\nGitHub Pages 官方指南\nQuarto 发布到 GitHub Pages",
-    "crumbs": [
-      "**部署说明**",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
     ]
   }
 ]
