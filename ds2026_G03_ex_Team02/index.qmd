@@ -1,0 +1,52 @@
+---
+title: "前言"
+---
+
+# 长鑫科技 Pre-IPO 估值研究 {.unnumbered}
+
+## 写在前面
+
+本书为 **Quarto Book** 形态的研究报告，与 `DS/` 目录下的数据下载、清洗脚本、Jupyter Notebook 及 Marp 简报共用同一套可复现流水线。写作体例参考 [Quarto Book 示例](https://lianxhcn.github.io/quarto_book/)：分章叙述、图表穿插、可导出 HTML / PDF / EPUB。
+
+::: {.callout-note}
+## 声明
+
+本报告基于公开披露与行情数据整理，仅供学术与内部研究交流，**不构成任何投资建议**。
+:::
+
+## 研究问题
+
+长鑫科技拟于科创板上市并募资约 **295 亿元**。在尚未有二级市场代码的阶段，需回答：
+
+1. 公司财务事实是否支持「全球量级收入 + 盈利修复初期」的叙事？
+2. 一级市场报道的估值走廊（约 **1,282—1,584 亿元**）是否有同业与量化锚印证？
+3. 存储产业链 **Beta、事件研究、收入路径** 对上市后定价意味着什么？
+
+## 本书结构
+
+| 章节 | 内容 |
+|------|------|
+| 第一章 | 研究定位与受众 |
+| 第二章 | 政策、产业与市场背景 |
+| 第三章 | 数据来源、清洗与复现 |
+| 第四章 | 财务事实与产品结构 |
+| 第五章 | 估值走廊与交叉验证 |
+| 第六章 | CAPM、事件研究与回归 |
+| 第七章 | 综合判断、局限与展望 |
+| 附录 | 复现命令与目录说明 |
+
+## 如何使用本书
+
+**在线阅读**：[https://ganlijie-code.github.io/ds2026_G03_ex_Team02/](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/)（推送至 `ganlijie-code.github.io` 后由 GitHub Pages 发布）。本地预览：执行 `quarto render` 后打开 `_book/index.html`。
+
+**本地复现数据与图表**（需联网下载原始数据）：
+
+```bash
+cd DS
+pip install -r requirements.txt
+python scripts/download_data.py
+python scripts/analysis.py
+python scripts/advanced_analysis.py
+```
+
+然后将 `output/*.png` 同步到本书 `images/` 目录（见附录 `scripts/sync_images.ps1`）。

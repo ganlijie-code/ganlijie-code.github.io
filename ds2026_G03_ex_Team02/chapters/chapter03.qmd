@@ -1,0 +1,55 @@
+# 数据来源、清洗与复现 {#sec-ch03}
+
+## 数据总览
+
+所有原始数据经 `scripts/download_data.py` 下载，禁止手工编造。主要来源如下 [@akshare2024; @cxmt_prospectus2026]：
+
+| 类型 | 来源 | 项目路径 |
+|------|------|----------|
+| 招股书财务 | 上交所 PDF 解析 | `data/ipo/cxkj_financials.csv` |
+| A 股可比行情 | akshare | `data/stock/` |
+| 美股 MU/WDC | akshare | `data/us/` |
+| 指数/宏观/行业 | akshare | `data/index/`, `macro/`, `industry/` |
+| 同业 ROE 等 | 同花顺财务摘要 | `data/finance/finance_ths_*.csv` |
+| IPO 事件日 | 辅导/受理公告 | `data/ipo/cxkj_ipo_tutor.csv`, `cxkj_register.csv` |
+
+本书 `data/` 目录存放**说明性样本**；完整数据集请使用上级目录 `DS/data/` 与 `DS/clean/`。
+
+## 清洗产物
+
+运行 `scripts/analysis.py` 后，典型清洗文件包括：
+
+- `clean/stock_clean.csv` — 可比个股日行情；
+- `clean/cxkj_financials_clean.csv` — 长鑫财务长表；
+- `clean/peer_roe_clean.csv` — 同业 ROE 面板。
+
+## 构造指标
+
+| 指标 | 用途 |
+|------|------|
+| 营收同比、毛利率、研发费用率 | 成长与投入强度 |
+| 日收益率、CAPM Beta | 系统性风险 |
+| 收入×PE 情景市值 | 与 PS 走廊对照（需盈利假设） |
+| 事件窗 CAR/AR | IPO 消息是否已反映在指数 |
+
+## 图表规范
+
+`scripts/plot_style.py` 统一：
+
+- 画布比例 **16∶9**（幻灯片与本书插图一致）；
+- 输出分辨率 **200 DPI**；
+- 图例默认底部多列，避免遮挡序列。
+
+分析脚本先将 PNG 写入上级 `DS/output/`，再由本书 `scripts/sync_images.ps1` 同步到 **`images/`**，便于将 `ds2026_G03_ex_Team02/` 单独推送到 GitHub 并发布 Pages。
+
+## 复现流水线
+
+```bash
+cd DS
+pip install -r requirements.txt
+python scripts/download_data.py
+python scripts/analysis.py
+python scripts/advanced_analysis.py
+```
+
+Notebook 路径：`01_研究背景与数据下载.ipynb` → `02_数据清洗与统计事实.ipynb` → `03_结论局限与进阶分析.ipynb` → `04_进阶回归与预测分析.ipynb`。
