@@ -270,3 +270,21 @@ div.cell-output-stdout {
   padding: 0;
 }
 
+/* Quarto book：侧边栏默认展开、章节分组不折叠 */
+@media (min-width: 992px) {
+  #quarto-sidebar.sidebar-navigation.docked {
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  #quarto-sidebar .sidebar-section.collapse {
+    display: block;
+    visibility: visible;
+  }
+
+  #quarto-sidebar .sidebar-section.collapsing {
+    height: auto !important;
+    transition: none;
+  }
+}
+
