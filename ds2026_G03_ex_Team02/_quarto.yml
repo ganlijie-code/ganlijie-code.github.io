@@ -1,62 +1,74 @@
 project:
   type: book
-  output-dir: _book
-
-website:
-  title: "长鑫科技 Pre-IPO 估值研究"
-  site-url: https://ganlijie-code.github.io/ds2026_G03_ex_Team02/
-  repo-url: https://github.com/ganlijie-code/ganlijie-code.github.io
-  repo-branch: main
+  output-dir: docs
 
 book:
-  title: "长鑫科技 Pre-IPO 估值研究"
-  subtitle: "基于公开数据的经济分析与量化验证"
-  author: "DS 研究项目组"
+  title: "长鑫科技合理估值分析"
+  reader-mode: true
+  author: "ds2026_G03_ex_Team02"
   date: today
+  date-format: iso
+
+  sidebar:
+    title: "长鑫估值研究"
+    style: floating
+    search: true
+    tools:
+      - icon: github
+        href: https://github.com/ganlijie-code/ds2026_G03_ex_Team02
+
+  site-url: https://ganlijie-code.github.io/ds2026_G03_ex_Team02/
+  editor: source
+
   chapters:
     - index.qmd
-    - chapters/chapter01.qmd
-    - chapters/chapter02.qmd
-    - chapters/chapter03.qmd
-    - chapters/chapter04.qmd
-    - chapters/chapter05.qmd
-    - chapters/chapter06.qmd
-    - chapters/chapter07.qmd
-  appendices:
-    - chapters/appendix-reproduce.qmd
 
-bibliography: references.bib
+    - part: "**摘要与导读**"
+      chapters:
+        - body/00_abstract.md
+        - body/09_project_readme.md
 
-lang: zh-CN
+    - part: "**研究报告（Notebook）**"
+      chapters:
+        - body/01_研究背景与数据下载.ipynb
+        - body/02_数据清洗与统计事实.ipynb
+        - body/03_结论局限与进阶分析.ipynb
+        - body/04_进阶回归与预测分析.ipynb
+
+    - part: "**分析输出**"
+      chapters:
+        - body/05_summary_stats.md
+        - body/06_section7_conclusions.md
+        - body/07_section7_data_sources.md
+        - body/08_figures.md
+
+    - part: "**部署说明**"
+      chapters:
+        - body/10_github_pages.md
 
 format:
   html:
-    theme:
-      - cosmo
-      - styles/custom.scss
     toc: true
     toc-depth: 3
+    theme: cosmo
+    linestretch: 1.6
+    fontsize: 11.5pt
     number-sections: true
-    code-fold: true
-    fig-width: 9
-    fig-height: 5.0625
-    fig-dpi: 150
-  pdf:
-    documentclass: ctexart
-    geometry:
-      - top=2.5cm
-      - bottom=2.5cm
-      - left=2.8cm
-      - right=2.8cm
-    toc: true
-    number-sections: true
-    fig-width: 6.5
-    fig-height: 3.66
-    fig-pos: "H"
-  epub:
-    toc: true
+    link-external-newwindow: true
+    highlight: true
+    highlight-style: atom-one
+    code-fold: false
+    code-line-numbers: false
+    code-overflow: wrap
+    css: styles.css
+    callout-appearance: default
+    md-extensions:
+      - callout
 
 execute:
-  freeze: auto
-  echo: false
+  enabled: false
+  echo: true
   warning: false
+  message: false
+
+editor: visual

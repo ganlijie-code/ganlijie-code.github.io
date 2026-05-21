@@ -1,5 +1,4 @@
-_book/
-_site/
-**/.quarto/
-*.html
-!README.md
+/.quarto/
+/temp/
+
+**/*.quarto_ipynb

@@ -1,58 +1,30 @@
-# 长鑫科技估值研究 · Quarto Book（ds2026_G03_ex_Team02）
+# ds2026_G03_ex_Team02 — 长鑫科技合理估值分析（Quarto 电子书）
 
-**在线阅读**：**https://ganlijie-code.github.io/ds2026_G03_ex_Team02/**  
-源码仓库：[ganlijie-code/ganlijie-code.github.io](https://github.com/ganlijie-code/ganlijie-code.github.io)
+基于 `DS/` 项目生成的 Quarto Book，可发布至 GitHub Pages。
 
-参考 [Quarto Book 示例](https://lianxhcn.github.io/quarto_book/) 组织。本书发布在用户站点的子路径 `/ds2026_G03_ex_Team02/`（`gh-pages` 分支对应该目录）。
+## 在线阅读
+
+<https://ganlijie-code.github.io/ds2026_G03_ex_Team02/>
 
 ## 目录结构
 
 ```
-├── _quarto.yml          # site-url 已指向子路径
-├── index.qmd
-├── chapters/
-├── images/
-├── scripts/sync_images.ps1
-└── _book/               # 本地渲染（勿提交）
+ds2026_G03_ex_Team02/
+├── _quarto.yml      # 书籍配置（含 site-url）
+├── index.qmd        # 首页
+├── body/            # 各章节（来自 DS 项目）
+├── styles.css
+└── docs/            # quarto render 输出（Pages 根目录）
 ```
 
-## 推送到 GitHub
+## 编译
 
-本书已配置为发布到 **`gh-pages/ds2026_G03_ex_Team02/`**，对应 URL 子路径。
-
-在 `ganlijie-code.github.io` 仓库中，推荐将本书放在 **`ds2026_G03_ex_Team02/` 子目录**（与现有 `ds2026-G03-T-A2` 等并列），并使用仓库根目录工作流 `.github/workflows/publish-ds2026_G03_ex_Team02.yml`。
-
-本地已准备在 `DS/_pages_deploy/` 的合并提交，使用 **ganlijie-code** 账号推送：
-
-```powershell
-Set-Location G:\ganlijie\git\DS\_pages_deploy
-git push origin main
-```
-
-若单独维护本书目录，也可将 `ds2026_G03_ex_Team02/` 整体复制进上述仓库后提交。
-
-## 启用 GitHub Pages
-
-仓库 **Settings → Pages**：
-
-- **Source**：Deploy from a branch  
-- **Branch**：`gh-pages` / **(root)**
-
-访问地址：**https://ganlijie-code.github.io/ds2026_G03_ex_Team02/**
-
-## 本地开发
-
-```powershell
-# 同步插图（在 DS 根目录）
-Set-Location G:\ganlijie\git\DS
-.\ds2026_G03_ex_Team02\scripts\sync_images.ps1
-
-# 渲染（子路径预览与线上一致）
-Set-Location G:\ganlijie\git\DS\ds2026_G03_ex_Team02
+```bash
 quarto render
-quarto preview
 ```
 
-## 插图路径
+## 部署 GitHub Pages
 
-相对 `chapters/`：`../images/fig*.png`
+仓库 Settings → Pages → Branch: `main`，Folder: `/docs`。
+
+详见书内章节「部署说明」。

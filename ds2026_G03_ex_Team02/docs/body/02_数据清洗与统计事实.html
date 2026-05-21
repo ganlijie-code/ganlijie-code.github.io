@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; 长鑫科技合理估值分析（二）数据清洗与统计事实 – 长鑫科技合理估值分析</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/03_结论局限与进阶分析.html" rel="next">
+<link href="../body/01_研究背景与数据下载.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-4e5466e430b1db38349d513585fd1d59.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4585ba509d6d7c01331396c8b7e6474c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_研究背景与数据下载.html"><strong>研究报告（Notebook）</strong></a></li><li class="breadcrumb-item"><a href="../body/02_数据清洗与统计事实.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（二）数据清洗与统计事实</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">长鑫估值研究</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ganlijie-code/ds2026_G03_ex_Team02" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">首页</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>摘要与导读</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_abstract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析 — 研究报告摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/09_project_readme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（DS 项目）</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>研究报告（Notebook）</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_研究背景与数据下载.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（一）研究背景与数据下载</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_数据清洗与统计事实.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（二）数据清洗与统计事实</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_结论局限与进阶分析.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（三）结论、局限与进阶分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/04_进阶回归与预测分析.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>分析输出</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/05_summary_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析 — 统计摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06_section7_conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">第7节 进阶分析结论（数据—图形—结论）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/07_section7_data_sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">第7节图表—数据溯源表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/08_figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">图表索引</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>部署说明</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/10_github_pages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">使用 GitHub Pages 发布</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#数据来源与处理" id="toc-数据来源与处理" class="nav-link active" data-scroll-target="#数据来源与处理"><span class="header-section-number">5.1</span> 3. 数据来源与处理</a>
+  <ul class="collapse">
+  <li><a href="#清洗步骤" id="toc-清洗步骤" class="nav-link" data-scroll-target="#清洗步骤"><span class="header-section-number">5.1.1</span> 3.1 清洗步骤</a></li>
+  </ul></li>
+  <li><a href="#统计事实" id="toc-统计事实" class="nav-link" data-scroll-target="#统计事实"><span class="header-section-number">5.2</span> 4. 统计事实</a>
+  <ul class="collapse">
+  <li><a href="#描述性统计长鑫规模与盈利" id="toc-描述性统计长鑫规模与盈利" class="nav-link" data-scroll-target="#描述性统计长鑫规模与盈利"><span class="header-section-number">5.2.1</span> 4.1 描述性统计：长鑫规模与盈利</a></li>
+  <li><a href="#产品结构" id="toc-产品结构" class="nav-link" data-scroll-target="#产品结构"><span class="header-section-number">5.2.2</span> 4.2 产品结构</a></li>
+  <li><a href="#时间趋势可比公司股价20201" id="toc-时间趋势可比公司股价20201" class="nav-link" data-scroll-target="#时间趋势可比公司股价20201"><span class="header-section-number">5.2.3</span> 4.3 时间趋势：可比公司股价（2020=1）</a></li>
+  <li><a href="#分组对比产业链-vs-设备-roe" id="toc-分组对比产业链-vs-设备-roe" class="nav-link" data-scroll-target="#分组对比产业链-vs-设备-roe"><span class="header-section-number">5.2.4</span> 4.4 分组对比：产业链 vs 设备 ROE</a></li>
+  <li><a href="#政策事件前后半导体指数累计收益" id="toc-政策事件前后半导体指数累计收益" class="nav-link" data-scroll-target="#政策事件前后半导体指数累计收益"><span class="header-section-number">5.2.5</span> 4.5 政策/事件前后：半导体指数累计收益</a></li>
+  <li><a href="#全球-dram-龙头-vs-a-股半导体" id="toc-全球-dram-龙头-vs-a-股半导体" class="nav-link" data-scroll-target="#全球-dram-龙头-vs-a-股半导体"><span class="header-section-number">5.2.6</span> 4.6 全球 DRAM 龙头 vs A 股半导体</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_研究背景与数据下载.html"><strong>研究报告（Notebook）</strong></a></li><li class="breadcrumb-item"><a href="../body/02_数据清洗与统计事实.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（二）数据清洗与统计事实</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（二）数据清洗与统计事实</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>本 Notebook 完成： - 数据清洗与指标构造（第 3 节） - 描述性统计、时间趋势、分组对比、事件研究（第 4 节）</p>
+<section id="数据来源与处理" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="数据来源与处理"><span class="header-section-number">5.1</span> 3. 数据来源与处理</h2>
+<div id="cell-2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path.cwd()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> (ROOT <span class="op">/</span> <span class="st">"data"</span>).exists():</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ROOT <span class="op">=</span> ROOT.parent</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>DATA, CLEAN, OUTPUT <span class="op">=</span> ROOT <span class="op">/</span> <span class="st">"data"</span>, ROOT <span class="op">/</span> <span class="st">"clean"</span>, ROOT <span class="op">/</span> <span class="st">"output"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>CLEAN.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>OUTPUT.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>STOCK_LIST <span class="op">=</span> [</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"603986"</span>, <span class="st">"name"</span>: <span class="st">"兆易创新"</span>, <span class="st">"group"</span>: <span class="st">"存储产业链"</span>},</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"688008"</span>, <span class="st">"name"</span>: <span class="st">"澜起科技"</span>, <span class="st">"group"</span>: <span class="st">"存储产业链"</span>},</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"300223"</span>, <span class="st">"name"</span>: <span class="st">"北京君正"</span>, <span class="st">"group"</span>: <span class="st">"存储产业链"</span>},</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"688981"</span>, <span class="st">"name"</span>: <span class="st">"中芯国际"</span>, <span class="st">"group"</span>: <span class="st">"制造"</span>},</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"002371"</span>, <span class="st">"name"</span>: <span class="st">"北方华创"</span>, <span class="st">"group"</span>: <span class="st">"设备"</span>},</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"688012"</span>, <span class="st">"name"</span>: <span class="st">"中微公司"</span>, <span class="st">"group"</span>: <span class="st">"设备"</span>},</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"688396"</span>, <span class="st">"name"</span>: <span class="st">"华润微"</span>, <span class="st">"group"</span>: <span class="st">"制造"</span>},</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"code"</span>: <span class="st">"603501"</span>, <span class="st">"name"</span>: <span class="st">"韦尔股份"</span>, <span class="st">"group"</span>: <span class="st">"设计"</span>},</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>os.chdir(ROOT)  <span class="co"># 加载 DS/matplotlibrc，避免中文乱码</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"scripts"</span>))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plot_style <span class="im">import</span> setup_theme, save_figure, create_figure, set_title, add_source, PALETTE</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>setup_theme()  <span class="co"># 必须在 seaborn 样式之后覆盖中文字体</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"路径 OK:"</span>, DATA.exists(), CLEAN.exists())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="清洗步骤" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="清洗步骤"><span class="header-section-number">5.1.1</span> 3.1 清洗步骤</h3>
+<ol type="1">
+<li><strong>行情</strong>：合并 8 家可比公司后复权日线，计算日收益率 <code>return</code>，保存 <code>clean/stock_clean.csv</code>。</li>
+<li><strong>招股书财务</strong>：去重、换算亿元 <code>value_bn</code>，宽表 <code>clean/cxkj_financials_wide.csv</code>。</li>
+<li><strong>构造指标</strong>：营收同比增速、研发费用率、毛利率、同业 ROE 面板。</li>
+</ol>
+<div id="cell-4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 清洗：A 股行情 ---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> []</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> STOCK_LIST:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"stock"</span> <span class="op">/</span> <span class="ss">f"stock_</span><span class="sc">{</span>item[<span class="st">'code'</span>]<span class="sc">}</span><span class="ss">.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"date"</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"code"</span>], df[<span class="st">"name"</span>], df[<span class="st">"group"</span>] <span class="op">=</span> item[<span class="st">"code"</span>], item[<span class="st">"name"</span>], item[<span class="st">"group"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"return"</span>] <span class="op">=</span> df[<span class="st">"close"</span>].pct_change()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    frames.append(df)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>stock.to_csv(CLEAN <span class="op">/</span> <span class="st">"stock_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 清洗：长鑫财务 ---</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>fin <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"ipo"</span> <span class="op">/</span> <span class="st">"cxkj_financials.csv"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>fin <span class="op">=</span> fin.drop_duplicates(subset<span class="op">=</span>[<span class="st">"period"</span>, <span class="st">"metric"</span>], keep<span class="op">=</span><span class="st">"first"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>fin[<span class="st">"value_bn"</span>] <span class="op">=</span> fin[<span class="st">"value"</span>] <span class="op">/</span> <span class="fl">1e8</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>fin.to_csv(CLEAN <span class="op">/</span> <span class="st">"cxkj_financials_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> fin.pivot_table(index<span class="op">=</span><span class="st">"period"</span>, columns<span class="op">=</span><span class="st">"metric"</span>, values<span class="op">=</span><span class="st">"value_bn"</span>, aggfunc<span class="op">=</span><span class="st">"first"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>wide.to_csv(CLEAN <span class="op">/</span> <span class="st">"cxkj_financials_wide.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 构造指标 ---</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>rev <span class="op">=</span> fin[fin[<span class="st">"metric"</span>] <span class="op">==</span> <span class="st">"revenue"</span>].copy()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>annual <span class="op">=</span> rev[rev[<span class="st">"period"</span>].isin([<span class="st">"2022"</span>, <span class="st">"2023"</span>, <span class="st">"2024"</span>])].sort_values(<span class="st">"period"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>annual[<span class="st">"yoy_pct"</span>] <span class="op">=</span> annual[<span class="st">"value_bn"</span>].pct_change() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> fin[fin[<span class="st">"metric"</span>] <span class="op">==</span> <span class="st">"cost"</span>].set_index(<span class="st">"period"</span>)[<span class="st">"value_bn"</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>rd <span class="op">=</span> fin[fin[<span class="st">"metric"</span>] <span class="op">==</span> <span class="st">"rd_expense"</span>].set_index(<span class="st">"period"</span>)[<span class="st">"value_bn"</span>]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> annual.set_index(<span class="st">"period"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>metrics[<span class="st">"gross_margin_pct"</span>] <span class="op">=</span> (metrics[<span class="st">"value_bn"</span>] <span class="op">-</span> cost.reindex(metrics.index)) <span class="op">/</span> metrics[<span class="st">"value_bn"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>metrics[<span class="st">"rd_ratio_pct"</span>] <span class="op">=</span> rd.reindex(metrics.index) <span class="op">/</span> metrics[<span class="st">"value_bn"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> metrics.reset_index()</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>metrics.to_csv(CLEAN <span class="op">/</span> <span class="st">"cxkj_derived_metrics.csv"</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>display(metrics[[<span class="st">"period"</span>, <span class="st">"value_bn"</span>, <span class="st">"yoy_pct"</span>, <span class="st">"gross_margin_pct"</span>, <span class="st">"rd_ratio_pct"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="统计事实" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="统计事实"><span class="header-section-number">5.2</span> 4. 统计事实</h2>
+<section id="描述性统计长鑫规模与盈利" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="描述性统计长鑫规模与盈利"><span class="header-section-number">5.2.1</span> 4.1 描述性统计：长鑫规模与盈利</h3>
+<div id="cell-7" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rev_plot <span class="op">=</span> fin[fin[<span class="st">"metric"</span>] <span class="op">==</span> <span class="st">"revenue"</span>].copy()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rev_plot[<span class="st">"period"</span>] <span class="op">=</span> pd.Categorical(rev_plot[<span class="st">"period"</span>], [<span class="st">"2022"</span>, <span class="st">"2023"</span>, <span class="st">"2024"</span>, <span class="st">"2025H1"</span>], ordered<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>rev_plot <span class="op">=</span> rev_plot.sort_values(<span class="st">"period"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>np_ <span class="op">=</span> fin[fin[<span class="st">"metric"</span>] <span class="op">==</span> <span class="st">"net_profit_parent"</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax1.bar(rev_plot[<span class="st">"period"</span>].astype(<span class="bu">str</span>), rev_plot[<span class="st">"value_bn"</span>], color<span class="op">=</span><span class="st">"#4a90e2"</span>, alpha<span class="op">=</span><span class="fl">0.85</span>, label<span class="op">=</span><span class="st">"营业收入"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"营业收入（亿元）"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"长鑫科技营业收入与归母净利润"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax2.plot(np_[<span class="st">"period"</span>].astype(<span class="bu">str</span>), np_[<span class="st">"value_bn"</span>], <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, label<span class="op">=</span><span class="st">"归母净利润"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax2.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"归母净利润（亿元）"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax1.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)<span class="op">;</span> ax2.legend(loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig1_cxkj_revenue_profit.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：2023—2024 年营收从约 91 亿元跃升至 242 亿元，增速约 166%，反映 DRAM 景气上行与产能释放；归母净利润仍为负且绝对值较大，显示<strong>高成长与高亏损并存</strong>的典型早期晶圆厂特征。2025 年上半年营收 154 亿元，年化收入规模继续抬升，但盈利拐点尚未在报表确认。</p>
+</section>
+<section id="产品结构" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="产品结构"><span class="header-section-number">5.2.2</span> 4.2 产品结构</h3>
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sub <span class="op">=</span> fin[fin[<span class="st">"metric"</span>].<span class="bu">str</span>.startswith(<span class="st">"revenue_"</span>) <span class="op">&amp;</span> <span class="op">~</span>fin[<span class="st">"metric"</span>].<span class="bu">str</span>.contains(<span class="st">"小计"</span>)].copy()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sub[<span class="st">"product"</span>] <span class="op">=</span> sub[<span class="st">"metric"</span>].<span class="bu">str</span>.replace(<span class="st">"revenue_"</span>, <span class="st">""</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wide_p <span class="op">=</span> sub.pivot(index<span class="op">=</span><span class="st">"period"</span>, columns<span class="op">=</span><span class="st">"product"</span>, values<span class="op">=</span><span class="st">"value_bn"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>wide_p.plot(kind<span class="op">=</span><span class="st">"bar"</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>), color<span class="op">=</span>[<span class="st">"#667eea"</span>, <span class="st">"#f6ad55"</span>])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"分产品收入（亿元）"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"收入"</span>)<span class="op">;</span> plt.legend(title<span class="op">=</span><span class="st">"产品线"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig2_product_mix.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>display(wide_p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：LPDDR 系列收入占比显著高于 DDR，2025H1 LPDDR 约 106 亿元、DDR 约 42 亿元，说明公司产品重心在移动端/低功耗场景。结构变化将影响毛利率与资本开支节奏，估值上宜对标<strong>移动 DRAM 占比更高</strong>的同业或周期阶段。</p>
+</section>
+<section id="时间趋势可比公司股价20201" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="时间趋势可比公司股价20201"><span class="header-section-number">5.2.3</span> 4.3 时间趋势：可比公司股价（2020=1）</h3>
+<div id="cell-13" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>base_date <span class="op">=</span> pd.Timestamp(<span class="st">"2020-01-02"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, g <span class="kw">in</span> stock.groupby(<span class="st">"name"</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> g.sort_values(<span class="st">"date"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> g.loc[g[<span class="st">"date"</span>] <span class="op">&gt;=</span> base_date, <span class="st">"close"</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(g[<span class="st">"date"</span>], g[<span class="st">"close"</span>] <span class="op">/</span> base, label<span class="op">=</span>name, linewidth<span class="op">=</span><span class="fl">1.1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"可比公司股价（后复权，2020-01-02=1）"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"归一化价格"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">2</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig3_peer_normalized.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：存储产业链（兆易创新、澜起科技、北京君正）与设备龙头（北方华创）走势分化明显，2023—2024 年存储相关标的波动加剧，与全球 DRAM 价格周期共振。长鑫未上市，其合理估值应参考<strong>周期高点/低点</strong>下同业市值—收入倍数区间，而非单一时点股价。</p>
+</section>
+<section id="分组对比产业链-vs-设备-roe" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="分组对比产业链-vs-设备-roe"><span class="header-section-number">5.2.4</span> 4.4 分组对比：产业链 vs 设备 ROE</h3>
+<div id="cell-16" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_ths_number(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(x):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="bu">str</span>(x).strip().replace(<span class="st">","</span>, <span class="st">""</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s.endswith(<span class="st">"%"</span>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(s[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(s)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>roe_rows <span class="op">=</span> []</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> STOCK_LIST:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"finance"</span> <span class="op">/</span> <span class="ss">f"finance_ths_</span><span class="sc">{</span>item[<span class="st">'code'</span>]<span class="sc">}</span><span class="ss">.csv"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> p.exists():</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(p)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    col_roe <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="st">"净资产收益率"</span> <span class="kw">in</span> c][<span class="dv">0</span>]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    col_period <span class="op">=</span> df.columns[<span class="dv">0</span>]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> df[[col_period, col_roe]].copy()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    sub[<span class="st">"year"</span>] <span class="op">=</span> pd.to_datetime(sub[col_period], errors<span class="op">=</span><span class="st">"coerce"</span>).dt.year</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    sub[<span class="st">"roe"</span>] <span class="op">=</span> sub[col_roe].<span class="bu">map</span>(parse_ths_number)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> sub.dropna().groupby(<span class="st">"year"</span>, as_index<span class="op">=</span><span class="va">False</span>).last()</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, r <span class="kw">in</span> sub.iterrows():</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> r[<span class="st">"year"</span>] <span class="op">&gt;=</span> <span class="dv">2020</span>:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            roe_rows.append({<span class="st">"name"</span>: item[<span class="st">"name"</span>], <span class="st">"group"</span>: item[<span class="st">"group"</span>], <span class="st">"year"</span>: <span class="bu">int</span>(r[<span class="st">"year"</span>]), <span class="st">"roe"</span>: r[<span class="st">"roe"</span>]})</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>roe_df <span class="op">=</span> pd.DataFrame(roe_rows)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>roe_df.to_csv(CLEAN <span class="op">/</span> <span class="st">"peer_roe_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, g <span class="kw">in</span> roe_df.groupby(<span class="st">"name"</span>):</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ax.plot(g[<span class="st">"year"</span>], g[<span class="st">"roe"</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span>name)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"可比公司 ROE (%)"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">2</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig5_roe_peer.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"按产业链分组 2024 年 ROE 均值："</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(roe_df[roe_df[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2024</span>].groupby(<span class="st">"group"</span>)[<span class="st">"roe"</span>].mean().<span class="bu">round</span>(<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：设备与制造龙头 ROE 在 2024 年多为正且高于部分存储设计公司；长鑫尚未盈利，不能直接套用同业 PE，但<strong>盈利转正后的 ROE 路径</strong>是决定长期估值中枢的关键假设。</p>
+</section>
+<section id="政策事件前后半导体指数累计收益" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="政策事件前后半导体指数累计收益"><span class="header-section-number">5.2.5</span> 4.5 政策/事件前后：半导体指数累计收益</h3>
+<div id="cell-19" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>semi <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"industry"</span> <span class="op">/</span> <span class="st">"semiconductor_index_ths.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"日期"</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>semi <span class="op">=</span> semi.rename(columns<span class="op">=</span>{<span class="st">"日期"</span>: <span class="st">"date"</span>, <span class="st">"收盘价"</span>: <span class="st">"close"</span>}).sort_values(<span class="st">"date"</span>).set_index(<span class="st">"date"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>semi[<span class="st">"ret"</span>] <span class="op">=</span> semi[<span class="st">"close"</span>].pct_change()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>events <span class="op">=</span> [</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"date"</span>: <span class="st">"2025-07-07"</span>, <span class="st">"event"</span>: <span class="st">"IPO辅导备案"</span>},</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"date"</span>: <span class="st">"2025-12-30"</span>, <span class="st">"event"</span>: <span class="st">"招股说明书披露"</span>},</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, ev <span class="kw">in</span> <span class="bu">zip</span>(axes, events):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> pd.Timestamp(ev[<span class="st">"date"</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> semi.loc[(semi.index <span class="op">&gt;=</span> t0 <span class="op">-</span> pd.Timedelta(days<span class="op">=</span>window)) <span class="op">&amp;</span> (semi.index <span class="op">&lt;=</span> t0 <span class="op">+</span> pd.Timedelta(days<span class="op">=</span>window))].copy()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    w[<span class="st">"rel_day"</span>] <span class="op">=</span> (w.index <span class="op">-</span> t0).days</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    w[<span class="st">"car"</span>] <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> w[<span class="st">"ret"</span>]).cumprod() <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    ax.plot(w[<span class="st">"rel_day"</span>], w[<span class="st">"car"</span>] <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#4a90e2"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    ax.set_title(ev[<span class="st">"event"</span>], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"相对交易日"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"累计收益 (%)"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"IPO 节点前后半导体指数 CAR（事件研究示意）"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig7_event_study.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：事件窗口内半导体指数累计收益波动有限，说明长鑫 IPO 消息对板块整体<strong>短期冲击温和</strong>，更多体现为主题情绪而非系统性重估。需更长样本与多事件叠加检验显著性（见 Notebook 3）。</p>
+</section>
+<section id="全球-dram-龙头-vs-a-股半导体" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="全球-dram-龙头-vs-a-股半导体"><span class="header-section-number">5.2.6</span> 4.6 全球 DRAM 龙头 vs A 股半导体</h3>
+<div id="cell-22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> pd.read_csv(CLEAN <span class="op">/</span> <span class="st">"us_clean.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"date"</span>]) <span class="cf">if</span> (CLEAN <span class="op">/</span> <span class="st">"us_clean.csv"</span>).exists() <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> us <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    uframes <span class="op">=</span> []</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sym, nm <span class="kw">in</span> [(<span class="st">"MU"</span>, <span class="st">"美光科技"</span>), (<span class="st">"WDC"</span>, <span class="st">"西部数据"</span>)]:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"us"</span> <span class="op">/</span> <span class="ss">f"us_</span><span class="sc">{</span>sym<span class="sc">}</span><span class="ss">.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"date"</span>])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        u[<span class="st">"symbol"</span>], u[<span class="st">"name"</span>] <span class="op">=</span> sym, nm</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        uframes.append(u)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    us <span class="op">=</span> pd.concat(uframes)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> us[us[<span class="st">"symbol"</span>] <span class="op">==</span> <span class="st">"MU"</span>].set_index(<span class="st">"date"</span>)[<span class="st">"close"</span>]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>mu_n <span class="op">=</span> mu <span class="op">/</span> mu.iloc[<span class="dv">0</span>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>semi_n <span class="op">=</span> semi[<span class="st">"close"</span>] <span class="op">/</span> semi[<span class="st">"close"</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>common <span class="op">=</span> mu_n.index.intersection(semi_n.index)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ax.plot(common, mu_n.loc[common], label<span class="op">=</span><span class="st">"美光 MU"</span>, color<span class="op">=</span><span class="st">"#2d6a4f"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.plot(common, semi_n.loc[common], label<span class="op">=</span><span class="st">"A股半导体指数"</span>, color<span class="op">=</span><span class="st">"#9b5de5"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"美光 vs 半导体指数（2020=1）"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.savefig(OUTPUT <span class="op">/</span> <span class="st">"fig4_mu_vs_semiconductor.png"</span>, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>解读</strong>：美光股价与 A 股半导体指数相关但不完全一致，2022—2023 年 MU 大幅回撤阶段对应全球存储去库存。长鑫估值需嵌入<strong>全球 DRAM 价格周期</strong>，一级市场 1282—1584 亿元报道区间与周期位置高度相关。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ganlijie-code\.github\.io\/ds2026_G03_ex_Team02\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/01_研究背景与数据下载.html" class="pagination-link" aria-label="长鑫科技合理估值分析（一）研究背景与数据下载">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（一）研究背景与数据下载</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/03_结论局限与进阶分析.html" class="pagination-link" aria-label="长鑫科技合理估值分析（三）结论、局限与进阶分析">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">长鑫科技合理估值分析（三）结论、局限与进阶分析</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

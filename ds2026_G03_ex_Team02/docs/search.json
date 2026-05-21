@@ -1,0 +1,539 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "长鑫科技合理估值分析",
+    "section": "",
+    "text": "0.1 长鑫科技合理估值分析\n本电子书由 DS 数据科学项目 编译而成，基于网络下载的真实数据（招股书、A 股/美股行情、宏观与同业财务），对长鑫科技拟科创板 IPO 的估值区间与产业链影响进行实证研究。\n在线访问：https://ganlijie-code.github.io/ds2026_G03_ex_Team02/\n源码仓库：https://github.com/ganlijie-code/ds2026_G03_ex_Team02",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>首页</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#长鑫科技合理估值分析",
+    "href": "index.html#长鑫科技合理估值分析",
+    "title": "长鑫科技合理估值分析",
+    "section": "",
+    "text": "模块\n说明\n\n\n\n\n摘要\n研究报告七节结构概要\n\n\nNotebook 01–04\n研究背景、数据清洗、结论与进阶回归\n\n\n分析输出\n统计摘要、第 7 节结论、图表索引\n\n\n部署\nGitHub Pages 发布说明\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n本报告仅供课程/研究交流，不构成投资建议。数据截至项目生成日，请以交易所及公司最新披露为准。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>首页</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html",
+    "href": "body/00_abstract.html",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "",
+    "text": "2.1 1. 决策主体与研究目标",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#决策主体与研究目标",
+    "href": "body/00_abstract.html#决策主体与研究目标",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "",
+    "text": "受众：机构投资者、战略投资者、政策研究人员、关注科创板 IPO 的个人投资者。\n决策问题：长鑫科技拟科创板上市募资约 295 亿元，尚无二级市场代码，需评估一级市场估值区间及上市后定价参考。\n报告目标：用招股书财务 + 同业行情 + 宏观/行业指数，刻画成长—亏损特征、同业估值锚与初步情景区间。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#政策市场背景要点",
+    "href": "body/00_abstract.html#政策市场背景要点",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.2 2. 政策/市场背景（要点）",
+    "text": "2.2 2. 政策/市场背景（要点）\n\n\n\n\n\n\n\n政策/文件\n意图\n\n\n\n\n国发〔2020〕8 号（集成电路与软件产业）\n税收优惠、产业协同\n\n\n“十四五”国家信息化规划\n存储器等关键环节自主可控\n\n\n长鑫科技招股说明书（申报稿，2025-12-30）\n披露产能、收入、亏损及募资用途\n\n\n\n数字（招股书/受理公告）：\n\n2024 年营收 241.78 亿元，同比约 +166%\n2022—2025H1 累计营收 736.36 亿元，累计净亏损约 408.57 亿元\n拟募资 295 亿元（科创板受理，2025-12-30）\n出货量：中国第一、全球第四 DRAM（招股书引用 Omdia）",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#数据来源与处理",
+    "href": "body/00_abstract.html#数据来源与处理",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.3 3. 数据来源与处理",
+    "text": "2.3 3. 数据来源与处理\n\n\n\n类型\n来源\n路径\n\n\n\n\n招股书财务\n上交所 PDF\ndata/ipo/cxkj_financials.csv\n\n\nA 股可比行情\nakshare\ndata/stock/\n\n\n美股 MU/WDC\nakshare\ndata/us/\n\n\n指数/宏观/行业\nakshare\ndata/index/, macro/, industry/\n\n\n同业 ROE\nakshare 同花顺财务摘要\ndata/finance/finance_ths_*.csv\n\n\n\n清洗产物：clean/stock_clean.csv、clean/cxkj_financials_clean.csv、clean/peer_roe_clean.csv 等。\n构造指标：营收同比、毛利率、研发费用率、日收益率、CAPM Beta、收入×PE 情景市值。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#统计事实核心发现",
+    "href": "body/00_abstract.html#统计事实核心发现",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.4 4. 统计事实（核心发现）",
+    "text": "2.4 4. 统计事实（核心发现）\n\n规模：营收 2022→2024 由 82.9 亿增至 241.8 亿；归母净利润仍为负。\n结构：LPDDR 收入占比高于 DDR（2025H1 约 106 亿 vs 42 亿）。\n同业：存储产业链 Beta 多高于 1；设备/制造龙头 ROE 2024 年多为正。\n事件：IPO 辅导/招股书披露日前后 ±20 交易日，半导体指数累计收益波动有限。\n全球对照：美光(MU) 与 A 股半导体指数走势相关但不完全同步。\n\n（各图见 fig1—fig7、fig_capm_beta、fig_revenue_forecast。）",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#初步结论",
+    "href": "body/00_abstract.html#初步结论",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.5 5. 初步结论",
+    "text": "2.5 5. 初步结论\n\n问题严重程度：高增长与高累计亏损并存，财务安全边际仍低，战略意义重大。\n主要影响对象：Pre-IPO 股东、A 股存储/半导体板块资金与情绪、合肥产业集群配套。\n待研究：DRAM 合约价、产能利用率、补助占比、发行定价 vs 全球 PS、解禁节奏。\n\n估值锚（公开报道，非模型）：一级市场约 1282—1584 亿元（约 5.3—6.6× 2024 收入 PS）。\n模型情景（收入×PE，示意）：8/15/25 倍 PE → 约 1934 / 3627 / 6045 亿元（需盈利预测修正，不可直接与 PS 对比）。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#局限性",
+    "href": "body/00_abstract.html#局限性",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.6 6. 局限性",
+    "text": "2.6 6. 局限性\n\n未上市，缺少季度分部毛利、产能利用率高频数据。\n未做 DCF；CAPM 以沪深300为基准；收入线性预测未含周期均值回归。\n不构成投资建议。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#进一步分析已做示意",
+    "href": "body/00_abstract.html#进一步分析已做示意",
+    "title": "2  长鑫科技合理估值分析 — 研究报告摘要",
+    "section": "2.7 7. 进一步分析（已做示意）",
+    "text": "2.7 7. 进一步分析（已做示意）\n\nCAPM：output/capm_results.csv\n事件研究：fig7_event_study.png\n收入预测：output/revenue_forecast.csv、fig_revenue_forecast.png\n\n建议扩展：DRAM 价格 VAR、申购询价博弈、上市后事件研究、情景 DCF（盈亏平衡产能假设）。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html",
+    "href": "body/09_project_readme.html",
+    "title": "3  长鑫科技合理估值分析（DS 项目）",
+    "section": "",
+    "text": "3.1 目录结构\n基于网络下载真实数据的科创板 IPO 前估值研究，数据不可手工编造。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>长鑫科技合理估值分析（DS 项目）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#目录结构",
+    "href": "body/09_project_readme.html#目录结构",
+    "title": "3  长鑫科技合理估值分析（DS 项目）",
+    "section": "",
+    "text": "DS/\n├── 01_研究背景与数据下载.ipynb   # 第1–2节 + 数据下载\n├── 02_数据清洗与统计事实.ipynb   # 第3–4节\n├── 03_结论局限与进阶分析.ipynb   # 第5–6节 + 第7节概要\n├── 04_进阶回归与预测分析.ipynb   # **第7节详细回归/事件研究/预测**\n├── data/          # 原始下载数据\n├── clean/         # 清洗后数据\n├── output/        # 图表、回归结果、摘要\n├── scripts/       # download_data.py, analysis.py 等\n└── requirements.txt",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>长鑫科技合理估值分析（DS 项目）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#快速开始",
+    "href": "body/09_project_readme.html#快速开始",
+    "title": "3  长鑫科技合理估值分析（DS 项目）",
+    "section": "3.2 快速开始",
+    "text": "3.2 快速开始\ncd DS\npip install -r requirements.txt\npython scripts/build_notebooks.py   # 如需重建 ipynb\npython scripts/download_data.py     # 下载原始数据（需联网，约5–10分钟）\npython scripts/analysis.py          # 清洗 + 基础出图\npython scripts/advanced_analysis.py # 第7节：详细回归、事件研究、预测\n\n图表统一由 `scripts/plot_style.py` 控制样式（配色、字体、网格、数据源脚注，200 DPI）。\n\n**中文显示**：若图表中文为方框/乱码，请确保：\n1. 在 `DS` 目录下运行脚本或 Notebook（会读取 `matplotlibrc`）；\n2. 绘图前调用 `from plot_style import setup_theme; setup_theme()`；\n3. 勿在 `setup_theme()` 之后再单独 `plt.style.use(...)`（会重置为 Arial）。\n或按顺序运行三个 Jupyter Notebook。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>长鑫科技合理估值分析（DS 项目）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#数据来源",
+    "href": "body/09_project_readme.html#数据来源",
+    "title": "3  长鑫科技合理估值分析（DS 项目）",
+    "section": "3.3 数据来源",
+    "text": "3.3 数据来源\n\n\n\n数据\n接口/URL\n\n\n\n\nA股/美股/指数/宏观\nakshare\n\n\n长鑫招股书财务\n上交所发行上市审核信息披露 PDF（2026-05-20 上会稿，GP_COMMON_FILE_SEARCH）",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>长鑫科技合理估值分析（DS 项目）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#报告结构对应",
+    "href": "body/09_project_readme.html#报告结构对应",
+    "title": "3  长鑫科技合理估值分析（DS 项目）",
+    "section": "3.4 报告结构对应",
+    "text": "3.4 报告结构对应\n\n决策主体与研究目标 → Notebook 01\n政策/市场背景 → Notebook 01\n数据来源与处理 → Notebook 01–02\n统计事实 → Notebook 02\n初步结论 → Notebook 03\n局限性 → Notebook 03\n回归/事件研究/预测 → Notebook 03 + output/",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>长鑫科技合理估值分析（DS 项目）</span>"
+    ]
+  },
+  {
+    "objectID": "body/01_研究背景与数据下载.html",
+    "href": "body/01_研究背景与数据下载.html",
+    "title": "4  长鑫科技合理估值分析（一）研究背景与数据下载",
+    "section": "",
+    "text": "4.1 1. 决策主体与研究目标\n项目路径：DS/\n- 原始数据：data/\n- 清洗数据：clean/\n- 图表与结果：output/",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>长鑫科技合理估值分析（一）研究背景与数据下载</span>"
+    ]
+  },
+  {
+    "objectID": "body/01_研究背景与数据下载.html#决策主体与研究目标",
+    "href": "body/01_研究背景与数据下载.html#决策主体与研究目标",
+    "title": "4  长鑫科技合理估值分析（一）研究背景与数据下载",
+    "section": "",
+    "text": "维度\n说明\n\n\n\n\n报告受众\n机构投资者、产业战略投资者、政策研究人员、拟参与科创板打新的个人/机构投资者\n\n\n面临决策\n长鑫科技拟科创板 IPO 募资约 295 亿元，尚无二级市场代码；需判断一级市场估值区间、上市后合理定价区间及产业链外溢影响\n\n\n研究目标\n基于网络下载的真实数据（招股书、行情、宏观、同业财务），刻画公司财务轨迹、行业可比估值水平，给出初步估值区间与后续分析框架",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>长鑫科技合理估值分析（一）研究背景与数据下载</span>"
+    ]
+  },
+  {
+    "objectID": "body/01_研究背景与数据下载.html#政策市场背景",
+    "href": "body/01_研究背景与数据下载.html#政策市场背景",
+    "title": "4  长鑫科技合理估值分析（一）研究背景与数据下载",
+    "section": "4.2 2. 政策/市场背景",
+    "text": "4.2 2. 政策/市场背景\n\n4.2.1 2.1 核心政策与文件（公开信息摘要）\n\n\n\n\n\n\n\n\n文件/政策\n时间\n关键内容\n\n\n\n\n《新时期促进集成电路产业和软件产业高质量发展的若干政策》\n2020-08\n延续企业所得税优惠、研发加计扣除，强化产业链协同\n\n\n《“十四五”国家信息化规划》\n2021-12\n强调集成电路全产业链突破，存储器为重点环节\n\n\n《关于2025年加力扩围实施大规模设备更新和消费品以旧换新政策的通知》\n2025-01\n间接拉动电子终端需求，支撑存储周期\n\n\n长鑫科技《首次公开发行股票并在科创板上市招股说明书（申报稿）》\n2025-12-30\n披露 2024 年营收 241.78 亿元、累计亏损、募资用途及产品结构\n\n\n\n\n\n4.2.2 2.2 政策意图\n\n自主可控：降低 DRAM 对外依存度（2024 年中国集成电路进口仍超 3,500 亿美元量级，存储占进口结构重要份额）。\n资本支持科创板：允许未盈利、高研发投入的硬科技企业上市融资。\n\n\n\n4.2.3 2.3 问题严重程度（数字来自招股书/公开报道）\n\n2024 年营收 241.78 亿元，同比 +166%（招股书合并利润表）。\n2022—2025 年 6 月累计营收 736.36 亿元，同期累计净亏损 408.57 亿元（申报稿摘要）。\n按出货量计，长鑫为中国第一、全球第四 DRAM 厂商（招股书引用 Omdia）。\n拟募资 295 亿元，为科创板历史最大 IPO 募资规模之一（交易所受理公告，2025-12-30）。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>长鑫科技合理估值分析（一）研究背景与数据下载</span>"
+    ]
+  },
+  {
+    "objectID": "body/01_研究背景与数据下载.html#数据下载akshare-上交所-pdf",
+    "href": "body/01_研究背景与数据下载.html#数据下载akshare-上交所-pdf",
+    "title": "4  长鑫科技合理估值分析（一）研究背景与数据下载",
+    "section": "4.3 3. 数据下载（akshare + 上交所 PDF）",
+    "text": "4.3 3. 数据下载（akshare + 上交所 PDF）\n以下代码从网络拉取全部原始数据，保存至 data/ 子目录。\n\nimport os\nimport sys\nfrom pathlib import Path\n\n# 将项目根目录设为 DS\nROOT = Path.cwd()\nif not (ROOT / \"data\").exists() and (ROOT.parent / \"data\").exists():\n    ROOT = ROOT.parent\nif str(ROOT) not in sys.path:\n    sys.path.insert(0, str(ROOT / \"scripts\"))\n\nos.chdir(ROOT)\nsys.path.insert(0, str(ROOT / \"scripts\"))\nfrom plot_style import setup_theme\nsetup_theme()\nprint(\"工作目录:\", ROOT)\n\n\n# 执行批量下载（约 3–8 分钟，取决于网络）\nfrom download_data import main as download_main\n\ndownload_main()\n\n\n# 检查下载结果\nfrom pathlib import Path\nimport pandas as pd\n\nROOT = Path.cwd()\nif not (ROOT / \"data\").exists():\n    ROOT = ROOT.parent\n\ndata_dir = ROOT / \"data\"\nfiles = sorted(data_dir.rglob(\"*.csv\"))\nprint(f\"已下载 CSV 文件数: {len(files)}\")\nfor f in files[:15]:\n    print(\" \", f.relative_to(ROOT), f.stat().st_size, \"bytes\")\nif (data_dir / \"ipo\" / \"cxkj_financials.csv\").exists():\n    display(pd.read_csv(data_dir / \"ipo\" / \"cxkj_financials.csv\").head(12))\n\n\n4.3.1 下载数据清单\n\n\n\n\n\n\n\n\n类别\n来源\n路径\n\n\n\n\nA 股可比行情\nakshare stock_zh_a_daily\ndata/stock/\n\n\n美股 MU/WDC\nakshare stock_us_daily\ndata/us/\n\n\n沪深300/科创50\nakshare stock_zh_index_daily\ndata/index/\n\n\nCPI/M2\nakshare 宏观接口\ndata/macro/\n\n\n半导体行业指数\nakshare 同花顺行业指数\ndata/industry/\n\n\n科创板注册/辅导\nakshare\ndata/ipo/\n\n\n长鑫招股书财务\n上交所 PDF + pdfplumber\ndata/ipo/cxkj_financials.csv",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>长鑫科技合理估值分析（一）研究背景与数据下载</span>"
+    ]
+  },
+  {
+    "objectID": "body/02_数据清洗与统计事实.html",
+    "href": "body/02_数据清洗与统计事实.html",
+    "title": "5  长鑫科技合理估值分析（二）数据清洗与统计事实",
+    "section": "",
+    "text": "5.1 3. 数据来源与处理\n本 Notebook 完成： - 数据清洗与指标构造（第 3 节） - 描述性统计、时间趋势、分组对比、事件研究（第 4 节）\nfrom pathlib import Path\nimport warnings\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nwarnings.filterwarnings(\"ignore\")\nROOT = Path.cwd()\nif not (ROOT / \"data\").exists():\n    ROOT = ROOT.parent\nDATA, CLEAN, OUTPUT = ROOT / \"data\", ROOT / \"clean\", ROOT / \"output\"\nCLEAN.mkdir(exist_ok=True)\nOUTPUT.mkdir(exist_ok=True)\n\nSTOCK_LIST = [\n    {\"code\": \"603986\", \"name\": \"兆易创新\", \"group\": \"存储产业链\"},\n    {\"code\": \"688008\", \"name\": \"澜起科技\", \"group\": \"存储产业链\"},\n    {\"code\": \"300223\", \"name\": \"北京君正\", \"group\": \"存储产业链\"},\n    {\"code\": \"688981\", \"name\": \"中芯国际\", \"group\": \"制造\"},\n    {\"code\": \"002371\", \"name\": \"北方华创\", \"group\": \"设备\"},\n    {\"code\": \"688012\", \"name\": \"中微公司\", \"group\": \"设备\"},\n    {\"code\": \"688396\", \"name\": \"华润微\", \"group\": \"制造\"},\n    {\"code\": \"603501\", \"name\": \"韦尔股份\", \"group\": \"设计\"},\n]\n\nimport os\nimport sys\nos.chdir(ROOT)  # 加载 DS/matplotlibrc，避免中文乱码\nsys.path.insert(0, str(ROOT / \"scripts\"))\nfrom plot_style import setup_theme, save_figure, create_figure, set_title, add_source, PALETTE\nsetup_theme()  # 必须在 seaborn 样式之后覆盖中文字体\nprint(\"路径 OK:\", DATA.exists(), CLEAN.exists())",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>长鑫科技合理估值分析（二）数据清洗与统计事实</span>"
+    ]
+  },
+  {
+    "objectID": "body/02_数据清洗与统计事实.html#数据来源与处理",
+    "href": "body/02_数据清洗与统计事实.html#数据来源与处理",
+    "title": "5  长鑫科技合理估值分析（二）数据清洗与统计事实",
+    "section": "",
+    "text": "5.1.1 3.1 清洗步骤\n\n行情：合并 8 家可比公司后复权日线，计算日收益率 return，保存 clean/stock_clean.csv。\n招股书财务：去重、换算亿元 value_bn，宽表 clean/cxkj_financials_wide.csv。\n构造指标：营收同比增速、研发费用率、毛利率、同业 ROE 面板。\n\n\n# --- 清洗：A 股行情 ---\nframes = []\nfor item in STOCK_LIST:\n    df = pd.read_csv(DATA / \"stock\" / f\"stock_{item['code']}.csv\", parse_dates=[\"date\"])\n    df[\"code\"], df[\"name\"], df[\"group\"] = item[\"code\"], item[\"name\"], item[\"group\"]\n    df[\"return\"] = df[\"close\"].pct_change()\n    frames.append(df)\nstock = pd.concat(frames, ignore_index=True)\nstock.to_csv(CLEAN / \"stock_clean.csv\", index=False, encoding=\"utf-8-sig\")\n\n# --- 清洗：长鑫财务 ---\nfin = pd.read_csv(DATA / \"ipo\" / \"cxkj_financials.csv\")\nfin = fin.drop_duplicates(subset=[\"period\", \"metric\"], keep=\"first\")\nfin[\"value_bn\"] = fin[\"value\"] / 1e8\nfin.to_csv(CLEAN / \"cxkj_financials_clean.csv\", index=False, encoding=\"utf-8-sig\")\nwide = fin.pivot_table(index=\"period\", columns=\"metric\", values=\"value_bn\", aggfunc=\"first\")\nwide.to_csv(CLEAN / \"cxkj_financials_wide.csv\", encoding=\"utf-8-sig\")\n\n# --- 构造指标 ---\nrev = fin[fin[\"metric\"] == \"revenue\"].copy()\nannual = rev[rev[\"period\"].isin([\"2022\", \"2023\", \"2024\"])].sort_values(\"period\")\nannual[\"yoy_pct\"] = annual[\"value_bn\"].pct_change() * 100\ncost = fin[fin[\"metric\"] == \"cost\"].set_index(\"period\")[\"value_bn\"]\nrd = fin[fin[\"metric\"] == \"rd_expense\"].set_index(\"period\")[\"value_bn\"]\nmetrics = annual.set_index(\"period\")\nmetrics[\"gross_margin_pct\"] = (metrics[\"value_bn\"] - cost.reindex(metrics.index)) / metrics[\"value_bn\"] * 100\nmetrics[\"rd_ratio_pct\"] = rd.reindex(metrics.index) / metrics[\"value_bn\"] * 100\nmetrics = metrics.reset_index()\nmetrics.to_csv(CLEAN / \"cxkj_derived_metrics.csv\", index=False, encoding=\"utf-8-sig\")\ndisplay(metrics[[\"period\", \"value_bn\", \"yoy_pct\", \"gross_margin_pct\", \"rd_ratio_pct\"]])",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>长鑫科技合理估值分析（二）数据清洗与统计事实</span>"
+    ]
+  },
+  {
+    "objectID": "body/02_数据清洗与统计事实.html#统计事实",
+    "href": "body/02_数据清洗与统计事实.html#统计事实",
+    "title": "5  长鑫科技合理估值分析（二）数据清洗与统计事实",
+    "section": "5.2 4. 统计事实",
+    "text": "5.2 4. 统计事实\n\n5.2.1 4.1 描述性统计：长鑫规模与盈利\n\nfig, ax1 = plt.subplots(figsize=(9, 5))\nrev_plot = fin[fin[\"metric\"] == \"revenue\"].copy()\nrev_plot[\"period\"] = pd.Categorical(rev_plot[\"period\"], [\"2022\", \"2023\", \"2024\", \"2025H1\"], ordered=True)\nrev_plot = rev_plot.sort_values(\"period\")\nnp_ = fin[fin[\"metric\"] == \"net_profit_parent\"]\nax1.bar(rev_plot[\"period\"].astype(str), rev_plot[\"value_bn\"], color=\"#4a90e2\", alpha=0.85, label=\"营业收入\")\nax1.set_ylabel(\"营业收入（亿元）\")\nax1.set_title(\"长鑫科技营业收入与归母净利润\")\nax2 = ax1.twinx()\nax2.plot(np_[\"period\"].astype(str), np_[\"value_bn\"], \"o-\", color=\"#e74c3c\", label=\"归母净利润\")\nax2.axhline(0, color=\"gray\", linestyle=\"--\")\nax2.set_ylabel(\"归母净利润（亿元）\")\nax1.legend(loc=\"upper left\"); ax2.legend(loc=\"upper right\")\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig1_cxkj_revenue_profit.png\", dpi=150)\nplt.show()\n\n解读：2023—2024 年营收从约 91 亿元跃升至 242 亿元，增速约 166%，反映 DRAM 景气上行与产能释放；归母净利润仍为负且绝对值较大，显示高成长与高亏损并存的典型早期晶圆厂特征。2025 年上半年营收 154 亿元，年化收入规模继续抬升，但盈利拐点尚未在报表确认。\n\n\n5.2.2 4.2 产品结构\n\nsub = fin[fin[\"metric\"].str.startswith(\"revenue_\") & ~fin[\"metric\"].str.contains(\"小计\")].copy()\nsub[\"product\"] = sub[\"metric\"].str.replace(\"revenue_\", \"\", regex=False)\nwide_p = sub.pivot(index=\"period\", columns=\"product\", values=\"value_bn\")\nwide_p.plot(kind=\"bar\", figsize=(8, 5), color=[\"#667eea\", \"#f6ad55\"])\nplt.title(\"分产品收入（亿元）\"); plt.ylabel(\"收入\"); plt.legend(title=\"产品线\")\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig2_product_mix.png\", dpi=150)\nplt.show()\ndisplay(wide_p)\n\n解读：LPDDR 系列收入占比显著高于 DDR，2025H1 LPDDR 约 106 亿元、DDR 约 42 亿元，说明公司产品重心在移动端/低功耗场景。结构变化将影响毛利率与资本开支节奏，估值上宜对标移动 DRAM 占比更高的同业或周期阶段。\n\n\n5.2.3 4.3 时间趋势：可比公司股价（2020=1）\n\nfig, ax = plt.subplots(figsize=(10, 5))\nbase_date = pd.Timestamp(\"2020-01-02\")\nfor name, g in stock.groupby(\"name\"):\n    g = g.sort_values(\"date\")\n    base = g.loc[g[\"date\"] &gt;= base_date, \"close\"].iloc[0]\n    ax.plot(g[\"date\"], g[\"close\"] / base, label=name, linewidth=1.1)\nax.set_title(\"可比公司股价（后复权，2020-01-02=1）\")\nax.set_ylabel(\"归一化价格\"); ax.legend(ncol=2, fontsize=8)\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig3_peer_normalized.png\", dpi=150)\nplt.show()\n\n解读：存储产业链（兆易创新、澜起科技、北京君正）与设备龙头（北方华创）走势分化明显，2023—2024 年存储相关标的波动加剧，与全球 DRAM 价格周期共振。长鑫未上市，其合理估值应参考周期高点/低点下同业市值—收入倍数区间，而非单一时点股价。\n\n\n5.2.4 4.4 分组对比：产业链 vs 设备 ROE\n\ndef parse_ths_number(x):\n    if pd.isna(x):\n        return None\n    s = str(x).strip().replace(\",\", \"\")\n    if s.endswith(\"%\"):\n        return float(s[:-1])\n    try:\n        return float(s)\n    except ValueError:\n        return None\n\nroe_rows = []\nfor item in STOCK_LIST:\n    p = DATA / \"finance\" / f\"finance_ths_{item['code']}.csv\"\n    if not p.exists():\n        continue\n    df = pd.read_csv(p)\n    col_roe = [c for c in df.columns if \"净资产收益率\" in c][0]\n    col_period = df.columns[0]\n    sub = df[[col_period, col_roe]].copy()\n    sub[\"year\"] = pd.to_datetime(sub[col_period], errors=\"coerce\").dt.year\n    sub[\"roe\"] = sub[col_roe].map(parse_ths_number)\n    sub = sub.dropna().groupby(\"year\", as_index=False).last()\n    for _, r in sub.iterrows():\n        if r[\"year\"] &gt;= 2020:\n            roe_rows.append({\"name\": item[\"name\"], \"group\": item[\"group\"], \"year\": int(r[\"year\"]), \"roe\": r[\"roe\"]})\nroe_df = pd.DataFrame(roe_rows)\nroe_df.to_csv(CLEAN / \"peer_roe_clean.csv\", index=False, encoding=\"utf-8-sig\")\n\nfig, ax = plt.subplots(figsize=(10, 5))\nfor name, g in roe_df.groupby(\"name\"):\n    ax.plot(g[\"year\"], g[\"roe\"], marker=\"o\", label=name)\nax.axhline(0, color=\"gray\", linestyle=\"--\")\nax.set_title(\"可比公司 ROE (%)\"); ax.legend(ncol=2, fontsize=8)\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig5_roe_peer.png\", dpi=150)\nplt.show()\n\nprint(\"按产业链分组 2024 年 ROE 均值：\")\nprint(roe_df[roe_df[\"year\"] == 2024].groupby(\"group\")[\"roe\"].mean().round(2))\n\n解读：设备与制造龙头 ROE 在 2024 年多为正且高于部分存储设计公司；长鑫尚未盈利，不能直接套用同业 PE，但盈利转正后的 ROE 路径是决定长期估值中枢的关键假设。\n\n\n5.2.5 4.5 政策/事件前后：半导体指数累计收益\n\nimport matplotlib.dates as mdates\n\nsemi = pd.read_csv(DATA / \"industry\" / \"semiconductor_index_ths.csv\", parse_dates=[\"日期\"])\nsemi = semi.rename(columns={\"日期\": \"date\", \"收盘价\": \"close\"}).sort_values(\"date\").set_index(\"date\")\nsemi[\"ret\"] = semi[\"close\"].pct_change()\n\nevents = [\n    {\"date\": \"2025-07-07\", \"event\": \"IPO辅导备案\"},\n    {\"date\": \"2025-12-30\", \"event\": \"招股说明书披露\"},\n]\nwindow = 20\nfig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True)\nfor ax, ev in zip(axes, events):\n    t0 = pd.Timestamp(ev[\"date\"])\n    w = semi.loc[(semi.index &gt;= t0 - pd.Timedelta(days=window)) & (semi.index &lt;= t0 + pd.Timedelta(days=window))].copy()\n    w[\"rel_day\"] = (w.index - t0).days\n    w[\"car\"] = (1 + w[\"ret\"]).cumprod() - 1\n    ax.plot(w[\"rel_day\"], w[\"car\"] * 100, color=\"#4a90e2\")\n    ax.axvline(0, color=\"#e74c3c\", linestyle=\"--\")\n    ax.set_title(ev[\"event\"], fontsize=9)\n    ax.set_xlabel(\"相对交易日\"); ax.set_ylabel(\"累计收益 (%)\")\nplt.suptitle(\"IPO 节点前后半导体指数 CAR（事件研究示意）\")\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig7_event_study.png\", dpi=150)\nplt.show()\n\n解读：事件窗口内半导体指数累计收益波动有限，说明长鑫 IPO 消息对板块整体短期冲击温和，更多体现为主题情绪而非系统性重估。需更长样本与多事件叠加检验显著性（见 Notebook 3）。\n\n\n5.2.6 4.6 全球 DRAM 龙头 vs A 股半导体\n\nus = pd.read_csv(CLEAN / \"us_clean.csv\", parse_dates=[\"date\"]) if (CLEAN / \"us_clean.csv\").exists() else None\nif us is None:\n    uframes = []\n    for sym, nm in [(\"MU\", \"美光科技\"), (\"WDC\", \"西部数据\")]:\n        u = pd.read_csv(DATA / \"us\" / f\"us_{sym}.csv\", parse_dates=[\"date\"])\n        u[\"symbol\"], u[\"name\"] = sym, nm\n        uframes.append(u)\n    us = pd.concat(uframes)\n\nmu = us[us[\"symbol\"] == \"MU\"].set_index(\"date\")[\"close\"]\nmu_n = mu / mu.iloc[0]\nsemi_n = semi[\"close\"] / semi[\"close\"].iloc[0]\ncommon = mu_n.index.intersection(semi_n.index)\nfig, ax = plt.subplots(figsize=(10, 5))\nax.plot(common, mu_n.loc[common], label=\"美光 MU\", color=\"#2d6a4f\")\nax.plot(common, semi_n.loc[common], label=\"A股半导体指数\", color=\"#9b5de5\")\nax.set_title(\"美光 vs 半导体指数（2020=1）\"); ax.legend()\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig4_mu_vs_semiconductor.png\", dpi=150)\nplt.show()\n\n解读：美光股价与 A 股半导体指数相关但不完全一致，2022—2023 年 MU 大幅回撤阶段对应全球存储去库存。长鑫估值需嵌入全球 DRAM 价格周期，一级市场 1282—1584 亿元报道区间与周期位置高度相关。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>长鑫科技合理估值分析（二）数据清洗与统计事实</span>"
+    ]
+  },
+  {
+    "objectID": "body/03_结论局限与进阶分析.html",
+    "href": "body/03_结论局限与进阶分析.html",
+    "title": "6  长鑫科技合理估值分析（三）结论、局限与进阶分析",
+    "section": "",
+    "text": "6.1 5. 初步结论\n涵盖报告第 5—7 节：初步结论、局限性、回归/事件研究/预测。\nfrom pathlib import Path\nimport os, sys\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport statsmodels.api as sm\nimport warnings\nwarnings.filterwarnings(\"ignore\")\n\nROOT = Path.cwd()\nif not (ROOT / \"data\").exists():\n    ROOT = ROOT.parent\nos.chdir(ROOT)\nsys.path.insert(0, str(ROOT / \"scripts\"))\nfrom plot_style import setup_theme\nsetup_theme()\n\nDATA, CLEAN, OUTPUT = ROOT / \"data\", ROOT / \"clean\", ROOT / \"output\"\nfin = pd.read_csv(CLEAN / \"cxkj_financials_clean.csv\")\nstock = pd.read_csv(CLEAN / \"stock_clean.csv\", parse_dates=[\"date\"])\n\nrev2024 = fin.loc[(fin[\"metric\"] == \"revenue\") & (fin[\"period\"] == \"2024\"), \"value_bn\"].iloc[0]\nrev2023 = fin.loc[(fin[\"metric\"] == \"revenue\") & (fin[\"period\"] == \"2023\"), \"value_bn\"].iloc[0]\nloss_cum_bn = 408.57  # 招股书摘要：截至 2025-06-30 累计亏损\n\nprint(\"=== 关键事实（数据驱动）===\")\nprint(f\"2024 营业收入: {rev2024:.2f} 亿元\")\nprint(f\"2023→2024 营收增速: {(rev2024/rev2023-1)*100:.1f}%\")\nprint(f\"招股书披露累计亏损(至2025H1): 约 {loss_cum_bn} 亿元\")\nprint(f\"一级市场报道估值区间: 1282 — 1584 亿元\")\nprint(f\"拟募资规模: 295 亿元\")\n\nscenarios = []\nfor pe, lab in [(8, \"保守\"), (15, \"中性\"), (25, \"乐观\")]:\n    scenarios.append({\"情景\": lab, \"假设PE\": pe, \"基于2024收入(亿)\": rev2024, \"隐含市值(亿)\": rev2024 * pe})\nscenarios = pd.DataFrame(scenarios)\nscenarios.to_csv(OUTPUT / \"valuation_scenarios.csv\", index=False, encoding=\"utf-8-sig\")\ndisplay(scenarios)\n5.1 问题严重程度：营收高速增长（2024 年 +166%）与累计亏损超 400 亿元并存，说明产业战略意义重大，但财务安全边际仍低。\n5.2 主要影响对象：① 战略与财务投资者（Pre-IPO 股东）；② A 股存储/设备产业链（情绪与资金分流）；③ 地方政府与产业链配套（合肥集群）。\n5.3 待进一步研究：单季 DRAM 价格、产能利用率、政府补助占比、发行定价 vs 同行 PS/EV-Sales、上市后解禁压力。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>长鑫科技合理估值分析（三）结论、局限与进阶分析</span>"
+    ]
+  },
+  {
+    "objectID": "body/03_结论局限与进阶分析.html#局限性说明",
+    "href": "body/03_结论局限与进阶分析.html#局限性说明",
+    "title": "6  长鑫科技合理估值分析（三）结论、局限与进阶分析",
+    "section": "6.2 6. 局限性说明",
+    "text": "6.2 6. 局限性说明\n\n\n\n\n\n\n\n类型\n说明\n\n\n\n\n数据\n长鑫未上市，财务仅至申报稿；缺少季度分部毛利、产能利用率、市占率高频数据\n\n\n方法\n收入×PE 为示意性情景，未采用 DCF；CAPM 使用沪深300、日频收益，与科创板波动结构存在偏差\n\n\n结论适用范围\n适用于 IPO 前一级估值讨论与同业对比，不构成投资建议；上市后需更新发行价格与锁定期数据",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>长鑫科技合理估值分析（三）结论、局限与进阶分析</span>"
+    ]
+  },
+  {
+    "objectID": "body/03_结论局限与进阶分析.html#进一步分析",
+    "href": "body/03_结论局限与进阶分析.html#进一步分析",
+    "title": "6  长鑫科技合理估值分析（三）结论、局限与进阶分析",
+    "section": "6.3 7. 进一步分析",
+    "text": "6.3 7. 进一步分析\n\n6.3.1 7.1 CAPM 回归（可比公司 Beta）\n\nidx = pd.read_csv(DATA / \"index\" / \"index_sh000300.csv\", parse_dates=[\"date\"]).sort_values(\"date\")\nidx = idx.set_index(\"date\")\nidx[\"mkt_ret\"] = idx[\"close\"].pct_change()\nSTOCK_LIST = [\n    (\"603986\", \"兆易创新\"), (\"688008\", \"澜起科技\"), (\"300223\", \"北京君正\"),\n    (\"688981\", \"中芯国际\"), (\"002371\", \"北方华创\"), (\"688012\", \"中微公司\"),\n    (\"688396\", \"华润微\"), (\"603501\", \"韦尔股份\"),\n]\nrows = []\nfor code, name in STOCK_LIST:\n    g = stock[stock[\"code\"] == code].set_index(\"date\")\n    m = g[[\"return\"]].join(idx[[\"mkt_ret\"]], how=\"inner\").dropna()\n    y = m[\"return\"] - 0.02 / 252\n    x = sm.add_constant(m[\"mkt_ret\"] - 0.02 / 252)\n    model = sm.OLS(y, x).fit()\n    rows.append({\"name\": name, \"beta\": model.params[\"mkt_ret\"], \"alpha_ann\": model.params[\"const\"] * 252, \"r2\": model.rsquared})\ncapm = pd.DataFrame(rows)\ncapm.to_csv(OUTPUT / \"capm_results.csv\", index=False, encoding=\"utf-8-sig\")\ndisplay(capm.sort_values(\"beta\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(8, 5))\nax.barh(capm[\"name\"], capm[\"beta\"], color=\"#667eea\")\nax.axvline(1, color=\"gray\", linestyle=\"--\")\nax.set_title(\"CAPM Beta（相对沪深300）\"); ax.set_xlabel(\"Beta\")\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig_capm_beta.png\", dpi=150)\nplt.show()\n\n解读：存储产业链公司 Beta 多高于 1，意味着系统性风险敞口较大；若市场下行，长鑫上市定价可能面临折让压力，除非发行窗口处于行业景气顶点。\n\n\n6.3.2 7.2 一级市场估值区间（公开报道）\n\nlabels = [\"交易参考下限\\n(2024.12)\", \"战略融资\\n(2024.03)\", \"媒体报道上限\\n(2026.01)\"]\nvals = [1282, 1400, 1584]\nfig, ax = plt.subplots(figsize=(8, 4))\nax.barh(labels, vals, color=[\"#90cdf4\", \"#4a90e2\", \"#2b6cb0\"])\nax.set_xlabel(\"估值（亿元人民币）\")\nax.set_title(\"一级市场估值区间（公开报道，非模型测算）\")\nfor i, v in enumerate(vals):\n    ax.text(v + 20, i, f\"{v:,}亿\", va=\"center\")\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig6_valuation_range.png\", dpi=150)\nplt.show()\n\n解读：报道区间 1282—1584 亿元对应 2024 收入约 5.3—6.6 倍 PS（市销率），高于传统制造、低于部分半导体设计龙头峰值，反映市场对国产 DRAM 稀缺性的溢价。本研究示意性 PE 情景（8/15/25 倍）对应市值约 1934—6045 亿元，需用预期盈利年份修正，不可直接对比。\n\n\n6.3.3 7.3 收入线性预测（示意）\n\nrev = fin[fin[\"metric\"] == \"revenue\"]\nrev = rev[rev[\"period\"].isin([\"2022\", \"2023\", \"2024\"])].copy()\nrev[\"year\"] = rev[\"period\"].astype(int)\nx, y = rev[\"year\"].values, rev[\"value_bn\"].values\ncoef = np.polyfit(x, y, 1)\nfuture = [2025, 2026, 2027]\npred = np.polyval(coef, future)\nfc = pd.DataFrame({\"year\": future, \"revenue_forecast_bn\": pred})\nfc.to_csv(OUTPUT / \"revenue_forecast.csv\", index=False, encoding=\"utf-8-sig\")\n\nfig, ax = plt.subplots(figsize=(8, 5))\nax.plot(x, y, \"o-\", label=\"实际\", color=\"#4a90e2\")\nax.plot(future, pred, \"s--\", label=\"线性外推\", color=\"#e74c3c\")\nax.set_title(\"营业收入趋势与简单预测（亿元）\"); ax.legend()\nplt.tight_layout()\nplt.savefig(OUTPUT / \"fig_revenue_forecast.png\", dpi=150)\nplt.show()\ndisplay(fc)\n\n解读：线性外推仅作敏感性示意，未考虑 DRAM 价格均值回归；2025 年化收入可能高于直线预测，但盈利转正时间仍不确定。\n\n下一步：运行 scripts/analysis.py 可一键复现全部图表；完整文字报告见 output/summary_stats.md。\n\n# 可选：一键运行全部分析脚本\nimport sys\nsys.path.insert(0, str(ROOT / \"scripts\"))\nfrom analysis import run_all\nrun_all()",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>长鑫科技合理估值分析（三）结论、局限与进阶分析</span>"
+    ]
+  },
+  {
+    "objectID": "body/04_进阶回归与预测分析.html",
+    "href": "body/04_进阶回归与预测分析.html",
+    "title": "7  长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测",
+    "section": "",
+    "text": "7.1 7.1 CAPM 与多因子回归（日频行情 + 官方指数）\n原则：每一张图、每一个回归系数均来自 data/ 已下载的官方/交易所披露数据，不手工编造。\n运行 python scripts/advanced_analysis.py 可复现全部输出至 output/。\nimport pandas as pd\nfrom advanced_analysis import run_section7\n# 执行完整流水线（生成 fig7_*.png，中文由 plot_style 保证）\nrun_section7()\n\ncapm = pd.read_csv(OUTPUT / \"regression_capm_summary.csv\")\ndisplay(capm[capm[\"benchmark\"].isin([\"沪深300\", \"科创50\"])].sort_values([\"name\", \"benchmark\"]))\n图形 fig7_capm_beta_dual_benchmark.png：蓝柱为相对沪深300（中证指数）的 Beta，紫柱为相对科创50。\n数据结论（来自 regression_capm_summary.csv）： - 兆易创新、澜起科技、北京君正 Beta 约 1.31—1.43，且 beta_pvalue 极小 → 与市场的协动统计显著。 - 存储股 Beta 高于中芯国际（约 1.04），说明 long 存储板块时系统性风险敞口更大，IPO 定价窗口若遇市场下行，折价压力更高。\n散点图 fig7_capm_scatter_603986.png：以兆易创新日收益对沪深300 日收益作 OLS，直观展示拟合线与 R²。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测</span>"
+    ]
+  },
+  {
+    "objectID": "body/04_进阶回归与预测分析.html#事件研究官方-ipo-节点-市场模型",
+    "href": "body/04_进阶回归与预测分析.html#事件研究官方-ipo-节点-市场模型",
+    "title": "7  长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测",
+    "section": "7.2 7.2 事件研究（官方 IPO 节点 + 市场模型）",
+    "text": "7.2 7.2 事件研究（官方 IPO 节点 + 市场模型）\n\nevents = pd.read_csv(OUTPUT / \"event_study_events.csv\")\ntests = pd.read_csv(OUTPUT / \"event_study_significance.csv\")\ndisplay(events)\ndisplay(tests)\n\n方法（标准事件研究）： - 事件日：辅导完成备案 2025-07-07（cxkj_ipo_tutor.csv）；科创板受理 2025-12-30（cxkj_register.csv）。 - 估计窗：事件日前第 120 至 21 个交易日；事件窗：[-10, +10]。 - 市场模型：\\(R_{i,t}=\\alpha+\\beta R_{m,t}+\\varepsilon_t\\)，\\(R_m\\) 为沪深300 日收益。\n图形 fig7_event_study_car_detailed.png：半导体指数、存储同业等权组合的累计异常收益 CAR。\n数据结论（event_study_significance.csv）： - 受理日（2025-12-30）：半导体指数事件窗末端 CAR 约 +6.45%，但 AR 均值 t 检验 p≈0.15&gt;0.05 → 异常收益不显著。 - 辅导完成日（2025-07-07）：CAR 约 -0.5%，p≈0.91 → 无显著市场反应。\n解读：长鑫 IPO 关键节点对半导体板块未产生统计显著的异常波动，信息或已提前消化，或被行业整体波动淹没。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测</span>"
+    ]
+  },
+  {
+    "objectID": "body/04_进阶回归与预测分析.html#招股书财务回归-营收预测仅上交所披露数据",
+    "href": "body/04_进阶回归与预测分析.html#招股书财务回归-营收预测仅上交所披露数据",
+    "title": "7  长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测",
+    "section": "7.3 7.3 招股书财务回归 + 营收预测（仅上交所披露数据）",
+    "text": "7.3 7.3 招股书财务回归 + 营收预测（仅上交所披露数据）\n\ncxkj_reg = pd.read_csv(OUTPUT / \"regression_cxkj_summary.csv\")\nfc = pd.read_csv(OUTPUT / \"revenue_forecast_ols_ci.csv\")\ndisplay(cxkj_reg)\ndisplay(fc)\n\n模型 A：营收 ~ 年份（2022—2024 招股书，fig7_revenue_ols_forecast.png） - OLS 年斜率约 +79.5 亿元/年（regression_cxkj_summary.csv）；因仅 3 个年度点，p&gt;0.05，趋势显著性不足，预测区间较宽。 - 2025—2027 点预测与 95% CI 见 revenue_forecast_ols_ci.csv → 仅作敏感性参考，不能替代产能/DRAM 价格情景。\n模型 B：归母净利润 ~ 营业收入（fig7_profit_revenue_regression.png） - 斜率为正但 R²≈0.32、p≈0.62 → 亏损收窄与收入扩张有关，但三年样本无法稳定估计盈利拐点。\n模型 C：长鑫营收 vs 美光营收（fig7_cxmt_mu_revenue_regression.png，MU 年报 OPERATE_INCOME） - 展示国产 DRAM 龙头与全球龙头的周期协同；系数受样本长度限制，用于说明行业景气联动，非因果预测。",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测</span>"
+    ]
+  },
+  {
+    "objectID": "body/04_进阶回归与预测分析.html#同业-ps-对数回归-长鑫隐含市值",
+    "href": "body/04_进阶回归与预测分析.html#同业-ps-对数回归-长鑫隐含市值",
+    "title": "7  长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测",
+    "section": "7.4 7.4 同业 PS 对数回归 → 长鑫隐含市值",
+    "text": "7.4 7.4 同业 PS 对数回归 → 长鑫隐含市值\n\nps_panel = pd.read_csv(CLEAN / \"peer_ps_panel.csv\")\nps_res = pd.read_csv(OUTPUT / \"implied_valuation_ps_regression.csv\")\ndisplay(ps_panel.tail(10))\ndisplay(ps_res)\n\n方法：对可比公司（兆易创新、澜起科技、北京君正、中芯国际）各年观测， \\(\\ln(\\text{市值}) = a + b \\ln(\\text{营业总收入}) + \\varepsilon\\)。\n\n市值 = 年末最后一个交易日收盘价 × 流通股（data/stock 行情）。\n收入 = 同花顺财务摘要 营业总收入（finance_ths_*.csv）。\n\n图形 fig7_peer_ps_regression.png：散点为同业历年观测，红星为长鑫 2024 收入对应的回归隐含市值。\n数据结论（implied_valuation_ps_regression.csv）： - 2024 收入 241.78 亿元 → 模型隐含市值约 1636 亿元，隐含 PS 约 6.77×。 - 回归 R² 较低（≈0.08）→ 同业估值分化大，模型仅作区间锚定。 - 与一级市场报道 1282—1584 亿元 相比：模型点估计略高，落在同一数量级，支持「高 PS 成长溢价」叙事，但需下调 R² 不确定性。\n\n完整文字报告：output/section7_conclusions.md\n\n# 展示全部第7节图表路径\nfor p in sorted(OUTPUT.glob(\"fig7_*.png\")):\n    print(p.name)",
+    "crumbs": [
+      "**研究报告（Notebook）**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>长鑫科技合理估值分析（四）第7节：进阶回归、事件研究、预测</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html",
+    "href": "body/05_summary_stats.html",
+    "title": "8  长鑫科技合理估值分析 — 统计摘要",
+    "section": "",
+    "text": "8.1 1. 长鑫财务（招股书，单位：亿元）\nperiod value_bn 2025 617.993215 2024 241.782487 2023 90.871472 2026Q1 508.001455 2025Q1 62.016905",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#可比公司日收益",
+    "href": "body/05_summary_stats.html#可比公司日收益",
+    "title": "8  长鑫科技合理估值分析 — 统计摘要",
+    "section": "8.2 2. 可比公司日收益",
+    "text": "8.2 2. 可比公司日收益\n      mean       std  count\nname\n中微公司 0.001681 0.036812 1533 中芯国际 0.000699 0.027121 1408 兆易创新 0.001463 0.033456 1542 北京君正 0.000958 0.036402 1542 北方华创 0.001993 0.032572 1542 华润微 0.000729 0.029338 1508 澜起科技 0.001403 0.034151 1542 韦尔股份 0.000357 0.028477 1542",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#capm-beta",
+    "href": "body/05_summary_stats.html#capm-beta",
+    "title": "8  长鑫科技合理估值分析 — 统计摘要",
+    "section": "8.3 3. CAPM Beta",
+    "text": "8.3 3. CAPM Beta\nname beta alpha r2 兆易创新 1.379771 0.316899 0.238048 澜起科技 1.308004 0.303439 0.205304 北京君正 1.425673 0.188651 0.214674 中芯国际 1.042556 0.145595 0.188715 北方华创 1.218371 0.454132 0.195816 中微公司 1.315419 0.376629 0.179618 华润微 1.282845 0.130503 0.259997 韦尔股份 1.314295 0.039546 0.298116",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#估值情景收入pe-示意亿元",
+    "href": "body/05_summary_stats.html#估值情景收入pe-示意亿元",
+    "title": "8  长鑫科技合理估值分析 — 统计摘要",
+    "section": "8.4 4. 估值情景（收入×PE 示意，亿元）",
+    "text": "8.4 4. 估值情景（收入×PE 示意，亿元）\nscenario pe_assumption revenue_2025_bn implied_valuation_bn 保守 8 617.993215 4943.945724 中性 15 617.993215 9269.898232 乐观 25 617.993215 15449.830387",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>长鑫科技合理估值分析 — 统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html",
+    "href": "body/06_section7_conclusions.html",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "",
+    "text": "9.1 数据官方来源",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html#数据官方来源",
+    "href": "body/06_section7_conclusions.html#数据官方来源",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "",
+    "text": "长鑫财务：上交所招股说明书 PDF → data/ipo/cxkj_financials.csv\nIPO 事件日：安徽证监局辅导备案 cxkj_ipo_tutor.csv、上交所受理 cxkj_register.csv\nA 股行情/指数：akshare（新浪/交易所指数）→ data/stock/, data/index/\n美股 MU 年报：akshare mu_annual_us.csv（SEC 披露汇总）\n同业财务：akshare 同花顺财务摘要 finance_ths_*.csv",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html#capm-回归结论",
+    "href": "body/06_section7_conclusions.html#capm-回归结论",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "9.2 7.1 CAPM 回归结论",
+    "text": "9.2 7.1 CAPM 回归结论\nname beta r2 beta_pvalue 兆易创新 1.379771 0.238048 5.047312e-93 澜起科技 1.308004 0.205304 6.392440e-79 北京君正 1.425673 0.214674 6.752838e-83 中芯国际 1.042556 0.188715 6.877686e-66 北方华创 1.218371 0.195816 6.093787e-75\n结论：存储产业链公司 Beta 多显著大于 1（p&lt;0.05），系统性风险高于市场；相对科创50 的 Beta 见 fig7_capm_beta_dual_benchmark.png。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html#事件研究结论",
+    "href": "body/06_section7_conclusions.html#事件研究结论",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "9.3 7.2 事件研究结论",
+    "text": "9.3 7.2 事件研究结论\n             event  asset  car_event_end_pct  ar_mean_pct  ar_tstat  ar_pvalue est_window  n_ar\n科创板 IPO 受理（上交所）|半导体指数 半导体指数 6.453236 0.496403 1.537695 0.150063 -120~-21 13 科创板 IPO 受理（上交所）|存储同业等权 存储同业等权 5.080757 0.390827 0.669756 0.515694 -120~-21 13 辅导工作完成（安徽证监局备案）|半导体指数 半导体指数 -0.507641 -0.033843 -0.116557 0.908866 -120~-21 15 辅导工作完成（安徽证监局备案）|存储同业等权 存储同业等权 -0.558093 -0.037206 -0.116245 0.909109 -120~-21 15\n结论：以沪深300 为市场模型的 CAR 见 fig7_event_study_car_detailed.png；若事件窗 AR 的 p&gt;0.05，则异常收益统计上不显著，IPO 消息或已被预期。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html#预测与财务回归",
+    "href": "body/06_section7_conclusions.html#预测与财务回归",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "9.4 7.3 预测与财务回归",
+    "text": "9.4 7.3 预测与财务回归\n\n营收 OLS 与 95% CI：fig7_revenue_ols_forecast.png, revenue_forecast_ols_ci.csv\n归母净利~营收：fig7_profit_revenue_regression.png（上交所招股说明书（上会稿 2026-05-20） 年报样本，解释力有限）\n长鑫 vs 美光营收：fig7_cxmt_mu_revenue_regression.png",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_section7_conclusions.html#同业-ps-回归隐含市值",
+    "href": "body/06_section7_conclusions.html#同业-ps-回归隐含市值",
+    "title": "9  第7节 进阶分析结论（数据—图形—结论）",
+    "section": "9.5 7.4 同业 PS 回归隐含市值",
+    "text": "9.5 7.4 同业 PS 回归隐含市值\ncxmt_revenue_2024_bn implied_mcap_bn_from_peer_ps implied_ps_ratio model_r2 ln_rev_coef 241.782487 1635.782084 6.765511 0.081503 0.229532\n结论：在可比公司历史 PS—收入对数关系下，长鑫 2024 收入对应模型隐含市值见上表；须与一级市场 1282—1584 亿报道区间交叉验证。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第7节 进阶分析结论（数据—图形—结论）</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_section7_data_sources.html",
+    "href": "body/07_section7_data_sources.html",
+    "title": "10  第7节图表—数据溯源表",
+    "section": "",
+    "text": "输出文件\n图表/表格含义\n原始官方数据路径\n\n\n\n\nfig7_capm_beta_dual_benchmark.png\n双基准 Beta\ndata/stock/, data/index/sh000300.csv, sh000688.csv\n\n\nfig7_capm_scatter_603986.png\nCAPM 散点 OLS\nstock_603986.csv, index_sh000300.csv\n\n\nfig7_event_study_car_detailed.png\n事件研究 CAR\nindustry/semiconductor_index_ths.csv, stock/, ipo/*.csv\n\n\nfig7_event_car_end.png\n事件窗末端 CAR\nevent_study_ar_car.csv\n\n\nfig7_revenue_ols_forecast.png\n营收 OLS+CI\n上交所 2026-05-20 上会稿 → ipo/cxkj_financials.csv（年报+2026Q1 实际；2026–2027 为 OLS 外推）\n\n\nfig7_profit_revenue_regression.png\n净利~营收\n上交所 2026-05-20 上会稿 → ipo/cxkj_financials.csv（年报 2023–2025）\n\n\nfig7_cxmt_mu_revenue_regression.png\n长鑫 vs 美光\nipo/cxkj_financials.csv, finance/mu_annual_us.csv\n\n\nfig1_cxkj_revenue_profit.png\n营收与归母净利\nipo/cxkj_financials.csv（截至 2026-05-21）\n\n\nfig7_peer_ps_regression.png\nPS 对数回归\nfinance/finance_ths_*.csv, data/stock/\n\n\nregression_capm_full.csv\nCAPM 完整系数表\n同上\n\n\nevent_study_significance.csv\n事件研究 t 检验\n同上\n\n\n\n事件日字段： - cxkj_ipo_tutor.csv → 备案日期 2025-07-07 - cxkj_register.csv → 受理日期 2025-12-30",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第7节图表—数据溯源表</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html",
+    "href": "body/08_figures.html",
+    "title": "11  图表索引",
+    "section": "",
+    "text": "11.1 核心财务与估值\n以下图表由 DS/scripts/analysis.py 与 advanced_analysis.py 基于网络下载数据生成，图源见 第7节数据溯源。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#核心财务与估值",
+    "href": "body/08_figures.html#核心财务与估值",
+    "title": "11  图表索引",
+    "section": "",
+    "text": "11.1.1 图 1 长鑫营收与归母净利润\n\n\n\n11.1.2 图 2 产品结构（DDR / LPDDR）\n\n\n\n11.1.3 图 6 一级市场估值区间（报道口径）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#同业与市场对照",
+    "href": "body/08_figures.html#同业与市场对照",
+    "title": "11  图表索引",
+    "section": "11.2 同业与市场对照",
+    "text": "11.2 同业与市场对照\n\n11.2.1 图 3 可比公司股价归一化\n\n\n\n11.2.2 图 4 美光 vs A 股半导体指数\n\n\n\n11.2.3 图 5 同业 ROE",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#第7节回归事件研究与预测",
+    "href": "body/08_figures.html#第7节回归事件研究与预测",
+    "title": "11  图表索引",
+    "section": "11.3 第7节：回归、事件研究与预测",
+    "text": "11.3 第7节：回归、事件研究与预测\n\n11.3.1 CAPM Beta（双基准）\n\n\n\n11.3.2 CAPM 散点（兆易创新示例）\n\n\n\n11.3.3 事件研究 CAR\n\n\n\n11.3.4 营收 OLS 预测与置信区间\n\n\n\n11.3.5 归母净利—营收回归\n\n\n\n11.3.6 同业 PS 对数回归隐含市值\n\n\n\n11.3.7 事件窗末端 CAR",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#补充图表",
+    "href": "body/08_figures.html#补充图表",
+    "title": "11  图表索引",
+    "section": "11.4 补充图表",
+    "text": "11.4 补充图表",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/10_github_pages.html",
+    "href": "body/10_github_pages.html",
+    "title": "12  使用 GitHub Pages 发布",
+    "section": "",
+    "text": "12.1 发布流程\n本章说明如何将本 Quarto Book 部署到 GitHub Pages，访问地址为：\nhttps://ganlijie-code.github.io/ds2026_G03_ex_Team02/\n等待数分钟后访问：https://ganlijie-code.github.io/ds2026_G03_ex_Team02/",
+    "crumbs": [
+      "**部署说明**",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
+    ]
+  },
+  {
+    "objectID": "body/10_github_pages.html#发布流程",
+    "href": "body/10_github_pages.html#发布流程",
+    "title": "12  使用 GitHub Pages 发布",
+    "section": "",
+    "text": "Step 1：确保 docs 文件夹在主分支\n\n\n运行 quarto render 后，HTML 输出位于项目根目录的 docs/ 文件夹。\n\n\nStep 2：推送本地代码到 GitHub\n\n\n在 GitHub Desktop 或命令行中提交更改。\n确保主分支（main）与远程仓库 ganlijie-code/ds2026_G03_ex_Team02 同步。\n\n\nStep 3：在 GitHub 仓库中启用 Pages\n\n\n打开仓库 Settings → Pages\nSource 选择 “Deploy from a branch”\nBranch：main（或当前主分支）\nFolder：/docs\n保存设置。\n\n\nStep 4：访问网页\n\n\n\n\n\n\n\n\nNote注意事项\n\n\n\n\n每次修改书稿后需重新运行 quarto render，并将更新后的 docs/ 推送到 GitHub。\n_quarto.yml 中的 site-url 须与上述 Pages 地址一致，否则站内链接可能错误。",
+    "crumbs": [
+      "**部署说明**",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
+    ]
+  },
+  {
+    "objectID": "body/10_github_pages.html#本地重新编译",
+    "href": "body/10_github_pages.html#本地重新编译",
+    "title": "12  使用 GitHub Pages 发布",
+    "section": "12.2 本地重新编译",
+    "text": "12.2 本地重新编译\n在项目根目录执行：\nquarto render\nWindows 下若未全局安装 Quarto，可使用本仓库同级的便携版：\nG:\\ganlijie\\page\\tools\\quarto\\bin\\quarto.exe render",
+    "crumbs": [
+      "**部署说明**",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
+    ]
+  },
+  {
+    "objectID": "body/10_github_pages.html#参考文档",
+    "href": "body/10_github_pages.html#参考文档",
+    "title": "12  使用 GitHub Pages 发布",
+    "section": "12.3 参考文档",
+    "text": "12.3 参考文档\n\nGitHub Pages 官方指南\nQuarto 发布到 GitHub Pages",
+    "crumbs": [
+      "**部署说明**",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>使用 GitHub Pages 发布</span>"
+    ]
+  }
+]
