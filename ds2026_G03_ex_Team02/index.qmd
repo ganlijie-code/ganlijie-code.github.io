@@ -13,7 +13,6 @@ numbered: false
 | 摘要 | 研究报告七节结构概要 |
 | Notebook 01–04 | 研究背景、数据清洗、结论与进阶回归 |
 | 分析输出 | 统计摘要、第 7 节结论、图表索引 |
-| 部署 | GitHub Pages 发布说明 |
 
 **在线访问**：[https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs)
 
