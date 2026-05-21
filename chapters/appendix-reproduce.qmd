@@ -1,0 +1,53 @@
+# 附录：复现与目录说明 {#sec-appendix}
+
+## 项目结构
+
+```
+ds2026_G03_ex_Team02/                 # 可单独克隆/部署的仓库根
+├── _quarto.yml
+├── index.qmd
+├── chapters/
+├── images/                  # 全书插图（提交到 Git 供 Pages 使用）
+├── data/
+├── scripts/sync_images.ps1  # 从 DS/output 同步（开发时）
+├── styles/custom.scss
+├── references.bib
+└── _book/                   # 渲染输出（git 忽略，由 CI 生成）
+```
+
+## 同步插图
+
+在 `DS` 根目录（本书位于 `DS/ds2026_G03_ex_Team02/` 时）执行：
+
+```powershell
+.\ds2026_G03_ex_Team02\scripts\sync_images.ps1
+```
+
+脚本将 `DS/output/*.png` 复制到 `ds2026_G03_ex_Team02/images/`。独立仓库部署时，请把 `images/*.png` 一并提交。
+
+## 渲染本书
+
+需安装 [Quarto](https://quarto.org/docs/get-started/)（≥ 1.4）及中文 PDF 所需的 TeX（可选）。
+
+```powershell
+Set-Location G:\ganlijie\git\DS\ds2026_G03_ex_Team02
+quarto render          # 全部格式
+quarto preview         # 本地预览 HTML
+quarto render --to html
+quarto render --to pdf
+```
+
+## 发布到 GitHub Pages
+
+- 仓库：`https://github.com/ganlijie-code/ganlijie-code.github.io.git`
+- 站点：`https://ganlijie-code.github.io/ds2026_G03_ex_Team02/`
+- 推送 `main` 后由 Actions 发布；或本地 `quarto publish gh-pages`
+
+## 与 Marp 简报的关系
+
+| 产物 | 路径 | 用途 |
+|------|------|------|
+| Quarto Book | `ds2026_G03_ex_Team02/` | 分章深度阅读、PDF/EPUB |
+| Marp 幻灯片 | `Marp/slides.md` | 约 10 分钟口头陈述 |
+
+Marp 简报（`DS/Marp/`）仍引用 `output/` 下图表；本书仅使用 `images/`。

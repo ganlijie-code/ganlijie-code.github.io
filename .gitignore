@@ -1,1 +1,5 @@
-/.idea/
+_book/
+_site/
+**/.quarto/
+*.html
+!README.md
