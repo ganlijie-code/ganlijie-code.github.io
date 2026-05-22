@@ -1,6 +1,6 @@
 <div align="center">
 
-🔗 [GitHub 仓库](https://github.com/ganlijie-code/dshw-p02.git) &nbsp;|&nbsp; 📖 [Quarto 电子书](./docs/index.html) &nbsp;|&nbsp; 📄 [HTML 报告](./report.html) &nbsp;|&nbsp; 📧 课程作业 &nbsp;|&nbsp; 📅 2026
+🔗 [GitHub 仓库](https://github.com/ganlijie-code/dshw-p02.git) &nbsp;|&nbsp; 📖 [Quarto 电子书](https://ganlijie-code.github.io/dshw_p02/docs) &nbsp;|&nbsp; 📄 [HTML 报告](./report.html) &nbsp;|&nbsp; 📧 课程作业 &nbsp;|&nbsp; 📅 2026
 
 </div>
 
