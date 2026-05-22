@@ -1,6 +1,6 @@
 <div align="center">
 
-🔗 [GitHub 仓库](https://github.com/ganlijie-code/ds2026_G03_ex_Team02) &nbsp;|&nbsp; 📖 [Quarto 电子书](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs) &nbsp;|&nbsp; 📧 数据分析课程 · 第 3 组 &nbsp;|&nbsp; 📅 2026
+🔗 [GitHub 仓库](https://github.com/ganlijie-code/ds2006_G03_ex_Team02.git) &nbsp;|&nbsp; 📖 [Quarto 电子书](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs) &nbsp;|&nbsp; 📧 数据分析课程 · 第 3 组 &nbsp;|&nbsp; 📅 2026
 
 </div>
 
@@ -79,7 +79,7 @@
 
 | 项目 | 路径 |
 |------|------|
-| GitHub 仓库 | [ganlijie-code/ds2026_G03_ex_Team02](https://github.com/ganlijie-code/ds2026_G03_ex_Team02) |
+| GitHub 仓库 | [ganlijie-code/ds2026_G03_ex_Team02](https://github.com/ganlijie-code/ds2006_G03_ex_Team02.git) |
 | 在线阅读 | [ganlijie-code.github.io/ds2026_G03_ex_Team02](https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs) |
 ---
 
