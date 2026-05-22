@@ -15,7 +15,7 @@ book:
     search: true
     tools:
       - icon: github
-        href: https://github.com/ganlijie-code/ds2026_G03_ex_Team02
+        href: https://github.com/ganlijie-code/ds2006_G03_ex_Team02.git
 
   site-url: https://ganlijie-code.github.io/ds2026_G03_ex_Team02/docs
   editor: source
