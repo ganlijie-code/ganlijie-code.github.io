@@ -1,20 +1,11 @@
 <div align="center">
 
-<h1>📊 P02：金融数据获取、管理与初步分析</h1>
-
-<p>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python"></a>
-  <a href="https://jupyter.org/"><img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white" alt="Jupyter"></a>
-  <a href="https://pandas.pydata.org/"><img src="https://img.shields.io/badge/Pandas-2.0%2B-150458?logo=pandas&logoColor=white" alt="Pandas"></a>
-  <a href="https://matplotlib.org/"><img src="https://img.shields.io/badge/Matplotlib-3.7%2B-11557c?logo=matplotlib&logoColor=white" alt="Matplotlib"></a>
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  <a href="./docs/index.html"><img src="https://img.shields.io/badge/📖%20Quarto%20Book-在线阅读-4c6ef5" alt="Quarto Book"></a>
-  <a href="./report.html"><img src="https://img.shields.io/badge/📄%20Report-在线查看-ff6b6b" alt="Report"></a>
-</p>
-
-<p><b>🎓 课程作业</b> | 基于 Python 金融数据栈，完成 A 股数据的 <b>自动采集 → 清洗存储 → 统计描述 → 可视化 → 资产定价建模</b> 全流程</p>
+🔗 [GitHub 仓库](https://github.com/ganlijie-code/dshw-p02.git) &nbsp;|&nbsp; 📖 [Quarto 电子书](./docs/index.html) &nbsp;|&nbsp; 📄 [HTML 报告](./report.html) &nbsp;|&nbsp; 📧 课程作业 &nbsp;|&nbsp; 📅 2026
 
 </div>
+
+
+<h1>📊 P02：金融数据获取、管理与初步分析</h1>
 
 ---
 
@@ -23,7 +14,6 @@
 - [✨ 项目说明](#-项目说明)
 - [📖 Quarto 电子书](#-quarto-电子书)
 - [🚀 快速开始](#-快速开始)
-- [📈 分析成果预览](#-分析成果预览)
 - [🏢 股票列表](#-股票列表)
 - [🗃️ 数据来源与存储](#️-数据来源与存储)
 - [📂 项目结构](#-项目结构)
@@ -61,22 +51,12 @@
 
 </blockquote>
 
----
-
 ## 📖 Quarto 电子书
 
-本项目支持通过 [Quarto](https://quarto.org/) 编译为可浏览的 **Book** 网站（结构参考 `ds2026_G03_ex_Team02`）：
-
-```bash
-cd dshw_p02
-quarto render          # 或 Windows: .\render.ps1
-```
-
-| 项目 | 路径 |
-|------|------|
-| 配置文件 | `_quarto.yml` |
-| 渲染输出 | `docs/index.html` |
-| 在线阅读 | [https://ganlijie-code.github.io/dshw_p02/docs](https://ganlijie-code.github.io/dshw_p02/docs) |
+| 项目       | 路径 |
+|----------|------|
+| gitHub仓库 | [https://github.com/ganlijie-code/dshw-p02.git](https://github.com/ganlijie-code/dshw-p02.git) |
+| 在线阅读     | [https://ganlijie-code.github.io/dshw_p02](https://ganlijie-code.github.io/dshw_p02/docs) |
 
 章节包括：摘要导读 → 三个 Notebook → 统计摘要 / 结论 / 数据溯源 / 图表索引。
 
@@ -92,52 +72,15 @@ cd dshw-p02
 # 2. 安装依赖
 pip install -r requirements.txt
 
-# 3. 启动 Jupyter 并按顺序运行三个 Notebook
-jupyter notebook
-#  ① 01_download.ipynb  →  ② 02_clean.ipynb  →  ③ 03_analysis.ipynb
-
-# 4. 导出 HTML 报告（可选）
-jupyter nbconvert --to html 03_analysis.ipynb --output report.html
-
-# 5. 生成 Quarto 电子书
-quarto render
 ```
 
 > ⚠️ 运行 `01_download.ipynb` 需联网，约 **3–5 分钟**。
 
 ---
 
-## 📈 分析成果预览
-
-### 近 5 年 ROE 走势对比
-
-<p align="center">
-  <img src="./output/fig5_roe.png" width="90%" alt="ROE对比">
-</p>
-
-### CAPM Beta（95% 置信区间）
-
-<p align="center">
-  <img src="./output/fig_capm_beta.png" width="70%" alt="CAPM Beta">
-</p>
-
-<details>
-<summary>🖼️ 查看更多可视化成果</summary>
-
-| 图表 | 预览 | 说明 |
-|:---|:---|:---|
-| 归一化收盘价 | <img src="./output/fig1_normalized_price.png" width="400"> | 10 只股票 vs 沪深 300（2020=1） |
-| 日收益率分布 | <img src="./output/fig2_return_dist.png" width="400"> | 2×5 分面直方图 + 正态拟合 |
-| 相关系数热力图 | <img src="./output/fig3_corr_heatmap.png" width="350"> | 按行业聚类的 Pearson 矩阵 |
-| CPI 与股市 | <img src="./output/fig4_macro_scatter.png" width="350"> | CPI 同比 vs 沪深 300 月度收益 |
-
-</details>
-
----
-
 ## 🏢 股票列表
 
-覆盖 **7 大行业**（满足至少 5 个行业的课程要求）：
+覆盖 **7 大行业**：
 
 | 代码 | 名称 | 行业 | 选股理由 |
 |:---:|:---|:---:|:---|
@@ -230,9 +173,3 @@ dshw-p02/
 </p>
 
 ---
-
-<div align="center">
-
-🔗 [GitHub 仓库](https://github.com/ganlijie-code/dshw-p02.git) &nbsp;|&nbsp; 📖 [Quarto 电子书](./docs/index.html) &nbsp;|&nbsp; 📄 [HTML 报告](./report.html) &nbsp;|&nbsp; 📧 课程作业 &nbsp;|&nbsp; 📅 2026
-
-</div>
