@@ -1,0 +1,539 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "P02：金融数据获取、管理与初步分析",
+    "section": "",
+    "text": "0.1 P02：金融数据获取、管理与初步分析\n本电子书由 课程作业项目 dshw_p02 编译而成，基于 akshare 获取 10 家 A 股代表性公司 2020 年至今的行情、财务与宏观数据，完成 自动采集 → 清洗存储 → 统计描述 → 可视化 → CAPM 建模 全流程。\n在线访问：https://ganlijie-code.github.io/dshw_p02/docs\n源码目录：ganlijie-code.github.io/dshw_p02",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>首页</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#p02金融数据获取管理与初步分析",
+    "href": "index.html#p02金融数据获取管理与初步分析",
+    "title": "P02：金融数据获取、管理与初步分析",
+    "section": "",
+    "text": "模块\n说明\n\n\n\n\n摘要\n研究目标、数据来源与核心发现\n\n\nNotebook 01–03\n数据下载、清洗、分析建模\n\n\n分析输出\n统计摘要、结论、图表索引\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n本报告仅供课程/研究交流，不构成投资建议。数据截至项目生成日，请以交易所及公司最新披露为准。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>首页</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html",
+    "href": "body/00_abstract.html",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "",
+    "text": "2.1 1. 研究目标",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#研究目标",
+    "href": "body/00_abstract.html#研究目标",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "",
+    "text": "受众：课程作业评审、金融数据分析学习者。\n研究问题：2020–2025 年 A 股多行业代表性公司的价格分化、收益分布、板块联动与资产定价特征。\n报告目标：完成数据自动采集、清洗存储、描述统计、可视化与 CAPM / 宏观回归建模。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#样本与背景",
+    "href": "body/00_abstract.html#样本与背景",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "2.2 2. 样本与背景",
+    "text": "2.2 2. 样本与背景\n覆盖 7 大行业（银行、汽车、房地产、白酒、能源、通讯、物流）的 10 家 A 股上市公司，时间窗口 2020-01-01 至今（后复权日度行情）。\n\n\n\n代码\n名称\n行业\n\n\n\n\n601398\n工商银行\n银行\n\n\n600036\n招商银行\n银行\n\n\n002594\n比亚迪\n汽车\n\n\n601633\n长城汽车\n汽车\n\n\n000002\n万科A\n房地产\n\n\n600519\n贵州茅台\n白酒\n\n\n000858\n五粮液\n白酒\n\n\n601857\n中国石油\n能源\n\n\n600941\n中国移动\n通讯\n\n\n002352\n顺丰控股\n物流",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#数据来源与处理",
+    "href": "body/00_abstract.html#数据来源与处理",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "2.3 3. 数据来源与处理",
+    "text": "2.3 3. 数据来源与处理\n\n\n\n\n\n\n\n\n类型\n来源 / API\n路径\n\n\n\n\n股票行情\nakshare.stock_zh_a_hist()\ndata/stock/\n\n\n市场指数\nakshare.stock_zh_index_daily_em()\ndata/index/\n\n\nCPI / M2\nakshare 宏观接口\ndata/macro/\n\n\n财务指标\nakshare.stock_financial_analysis_indicator()\ndata/finance/\n\n\n\n清洗产物：data/clean/stock_clean.csv、stock_clean.parquet；合并表 data/combined/combined_data.csv。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#统计事实核心发现",
+    "href": "body/00_abstract.html#统计事实核心发现",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "2.4 4. 统计事实（核心发现）",
+    "text": "2.4 4. 统计事实（核心发现）\n\n价格走势：比亚迪归一化价格超基准 8 倍，万科 A 跌去 70%+，印证经济新旧动能切换。\n收益率分布：全员呈现尖峰厚尾，日收益率非正态，极端风险被系统性低估。\n板块相关性：白酒内部相关系数最高（茅五 0.83），能源/通讯与成长股几乎独立（&lt; 0.15）。\nCPI 与股市：月度 CPI 同比与沪深 300 收益几乎无关（Pearson r = -0.128）。\nROE 对比：茅台稳态 30%+ 遥遥领先；万科 A 2025 年 ROE 跌至 -55.4%。\nCAPM：汽车股 Beta 显著 &gt; 1，银行/运营商 Beta &lt; 1（防御属性）。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#局限性",
+    "href": "body/00_abstract.html#局限性",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "2.5 5. 局限性",
+    "text": "2.5 5. 局限性\n\n样本仅 10 只股票，不能代表全市场。\nCAPM 以沪深 300 为市场组合，未考虑 Fama-French 多因子。\n宏观回归为选做示意，因果推断需谨慎。\n不构成投资建议。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/00_abstract.html#章节导航",
+    "href": "body/00_abstract.html#章节导航",
+    "title": "2  P02 金融数据分析 — 研究报告摘要",
+    "section": "2.6 6. 章节导航",
+    "text": "2.6 6. 章节导航\n\n\n\nNotebook\n内容\n\n\n\n\n01_download.ipynb\n批量下载行情、指数、宏观与财务数据\n\n\n02_clean.ipynb\n缺失值处理、格式转换、CSV / Parquet / SQLite\n\n\n03_analysis.ipynb\n描述统计、5 张可视化、CAPM 与宏观回归",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>P02 金融数据分析 — 研究报告摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html",
+    "href": "body/09_project_readme.html",
+    "title": "3  项目说明（dshw_p02）",
+    "section": "",
+    "text": "3.1 目录结构",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>项目说明（dshw_p02）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#目录结构",
+    "href": "body/09_project_readme.html#目录结构",
+    "title": "3  项目说明（dshw_p02）",
+    "section": "",
+    "text": "dshw_p02/\n├── 01_download.ipynb          # 数据采集\n├── 02_clean.ipynb             # 数据清洗与存储\n├── 03_analysis.ipynb          # 统计分析、可视化与建模\n├── _quarto.yml                # Quarto Book 配置\n├── index.qmd                  # 电子书首页\n├── render.ps1                 # 一键渲染脚本\n├── body/                      # 摘要、结论、图表索引\n├── data/                      # 原始与清洗数据\n├── output/                    # 可视化 PNG\n└── docs/                      # quarto render 输出（GitHub Pages）",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>项目说明（dshw_p02）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#快速开始",
+    "href": "body/09_project_readme.html#快速开始",
+    "title": "3  项目说明（dshw_p02）",
+    "section": "3.2 快速开始",
+    "text": "3.2 快速开始\ncd dshw_p02\npip install -r requirements.txt\n\n# 按顺序运行 Notebook（需联网下载）\njupyter notebook   # 01 → 02 → 03\n\n# 生成 Quarto 电子书\nquarto render\n# 或 Windows:\n.\\render.ps1",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>项目说明（dshw_p02）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#编译电子书",
+    "href": "body/09_project_readme.html#编译电子书",
+    "title": "3  项目说明（dshw_p02）",
+    "section": "3.3 编译电子书",
+    "text": "3.3 编译电子书\n\n\n\n步骤\n命令\n\n\n\n\n安装 Quarto\nhttps://quarto.org/docs/get-started/\n\n\n渲染\nquarto render 或 .\\render.ps1\n\n\n本地预览\n打开 docs/index.html\n\n\n在线阅读\nGitHub Pages\n\n\n\nrender.ps1 会在渲染后将 output/*.png 复制到 docs/body/figures/，供图表索引章节引用。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>项目说明（dshw_p02）</span>"
+    ]
+  },
+  {
+    "objectID": "body/09_project_readme.html#技术栈",
+    "href": "body/09_project_readme.html#技术栈",
+    "title": "3  项目说明（dshw_p02）",
+    "section": "3.4 技术栈",
+    "text": "3.4 技术栈\nPython 3.10+ · Jupyter · pandas · akshare · matplotlib · seaborn · statsmodels · pyarrow\n\n本报告仅供课程/研究交流，不构成投资建议。",
+    "crumbs": [
+      "**摘要与导读**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>项目说明（dshw_p02）</span>"
+    ]
+  },
+  {
+    "objectID": "01_download.html",
+    "href": "01_download.html",
+    "title": "4  P02 第一部分：数据获取",
+    "section": "",
+    "text": "4.1 1.1 股票日度行情（后复权）\n本 Notebook 完成四类数据的下载： 1. 10 只 A 股股票的日度后复权行情 2. 沪深 300 + 创业板指 3. CPI 同比增速 + 人民币/美元汇率 4. 财务指标（ROE、销售毛利率）\n下载 10 只股票 2020-01-01 至今的日度后复权数据，字段包含：日期、开盘价、收盘价、最高价、最低价、成交量、成交额。\nstocks = download_all_stocks()\nprint(f'成功下载 {len(stocks)} 只股票')\nif stocks:\n    display(list(stocks.values())[0].head())\n\n成功下载 10 只股票\n\n\n\n\n\n\n\n\n\ndate\nopen\nclose\nhigh\nlow\nvolume\namount\ncode\n\n\n\n\n0\n2020-01-02\n8.73\n8.78\n8.85\n8.72\n2349494\n1.404443e+09\n601398\n\n\n1\n2020-01-03\n8.78\n8.81\n8.84\n8.77\n1522130\n9.119516e+08\n601398\n\n\n2\n2020-01-06\n8.77\n8.78\n8.87\n8.76\n2265097\n1.359917e+09\n601398\n\n\n3\n2020-01-07\n8.80\n8.83\n8.86\n8.80\n1168044\n7.016158e+08\n601398\n\n\n4\n2020-01-08\n8.77\n8.72\n8.78\n8.71\n1585591\n9.405527e+08\n601398",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>P02 第一部分：数据获取</span>"
+    ]
+  },
+  {
+    "objectID": "01_download.html#市场指数",
+    "href": "01_download.html#市场指数",
+    "title": "4  P02 第一部分：数据获取",
+    "section": "4.2 1.2 市场指数",
+    "text": "4.2 1.2 市场指数\n下载沪深 300和创业板指。\n\nindices = download_all_indices()\nprint(f'成功下载 {len(indices)} 个指数')\n\n成功下载 2 个指数",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>P02 第一部分：数据获取</span>"
+    ]
+  },
+  {
+    "objectID": "01_download.html#宏观经济指标",
+    "href": "01_download.html#宏观经济指标",
+    "title": "4  P02 第一部分：数据获取",
+    "section": "4.3 1.3 宏观经济指标",
+    "text": "4.3 1.3 宏观经济指标\n\nCPI 同比增速：衡量通货膨胀水平，直接影响货币政策预期和实际利率。\n人民币/美元汇率：影响外资流向和进出口企业盈利，对 A 股估值有系统性影响。\n\n\ncpi_df = download_macro_cpi()\nm2_df = download_macro_m2()\nprint('CPI', cpi_df.shape, 'M2', m2_df.shape)\n\nCPI (68, 3) M2 (76, 3)",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>P02 第一部分：数据获取</span>"
+    ]
+  },
+  {
+    "objectID": "01_download.html#财务指标长格式",
+    "href": "01_download.html#财务指标长格式",
+    "title": "4  P02 第一部分：数据获取",
+    "section": "4.4 1.4 财务指标（长格式）",
+    "text": "4.4 1.4 财务指标（长格式）\n获取最近 5 个年度的净资产收益率（ROE）和销售毛利率。\n\nfinance_df = download_all_finance()\nif finance_df.empty:\n    print('财务数据为空，请检查网络')\nelse:\n    display(finance_df.head(10))\n\n\n\n\n\n\n\n\ncode\nyear\nindicator\nvalue\n\n\n\n\n0\n601398\n2025\n净资产收益率(ROE)\n9.450000\n\n\n1\n601398\n2024\n净资产收益率(ROE)\n9.880000\n\n\n2\n601398\n2023\n净资产收益率(ROE)\n10.660000\n\n\n3\n601398\n2022\n净资产收益率(ROE)\n11.450000\n\n\n4\n601398\n2021\n净资产收益率(ROE)\n12.150000\n\n\n17\n601398\n2025\n销售净利率\n44.229902\n\n\n18\n601398\n2024\n销售净利率\n44.651333\n\n\n19\n601398\n2023\n销售净利率\n43.307910\n\n\n20\n601398\n2022\n销售净利率\n39.329229\n\n\n21\n601398\n2021\n销售净利率\n37.147869",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>P02 第一部分：数据获取</span>"
+    ]
+  },
+  {
+    "objectID": "01_download.html#下载日志",
+    "href": "01_download.html#下载日志",
+    "title": "4  P02 第一部分：数据获取",
+    "section": "4.5 1.5 下载日志",
+    "text": "4.5 1.5 下载日志\n以上所有下载结果已记录到 download_log.txt。\n\nprint(LOG_FILE.read_text(encoding='utf-8') if LOG_FILE.exists() else '无日志')\n\n[2026-05-19 10:08:38] SUCCESS stock_601398  shape=(1542, 8)\n[2026-05-19 10:08:39] SUCCESS stock_600036  shape=(1542, 8)\n[2026-05-19 10:08:40] SUCCESS stock_002594  shape=(1542, 8)\n[2026-05-19 10:08:41] SUCCESS stock_601633  shape=(1542, 8)\n[2026-05-19 10:08:41] SUCCESS stock_000002  shape=(1542, 8)\n[2026-05-19 10:08:42] SUCCESS stock_600519  shape=(1542, 8)\n[2026-05-19 10:08:43] SUCCESS stock_000858  shape=(1542, 8)\n[2026-05-19 10:08:44] SUCCESS stock_601857  shape=(1542, 8)\n[2026-05-19 10:08:44] SUCCESS stock_600941  shape=(1055, 8)\n[2026-05-19 10:08:45] SUCCESS stock_002352  shape=(1539, 8)\n[2026-05-19 10:08:46] SUCCESS index_000300  shape=(1541, 7)\n[2026-05-19 10:08:47] SUCCESS index_399006  shape=(1541, 7)\n[2026-05-19 10:08:55] SUCCESS macro_cpi  shape=(68, 3)\n[2026-05-19 10:08:55] SUCCESS macro_m2  shape=(76, 3)\n[2026-05-19 10:08:57] SUCCESS finance_601398  rows=90\n[2026-05-19 10:08:58] SUCCESS finance_600036  rows=108\n[2026-05-19 10:08:59] SUCCESS finance_002594  rows=84\n[2026-05-19 10:09:01] SUCCESS finance_601633  rows=72\n[2026-05-19 10:09:03] SUCCESS finance_000002  rows=122\n[2026-05-19 10:09:04] SUCCESS finance_600519  rows=108\n[2026-05-19 10:09:06] SUCCESS finance_000858  rows=114\n[2026-05-19 10:09:07] SUCCESS finance_601857  rows=104\n[2026-05-19 10:09:09] SUCCESS finance_600941  rows=42\n[2026-05-19 10:09:10] SUCCESS finance_002352  rows=80\n[2026-05-19 10:09:11] SUCCESS finance_ratios  shape=(200, 4)",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>P02 第一部分：数据获取</span>"
+    ]
+  },
+  {
+    "objectID": "02_clean.html",
+    "href": "02_clean.html",
+    "title": "5  P02 第二部分：数据清洗与存储",
+    "section": "",
+    "text": "5.1 3.1 单表清洗\n含完整清洗、宽长表转换、合并及 Parquet/SQLite 演示代码。\ncode0 = STOCK_LIST[0]['code']\nraw = pd.read_csv(stock_csv_path(code0), parse_dates=['date'])\nprint('清洗前缺失:\\n', raw.isna().sum())\nlong_df, stats_df = clean_all_stocks()\ndisplay(stats_df[['code','rows_before','rows_after','duplicates_removed']])\ndisplay(long_df.head())\n\n清洗前缺失:\n date      0\nopen      0\nclose     0\nhigh      0\nlow       0\nvolume    0\namount    0\ncode      0\ndtype: int64\n\n\n\n\n\n\n\n\n\ncode\nrows_before\nrows_after\nduplicates_removed\n\n\n\n\n0\n601398\n1541\n1541\n0\n\n\n1\n600036\n1541\n1541\n0\n\n\n2\n002594\n1541\n1541\n0\n\n\n3\n601633\n1541\n1541\n0\n\n\n4\n000002\n1541\n1541\n0\n\n\n5\n600519\n1541\n1541\n0\n\n\n6\n000858\n1541\n1541\n0\n\n\n7\n601857\n1541\n1541\n0\n\n\n8\n600941\n1054\n1054\n0\n\n\n9\n002352\n1538\n1538\n0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndate\nopen\nclose\nhigh\nlow\nvolume\namount\ncode\nreturn\nis_extreme\n\n\n\n\n0\n2020-01-02\n8.73\n8.78\n8.85\n8.72\n2349494\n1.404443e+09\n601398\nNaN\nFalse\n\n\n1\n2020-01-03\n8.78\n8.81\n8.84\n8.77\n1522130\n9.119516e+08\n601398\n0.003411\nFalse\n\n\n2\n2020-01-06\n8.77\n8.78\n8.87\n8.76\n2265097\n1.359917e+09\n601398\n-0.003411\nFalse\n\n\n3\n2020-01-07\n8.80\n8.83\n8.86\n8.80\n1168044\n7.016158e+08\n601398\n0.005679\nFalse\n\n\n4\n2020-01-08\n8.77\n8.72\n8.78\n8.71\n1585591\n9.405527e+08\n601398\n-0.012536\nFalse\n说明：价格 ffill 处理停牌；涨跌幅超 ±20% 标注 is_extreme，不删除。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>P02 第二部分：数据清洗与存储</span>"
+    ]
+  },
+  {
+    "objectID": "02_clean.html#宽表与长表",
+    "href": "02_clean.html#宽表与长表",
+    "title": "5  P02 第二部分：数据清洗与存储",
+    "section": "5.2 3.2 宽表与长表",
+    "text": "5.2 3.2 宽表与长表\n\nwide = wide_close_table(long_df)\nmelted = melt_to_long(wide)\nprint('宽表', wide.shape, '→ 长表', melted.shape)\ndisplay(melted.head())\n\n宽表 (1541, 10) → 长表 (15410, 3)\n\n\n\n\n\n\n\n\n\ndate\ncode\nclose\n\n\n\n\n0\n2020-01-02\n000002\n4919.41\n\n\n1\n2020-01-03\n000002\n4852.65\n\n\n2\n2020-01-06\n000002\n4781.96\n\n\n3\n2020-01-07\n000002\n4814.68\n\n\n4\n2020-01-08\n000002\n4804.21\n\n\n\n\n\n\n\n宽表适合相关矩阵；长表适合面板回归。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>P02 第二部分：数据清洗与存储</span>"
+    ]
+  },
+  {
+    "objectID": "02_clean.html#多表合并",
+    "href": "02_clean.html#多表合并",
+    "title": "5  P02 第二部分：数据清洗与存储",
+    "section": "5.3 3.3 多表合并",
+    "text": "5.3 3.3 多表合并\n\nn0 = len(long_df)\nmerged_idx = merge_daily_with_index(long_df)\nmacro = load_macro()\ncombined = merge_macro_to_daily(merged_idx, macro)\ncombined.to_csv(COMBINED_CSV, index=False, encoding='utf-8-sig')\nbuild_sqlite_db(long_df, macro)\nprint('合并指数后行数', len(merged_idx), '| 合并宏观后', len(combined))\ndisplay(combined.head())\n\n合并指数后行数 14920 | 合并宏观后 14920\n\n\n\n\n\n\n\n\n\ndate\nopen\nclose\nhigh\nlow\nvolume\namount\ncode\nreturn\nis_extreme\nindex_000300_close\nindex_399006_close\nmonth\ncpi\nm2\n\n\n\n\n0\n2020-01-02\n8.73\n8.78\n8.85\n8.72\n2349494\n1.404443e+09\n601398\nNaN\nFalse\n4152.241\n1832.742\n2020-01\n0.0\n8.4\n\n\n1\n2020-01-03\n8.78\n8.81\n8.84\n8.77\n1522130\n9.119516e+08\n601398\n0.003411\nFalse\n4144.965\n1836.012\n2020-01\n0.0\n8.4\n\n\n2\n2020-01-06\n8.77\n8.78\n8.87\n8.76\n2265097\n1.359917e+09\n601398\n-0.003411\nFalse\n4129.295\n1859.921\n2020-01\n0.0\n8.4\n\n\n3\n2020-01-07\n8.80\n8.83\n8.86\n8.80\n1168044\n7.016158e+08\n601398\n0.005679\nFalse\n4160.227\n1893.214\n2020-01\n0.0\n8.4\n\n\n4\n2020-01-08\n8.77\n8.72\n8.78\n8.71\n1585591\n9.405527e+08\n601398\n-0.012536\nFalse\n4112.317\n1862.699\n2020-01\n0.0\n8.4\n\n\n\n\n\n\n\n\nimport pyarrow.parquet as pq\nschema = pq.read_schema(str(STOCK_CLEAN_PARQUET))\nprint(schema)\nt0 = time.time(); pd.read_csv(STOCK_CLEAN_CSV)\nprint(f\"CSV     {time.time()-t0:.3f}s  {os.path.getsize(STOCK_CLEAN_CSV)/1024:.1f} KB\")\nt0 = time.time(); pd.read_parquet(STOCK_CLEAN_PARQUET)\nprint(f\"Parquet {time.time()-t0:.3f}s  {os.path.getsize(STOCK_CLEAN_PARQUET)/1024:.1f} KB\")\n\ndate: timestamp[us]\nopen: double\nclose: double\nhigh: double\nlow: double\nvolume: int64\namount: double\ncode: large_string\nreturn: double\nis_extreme: bool\n-- schema metadata --\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 1200\nCSV     0.015s  1358.5 KB\nParquet 0.020s  683.2 KB\n\n\n数据规模较小时差异不明显；数据量增大后 Parquet 列式优势更显著。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>P02 第二部分：数据清洗与存储</span>"
+    ]
+  },
+  {
+    "objectID": "02_clean.html#方式-csqlite-查询",
+    "href": "02_clean.html#方式-csqlite-查询",
+    "title": "5  P02 第二部分：数据清洗与存储",
+    "section": "5.4 方式 C：SQLite 查询",
+    "text": "5.4 方式 C：SQLite 查询\n\nimport sqlite3\nconn = sqlite3.connect(FIN_DB)\nq1 = '''SELECT p.date, p.code, p.close, m.value AS cpi\nFROM stock_price p LEFT JOIN macro_data m\n  ON substr(p.date,1,7)=substr(m.date,1,7) AND m.indicator='cpi' LIMIT 5'''\nprint('查询1 行情+CPI:'); display(pd.read_sql_query(q1, conn))\nq2 = \"SELECT date, code, volume FROM stock_price ORDER BY volume DESC LIMIT 3\"\nprint('查询2 成交量前三:'); display(pd.read_sql_query(q2, conn))\nq3 = '''SELECT i.industry, AVG(p.close) avg_close\nFROM stock_price p JOIN stock_info i ON p.code=i.code\nGROUP BY i.industry ORDER BY avg_close DESC'''\nprint('查询3 行业均价:'); display(pd.read_sql_query(q3, conn))\nconn.close()\n\n查询1 行情+CPI:\n\n\n\n\n\n\n\n\n\ndate\ncode\nclose\ncpi\n\n\n\n\n0\n2020-01-02\n601398\n8.78\n0.0\n\n\n1\n2020-01-03\n601398\n8.81\n0.0\n\n\n2\n2020-01-06\n601398\n8.78\n0.0\n\n\n3\n2020-01-07\n601398\n8.83\n0.0\n\n\n4\n2020-01-08\n601398\n8.72\n0.0\n\n\n\n\n\n\n\n查询2 成交量前三:\n\n\n\n\n\n\n\n\n\ndate\ncode\nvolume\n\n\n\n\n0\n2024-10-08\n601398\n16882262\n\n\n1\n2024-09-30\n601398\n16161742\n\n\n2\n2020-11-30\n601398\n12456636\n\n\n\n\n\n\n\n查询3 行业均价:\n\n\n\n\n\n\n\n\n\nindustry\navg_close\n\n\n\n\n0\n白酒\n6042.965681\n\n\n1\n房地产\n3106.094322\n\n\n2\n汽车\n168.279533\n\n\n3\n物流\n164.593628\n\n\n4\n通讯\n101.898207\n\n\n5\n银行\n99.420243\n\n\n6\n能源\n10.422875",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>P02 第二部分：数据清洗与存储</span>"
+    ]
+  },
+  {
+    "objectID": "03_analysis.html",
+    "href": "03_analysis.html",
+    "title": "6  P02 第四至六部分：描述统计、可视化与 CAPM",
+    "section": "",
+    "text": "6.1 4.1 描述性统计\n请先运行 01_download.ipynb 与 02_clean.ipynb。 本 Notebook 基于清洗后的数据完成： - 描述性统计与可视化（图 1-5） - CAPM 回归估计 - 宏观指标对股票收益率的影响（选做）\n所有图形保存至 output/ 目录\n计算 10 只股票日对数收益率的描述性统计，包括年化均值、年化波动率、偏度、峰度和最大回撤。\ndesc = descriptive_stats(long_df)\ndisplay(desc.style.format({'年化均值':'{:.2%}','年化波动率':'{:.2%}','最大回撤':'{:.2%}'}))\n\n\n\n\n\n\n \n股票\n行业\n年化均值\n年化波动率\n偏度\n峰度\n最大回撤\n\n\n\n\n0\n工商银行\n银行\n5.38%\n10.20%\n0.492012\n6.513862\n-14.39%\n\n\n1\n招商银行\n银行\n3.20%\n23.19%\n0.261383\n3.549097\n-48.42%\n\n\n2\n比亚迪\n汽车\n29.23%\n42.68%\n0.309921\n2.105503\n-55.73%\n\n\n3\n长城汽车\n汽车\n11.40%\n40.81%\n0.468333\n2.312345\n-75.42%\n\n\n4\n万科A\n房地产\n-17.85%\n23.01%\n0.585680\n3.783620\n-71.73%\n\n\n5\n贵州茅台\n白酒\n4.99%\n25.58%\n0.199292\n3.523436\n-51.12%\n\n\n6\n五粮液\n白酒\n-2.80%\n31.59%\n0.008197\n3.383209\n-73.49%\n\n\n7\n中国石油\n能源\n10.43%\n19.36%\n0.247030\n5.476218\n-22.99%\n\n\n8\n中国移动\n通讯\n17.03%\n23.48%\n0.648783\n5.595191\n-17.04%\n\n\n9\n顺丰控股\n物流\n0.88%\n30.74%\n0.403022\n3.781089\n-74.10%",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>P02 第四至六部分：描述统计、可视化与 CAPM</span>"
+    ]
+  },
+  {
+    "objectID": "03_analysis.html#描述性统计",
+    "href": "03_analysis.html#描述性统计",
+    "title": "6  P02 第四至六部分：描述统计、可视化与 CAPM",
+    "section": "",
+    "text": "6.1.1 图1 归一化收盘价\n以 2020-01-01 = 1 为基准，展示 10 只股票的归一化收盘价走势，并叠加沪深 300。每只股票使用独立高对比配色，便于区分。\n\nidx = load_index_frame('000300')\nbase = pd.Timestamp('2020-01-01')\nfig, ax = plt.subplots(figsize=(13.5, 6.5))\nfor i, item in enumerate(STOCK_LIST):\n    sub = long_df[(long_df['code']==item['code']) & (long_df['date']&gt;=base)].sort_values('date')\n    ax.plot(sub['date'], sub['close']/sub['close'].iloc[0],\n            label=f\"{item['name']}({item['industry']})\",\n            color=STOCK_COLORS[item['code']], lw=2.3, alpha=0.96, zorder=3+i)\nhs = idx[idx['date']&gt;=base]\nax.plot(hs['date'], hs['close']/hs['close'].iloc[0],\n        color='#1a202c', ls='--', lw=2.6, label='沪深300', alpha=0.8, zorder=1)\nax.axhline(1, color='#94a3b8', ls=':', lw=1, zorder=0, alpha=0.9)\nax.set_title('归一化收盘价（2020-01-01=1）', **TITLE_KW)\nax.set_xlabel('日期', **LABEL_KW); ax.set_ylabel('归一化价格', **LABEL_KW)\nstyle_axes(ax, time_axis=True)\napply_legend(ax, bbox_to_anchor=(1.01, 1), loc='upper left', borderpad=0.6)\nfig.patch.set_facecolor('white')\nfig.subplots_adjust(right=0.76)\nsave_figure(fig, OUT / 'fig1_normalized_price.png')\nplt.show()\n\n\n\n\n\n\n\n\n解读：\n这张图以2020年1月1日为基准，将十只代表性个股与沪深300指数的收盘价归一化为1，时间跨度从2020年初延续至2026年初。这张图是一部中国产业结构变迁的”资本市场编年史”——新能源的狂飙、核心资产的幻灭、房地产的塌陷与传统行业的逆袭，在短短六年间的价格轨迹中展现得淋漓尽致。\n一、总体格局：从”同涨同跌”到”极致分化” 2020年初疫情冲击后的前三个月，所有资产几乎同步下探至基准线附近，呈现出典型的系统性风险特征。然而自2020年下半年起，各条曲线迅速分道扬镳。到了2026年初，表现最好的资产价格已超过基准的八倍，而最差的资产仅剩不到三成。这种十倍级别的收益差距，在成熟市场中极为罕见，充分说明这六年是中国经济新旧动能转换阵痛期的集中映射——资本市场已不再是对宏观经济的”平均投票”，而是对产业趋势的”极端定价”。\n二、新能源赛道：高增长的奖赏与周期的残酷 图中最为瞩目的当属比亚迪，其价格曲线如一匹脱缰野马，从基准1最高攀升至超过8，尽管期间历经数次幅度超过40%的剧烈回调，但最终仍稳居收益榜首。这完美诠释了产业趋势投资的”戴维斯双击”逻辑：2020年至2025年恰逢中国新能源汽车渗透率从5%飙升至超过50%的史诗级进程，比亚迪作为垂直整合龙头，同时享受了销量爆发带来的盈利增长和估值重构。\n然而，同为汽车板块的长城汽车则呈现出另一番景象。它在2021年也曾一度涨至3倍左右，但此后便进入漫长的高位震荡与回落通道，最终稳定在2倍附近。两者的分化揭示了一个关键规律：同一赛道中的龙头企业与非龙头企业，其股价韧性的差距远大于盈利差距。比亚迪凭借电池自研、品牌矩阵和规模效应构建了护城河，市场愿意给予其”穿越周期”的估值溢价；而长城作为追赶者，在价格战白热化阶段更容易遭受利润侵蚀与估值压缩的双重打击。\n从经济周期角度看，汽车板块的波动轨迹也映射了库存周期与政策周期的叠加。2021年的高点对应购置税减免与新能源补贴的政策红利期，而2024年至2025年的震荡则反映了行业从”增量博弈”转向”存量厮杀”的残酷现实。\n三、白酒板块：核心资产叙事的高潮与退潮 贵州茅台与五粮液在2020年至2021年的核心资产牛市中表现亮眼，双双涨至2.5倍至3倍区间。这一阶段的上涨背后，是外资流入、公募基金发行潮与”永续增长”叙事的三重共振。高端白酒因其商业模式的稀缺性（轻资产、高毛利、强定价权）被赋予了类似消费股的估值溢价。\n但2022年之后，两条曲线明显陷入高位震荡并逐级回落，到2026年初已回调至1.5倍至2倍区间。这一走势并非偶然：随着人口结构变化、商务消费场景收缩以及渠道库存压力显现，高端白酒的量价齐升逻辑出现裂痕。茅台凭借其绝对龙头地位展现出更强的抗跌性，价格中枢始终维持在2倍左右；而五粮液的回落幅度更大，说明次高端白酒在消费分级趋势下承受了更大的竞争压力。这与前文ROE分析中五粮液盈利能力下滑的判断形成了交叉验证。\n四、房地产：趋势性价值毁灭的典型案例 万科A的价格曲线是全场唯一一条几乎单向下行的轨迹，从基准1一路滑落至0.3以下，跌幅超过70%。这一触目惊心的走势，是中国房地产行业从”高周转高杠杆”模式向”去杠杆去库存”转型的最直接写照。\n2020年之前，万科作为行业标杆享有”永续经营”的估值假设。但随着”三道红线”政策的出台、销售面积的系统性下滑以及房价预期的逆转，房地产企业的资产负债表遭受了双重挤压：资产端存货减值、负债端融资困难。更为严峻的是，这一下跌趋势几乎没有出现过像样的反弹，说明市场已经将该行业从”周期性波动”重新定义为”结构性衰退”。对于投资者而言，万科的案例提供了血淋淋的教训：当行业的底层商业逻辑发生永久性改变时，均值回归的信仰将成为价值陷阱。\n五、能源与通讯：传统行业的”第二春” 中国石油和中国移动的轨迹颇具启发性。中石油在2020年一度跌破基准（油价暴跌叠加疫情冲击），但此后稳步回升，最终站稳在1.5倍至2倍区间。这一逆袭的背后是国际油价中枢上移（地缘政治冲突导致供给收缩）与国企改革深化（降本增效、分红率提升）的共同作用。\n中国移动则展现出更为稳健的”慢牛”特征，价格从基准1持续攀升至接近2倍，波动极小。这反映了公用事业型资产的防御性魅力：在经济增长放缓、利率下行的宏观环境中，稳定的现金流和高股息率对机构资金的吸引力显著增强。尤其值得注意的是，移动在2022年之后与沪深300指数走出了明显的剪刀差——当大盘陷入震荡时，它反而加速上涨，这正是”类债券”资产在风险规避环境下的典型表现。\n六、银行与物流：平淡中的结构性差异 工商银行和招商银行的价格曲线几乎贴地爬行，六年累计收益仅在20%至50%之间，勉强跑赢或持平于沪深300指数。这背后是整个银行业面临的净息差收窄困局：在利率市场化与”金融让利实体”的政策导向下，银行的盈利能力被系统性压缩。工商银行作为国有大行，其股价波动极小，几乎成为一只”准固定收益”产品；招商银行虽有一定的零售业务溢价，但在地产风险暴露和财富管理收入下滑的压力下，同样未能走出独立行情。\n顺丰控股的轨迹则充满了戏剧性：2021年初一度冲至3倍高点，但随后深度回调，最终回落至1.5倍左右。这一”过山车”行情反映了快递行业在疫情期间的特殊红利（线上消费激增）消退后，产能过剩与价格战对企业盈利能力的持续侵蚀。顺丰试图通过国际业务和供应链延伸寻找第二增长曲线，但市场对其转型成效仍持审慎态度。\n七、宏观映射与投资启示 将各条曲线叠加观察，可以发现一条清晰的宏观经济映射脉络：2020年至2021年是流动性宽松与消费复苏驱动的”普涨期”，几乎所有资产都有表现；2022年之后则是产业逻辑主导的分化期，新能源、传统能源和通讯基建持续获得资金青睐，而地产、白酒和部分消费服务则进入漫长的估值消化阶段。\n对于投资者而言，这张图传递了几条关键启示。\n第一，长期持有的前提是选对赛道。如果在2020年初等权重买入这十只股票并持有六年，组合的绝对收益可能相当平庸，因为万科的巨额亏损会严重拖累整体表现。但若能识别出新能源与传统能源的结构性机会，收益将呈指数级放大。\n第二，波动率本身并非敌人，方向才是。比亚迪的曲线波动极大，但方向向上；万科的波动相对较小，但方向向下。在经济转型期，投资者更应关注产业趋势的方向性判断，而非短期价格的起伏。\n第三，防御性资产在特定宏观环境中具有配置价值。当市场从”成长叙事”转向”现金流叙事”时，中国移动和中国石油这类低估值、高股息资产的性价比会显著提升。2024年至2025年，这类资产持续跑赢大盘，正是市场对经济不确定性的理性回应。\n八、结语 这张归一化价格图用最直观的方式证明了：在产业结构剧烈变动的时代，资本市场的分化远比市场的整体涨跌更重要。比亚迪的八倍涨幅与万科的七成跌幅，并非随机漫步的结果，而是中国经济从”地产—基建”驱动向”新能源—高端制造”驱动转型的必然映射。这种极致分化仍将持续，直到新的产业均衡形成。投资者若仍抱有”普涨普跌”的旧思维，将在未来的结构性行情中持续迷失方向。\n\n\n6.1.2 图2 日收益率分布\n10 只股票收益率分面直方图（2 行 × 5 列），每个子图叠加正态分布曲线，并标注均值和标准差。\n\nfig, axes = plt.subplots(2, 5, figsize=(14, 6))\nfor i, item in enumerate(STOCK_LIST):\n    r = long_df[long_df['code']==item['code']]['return'].dropna()\n    ax = axes.ravel()[i]\n    ax.hist(r, bins=40, density=True, alpha=0.72, color=STOCK_COLORS[item['code']],\n            edgecolor='white', linewidth=0.4)\n    mu, sd = r.mean(), r.std()\n    x = np.linspace(r.min(), r.max(), 100)\n    ax.plot(x, norm.pdf(x, mu, sd), color='#e53e3e', lw=1.5)\n    ax.set_title(f\"{item['name']}\\nμ={mu:.4f} σ={sd:.4f}\", fontsize=9)\n    style_axes(ax)\nfig.patch.set_facecolor('white')\nfig.suptitle('日收益率分布 vs 正态', fontweight='bold', y=1.02)\nplt.tight_layout()\nsave_figure(fig, OUT / 'fig2_return_dist.png')\nplt.show()\n\n\n\n\n\n\n\n\n解读：\n这张图展示了十只代表性个股日收益率的直方分布与正态分布拟合的对比，横轴为日收益率，纵轴为频率密度，红色曲线是基于样本均值和标准差生成的理论正态分布。我从中读出了三层关键信息：市场并非正态世界、个股风险结构高度分化、尾部风险被系统性低估。\n一、核心特征：尖峰厚尾的普遍性 十只股票的日收益率分布呈现出高度一致的尖峰厚尾（Leptokurtosis）特征。直观上看，所有直方图在零收益附近的峰值都显著高于红色正态曲线，这意味着股价在大概率时间里只发生微小波动，“不涨不跌”或微涨微跌是最常见的状态。与此同时，分布两侧尾部的柱形也明显高于正态分布的理论预测，说明极端涨跌事件的发生频率远超正态假设所能解释的范围。\n现代资产定价理论的许多经典模型——如马科维茨均值方差模型、布莱克斯科尔斯期权定价公式——都隐含假设收益率服从正态分布。然而这张图有力地证伪了该假设：如果投资者基于正态分布来估算风险价值（VaR）或构造对冲策略，将会系统性地低估极端损失的概率。这正是2008年金融危机中许多量化模型失效的微观根源。\n二、个股分化：三类风险画像 从标准差这一维度观察，十只股票可以清晰划分为三个风险层级。\n第一类是低波动防御型，以工商银行为代表，日收益率标准差仅为0.0064，约为全样本最低。其分布最为”瘦窄”，极端收益事件极少。这反映了大型国有银行作为系统性重要金融机构的特殊地位——股价受政策托底预期、稳定股息策略和有限的交易投机性共同支撑，日波动被显著压缩。中国石油的标准差为0.0122，也属于这一阵营，但受国际油价脉冲影响，尾部较银行略厚。\n第二类是中等波动蓝筹型，涵盖招商银行、贵州茅台、中国移动、万科A和顺丰控股，标准差集中在0.014至0.020之间。这些股票的基本面质地较好、机构覆盖度高，但交易活跃度也更高，因此波动大于银行，却远小于成长赛道。值得注意的是，万科A的日均收益为负值（-0.0007），是十只股票中唯一日收益为负的标的，这与房地产行业进入深度调整期、股价趋势性下行的基本面高度吻合。五粮液的日均收益也为微负（-0.0001），反映出次高端白酒面临的渠道压力。\n第三类是高波动成长型，以比亚迪和长城汽车为代表，标准差分别高达0.0269和0.0257，约为工商银行的三至四倍。比亚迪的日均收益为0.0012，同样是全样本最高，说明高风险确实带来了正向风险补偿。这类股票的分布明显”扁平化”，零收益附近的峰值相对较低，但两侧尾部绵延更长——这意味着新能源汽车赛道的高景气预期与激烈的价格博弈交织，使得股价在任何交易日都可能因订单数据、政策传闻或竞争动态而出现剧烈重定价。\n三、尾部风险的结构性差异 虽然所有股票都呈现尖峰厚尾，但尾部的对称性和厚度仍存在微妙差异。\n工商银行和中国移动的分布几乎完全对称，正负尾部的厚度相当，说明其股价波动主要由系统性因素（大盘情绪、宏观流动性）驱动，缺乏个股层面的非对称冲击。这与它们作为大市值蓝筹、难以被单一资金操纵或消息冲击的特征相符。\n相比之下，比亚迪、长城汽车的正尾部似乎略厚于负尾部，或者说负尾部的极端值更为离散。这暗示新能源汽车板块存在非对称的风险结构：行业处于渗透率快速提升的成长期，好消息（如销量超预期、技术突破）可能引发连续的涨停式反应，而坏消息（如价格战加剧、补贴退坡）虽然也会造成下跌，但幅度和频率相对可控。这种”涨多跌少”的非对称性在一定程度上解释了为何高波动成长股仍对风险偏好型投资者具有吸引力。\n万科A的分布则呈现出另一番景象——其均值位于负区间，且分布虽然大致对称，但左侧尾部的极端负收益事件明显多于右侧。这再次印证了趋势性下跌资产的特殊风险：即便日波动绝对值不算最大，但负收益概率的持续累积会导致长期持有体验极差。\n四、对投资实践的启示\n首先，摒弃”正态思维”进行风险控制。如果使用基于正态分布的标准差来设定止损线或仓位上限，投资者将在极端行情下面临远超预期的损失。实践中应采用更贴近现实的分布假设——如t分布、稳定分布，或在VaR计算中引入压力测试和情景分析。\n其次，低波动策略在中国A股具有实证支撑。工商银行的极低日波动并非个例，而是反映了特定类型资产的”低波动异象”。大量海外实证研究表明，低波动股票在长期中往往能获得与高波动股票相当甚至更高的经风险调整收益。对于保守型资金（如养老金、保险资金），将银行、能源等低波动蓝筹作为底仓，可以在控制回撤的同时获取稳定股息。\n第三，成长股的”高波动税”不容忽视。比亚迪虽然日均收益最高，但其0.0269的标准差意味着单日涨跌幅超过5%的事件并不罕见。对于无法承受剧烈回撤的投资者，即便看好新能源汽车的长期前景，也应通过定投、期权保护或仓位控制来平滑路径波动，避免因短期极端波动而被迫在底部离场。\n最后，趋势性下跌资产的”钝刀子”效应比高波动更危险。万科A的日标准差仅为0.0145，处于中等水平，但其日均收益为负，且长期趋势向下。这意味着投资者如果持有该资产，将面临”每天跌一点、积少成多”的慢性价值侵蚀。相比之下，高波动资产至少提供了正向的风险溢价补偿，而趋势性下跌资产则同时具备波动性和负收益双重毒性，是组合管理中最应优先剔除的标的。\n五、总结 这张日收益率分布图以简洁而有力的方式揭示了中国A股市场的底层统计规律：收益率不是正态的、波动不是对称的、风险不是均匀的。工商银行代表了”稳”的极致，比亚迪代表了”进”的代价，万科A则代表了”退”的陷阱。对于专业投资者而言，理解这些分布形态的异质性，远比记住每只股票的平均收益更重要——因为均值是幻觉，分布才是真相。\n\n\n6.1.3 图3 相关系数热力图\n10 只股票日收益率的相关系数矩阵，按行业排序，标注具体数值。\n\norder = sorted(STOCK_LIST, key=lambda x: (x['industry'], x['code']))\ncodes = [x['code'] for x in order]\ncorr = long_df.pivot(index='date', columns='code', values='return')[codes].corr()\nlabels = [f\"{NAME_MAP[c]}\\n({INDUSTRY_MAP[c]})\" for c in codes]\nfig, ax = plt.subplots(figsize=(10, 8))\nsns.heatmap(corr, annot=True, fmt='.2f', xticklabels=labels, yticklabels=labels,\n            cmap='RdBu_r', center=0, vmin=-1, vmax=1, linewidths=0.5, linecolor='white',\n            cbar_kws={'shrink': 0.8, 'label': '相关系数'}, ax=ax)\nax.set_title('日收益率相关系数（按行业排序）', fontweight='bold', pad=12)\nfig.patch.set_facecolor('white')\nplt.tight_layout()\nsave_figure(fig, OUT / 'fig3_corr_heatmap.png')\nplt.show()\n\n\n\n\n\n\n\n\n解读：\n日收益率相关系数热力图解读\n这张热力图呈现了十只代表性个股日收益率的Pearson相关系数矩阵，按房地产、汽车、物流、白酒、能源、通讯、银行七大行业聚类排列。从中可以清晰读出A股市场的板块同质化程度、风险传导路径以及分散化投资的有效性边界。\n一、板块内部：白酒的”克隆效应”最为极端\n五粮液与贵州茅台的日收益相关系数高达0.83，这是全图最高的跨个股相关，远超其他组合。这一数值揭示了两个关键信息：其一，高端白酒的需求驱动因素高度一致，商务消费、礼品属性与渠道库存周期使两家企业面对相同的宏观温度；其二，更重要的是资金面的”核心资产”绑定——北向资金与公募基金将茅五视为同一类必选消费核心资产进行集中配置，交易行为高度趋同。持有茅台加五粮液，本质上是对同一风险敞口的两次暴露，分散风险的作用极为有限。\n汽车板块内部，比亚迪与长城汽车的相关系数为0.59，属于中等偏强水平，反映出新能源汽车产业链的同向贝塔属性。但这一数值显著低于白酒龙头的0.83，说明汽车板块内部仍存在结构性分化空间，比亚迪的垂直整合模式与长城的差异化产品策略使得两者的盈利节奏并不完全一致，个股选择在该领域仍具价值。\n银行板块中，招商银行与工商银行的相关系数为0.52，低于白酒但高于多数跨行业组合。这印证了银行股共享利率环境、信贷周期与监管政策等系统性驱动因素，但零售业务见长的招行与对公业务为主的工行在地产风险暴露和息差敏感性方面存在差异，因而未形成完全的同质化联动。\n二、跨行业关联：地产—银行轴的风险共振\n万科A与招商银行的相关系数达到0.55，是全图最高的跨行业相关，甚至高于银行板块内部的工行—招行组合（0.52）。这一数据将房地产风险向金融系统的传导机制量化了：银行信贷资产质量与房地产景气度深度绑定，当万科股价下跌反映销售回款困难或债务违约风险上升时，市场会同步重估招行的地产相关敞口。值得注意的是，万科与工商银行的相关系数仅为0.28，明显低于与招行的0.55，这暗示招商银行在地产领域的客户结构或风险偏好与万科的关联度更高。\n白酒龙头与招商银行的相关系数约为0.47至0.48，地产龙头与白酒龙头也有0.32至0.36的相关性。这些跨行业高相关的背后，并非基本面的直接关联，而是同一类机构资金的同步调仓行为。在2019年至2021年的核心资产牛市中，公募与外资将茅五、招行、万科等纳入同一套”中国优质资产”叙事框架；当宏观经济预期转向时，这些资金会同步减仓高估值蓝筹，导致原本基本面无关的股票出现同向波动。\n三、能源与通讯：真正的”独立孤岛”\n中国石油、中国移动与绝大多数个股的相关性极低，多数低于0.15。例如，中国移动与比亚迪的相关系数仅0.04，几乎等同于随机波动；中国石油与五粮液的相关系数仅0.09。这印证了传统能源与公用事业类资产的防御性独立行情特征——它们的定价逻辑主要受国际油价、股息率、无风险利率等宏观变量驱动，与消费、地产、成长股的资金博弈圈子相互隔离。对于追求组合分散化的投资者而言，这两类资产是降低组合波动率的有效工具。\n四、物流的”中间态”与机构的”隐形集群”\n顺丰控股与白酒的相关系数为0.41至0.45，与银行的相关系数为0.28，呈现出介于消费与金融之间的联动特征。这符合顺丰的业务属性——既受益于消费复苏带来的电商快递量增长，又受企业景气度影响，因此与消费龙头和金融龙头均保持中等相关性。\n从全局视角看，白酒与地产—银行轴构成了A股最大的”隐形风险集群”。这些股票表面分属不同行业，但在机构持仓层面高度绑定。一旦宏观流动性收紧或外资撤离，可能出现无差别的同步杀跌。2022年后的”去抱团”过程中，这种相关性虽有所弱化，但仍显著高于随机水平。\n五、投资组合构建的实务建议\n基于上述相关系数结构，不同组合策略的风险分散效果差异显著。\n白酒加白酒（茅加五）的相关系数为0.83，近乎同一资产，仓位叠加等于对单一风险敞口加杠杆，不构成有效分散。地产加银行（万科加招行）的相关系数为0.55，呈现显著的风险共振特征，在地产下行周期中应避免同时超配，否则将面临地产风险向金融系统传导的双重冲击。\n能源或通讯加任何成长板块的相关系数普遍低于0.15，近乎独立。中国石油和中国移动是最佳的风险分散工具，可有效降低投资组合的整体波动率。汽车内部（比亚迪加长城）的相关系数为0.59，属于中等相关水平，投资者可在保留新能源汽车行业敞口的同时，适度进行个股间的轮动切换，捕捉结构性阿尔法机会。\n六、结论\n这张热力图揭示了A股市场从”普涨普跌”向”结构性分化”演进过程中的中间态——板块内部高度同质化，但板块间已出现显著割裂。白酒与地产—银行轴构成了最大的隐性联动风险，能源与通讯则是真正的组合稳定器。相关系数是动态而非静态的，在极端行情中所有资产的相关系数会趋向1，分散化效应将暂时失效。投资者应定期滚动测算相关系数矩阵，而非依赖历史数据一劳永逸。\n最终，在构建权益组合时，应优先跨能源通讯与消费成长两大象限进行配置，同时警惕将”不同行业的蓝筹龙头”简单等同于”风险分散”的误区。真正的分散化，来自于定价逻辑的根本性差异，而非行业名称的表面区别。\n\n\n6.1.4 图4 CPI 与沪深300\n选取CPI与沪深 300 月度收益率，绘制散点图并叠加线性拟合线。\n\nidx2 = load_index_frame('000300')\nidx2['ret'] = np.log(idx2['close']/idx2['close'].shift(1))\nidx2['month'] = idx2['date'].dt.to_period('M').astype(str)\nmret = idx2.groupby('month')['ret'].sum().reset_index()\nmacro_path = DIRS['macro'] / 'macro_cpi.csv'\nif macro_path.exists():\n    cpi = pd.read_csv(macro_path, parse_dates=['date'])\n    cpi['month'] = cpi['date'].dt.to_period('M').astype(str)\n    plot_df = mret.merge(cpi[['month','value']], on='month')\nelse:\n    combined = pd.read_csv(COMBINED_CSV, parse_dates=['date'])\n    cpi_m = combined[['month','cpi']].drop_duplicates('month').rename(columns={'cpi':'value'})\n    plot_df = mret.merge(cpi_m, on='month')\nplot_df = plot_df.dropna(subset=['ret','value'])\npr, _ = pearsonr(plot_df['ret'], plot_df['value'])\nfig, ax = plt.subplots(figsize=(7, 5))\nax.scatter(plot_df['value'], plot_df['ret'], alpha=0.75, color='#3182ce',\n           edgecolors='white', linewidths=0.5, s=55)\nxs = np.linspace(plot_df['value'].min(), plot_df['value'].max(), 50)\nz = np.polyfit(plot_df['value'], plot_df['ret'], 1)\nax.plot(xs, np.poly1d(z)(xs), color='#e53e3e', ls='--', lw=1.8, label='线性拟合')\nax.set_xlabel('CPI同比(%)'); ax.set_ylabel('沪深300月度对数收益')\nax.set_title(f'CPI与股市 (Pearson r={pr:.3f})', fontweight='bold')\nstyle_axes(ax)\nax.legend(frameon=True)\nfig.patch.set_facecolor('white')\nplt.tight_layout()\nsave_figure(fig, OUT / 'fig4_macro_scatter.png')\nplt.show()\n\n\n\n\n\n\n\n\n解读：\n这张散点图的标题为”CPI与股市（Pearson r=-0.128）“，横轴是CPI月度同比，纵轴是沪深300月度对数收益，红色虚线为线性拟合。图中最醒目的特征并非某种显著的线性规律，而恰恰是规律的缺失——相关系数仅为-0.128，散点呈高度离散的云雾状分布，拟合线几乎水平且略微向下倾斜。这一画面有力地证伪了”CPI与股市存在简单线性关系”的常见误解。\n一、统计层面的核心信息\n相关系数-0.128意味着CPI与沪深300月度收益之间几乎不存在线性关联。若将这一数值平方得到决定系数R²，其值约为0.016，即CPI仅能解释股市月度波动的1.6%，剩余98.4%由其他因素驱动。从拟合线看，无论CPI处于通缩区间（-1%附近）还是温和通胀（1.5%附近），沪深300的月度收益均可能为正也可能为负，涨跌概率接近随机。这种”无序波动”状态说明，试图用单月CPI数据预测下月股市走势，在统计上是无效策略。\n二、CPI本身的结构性失真\n图中CPI数据集中在-1.0%至+1.5%区间，这更接近CPI环比增速而非市场通常关注的同比口径。更关键的是，近年中国的CPI呈现鲜明的结构性特征：食品价格（尤其是猪肉周期）对波动贡献过大，核心CPI（剔除食品和能源）长期低迷，服务价格与工业消费品价格走势分化。CPI更多反映的是供给端冲击（如猪周期、天气）和局部价格信号，而非整体经济的总需求热度。因此，CPI本身就不是一个”纯净”的宏观景气指标，用它来解释股市这种对未来现金流高度敏感的贴现机器，自然力不从心。\n三、股市的多因子驱动逻辑\n股票市场是未来现金流的贴现，对以下因素的反应远强于CPI。\n货币政策预期直接影响估值。降准降息带来流动性宽松，推动风险资产估值扩张，但货币政策的调整与CPI之间仅存在弱相关性，甚至时常呈现滞后特征——决策者通常需要观察多个维度的经济数据后才会做出政策响应，而非简单跟随单月CPI波动进行操作。\n盈利预期决定中长期走势。企业利润与CPI之间并非简单的线性关系。例如，在温和低通胀环境下，企业虽然缺乏提价能力，但原材料端成本同样承压有限，中下游制造业甚至可能受益于成本端的相对宽松，这种非对称影响使得CPI无法单独解释盈利变化。\n地缘政治与政策冲击可引发市场剧烈重定价。监管转向、贸易摩擦或房地产政策的出台，其运行逻辑几乎完全独立于物价水平。即便在CPI保持稳定的月份，一条重大的政策消息就足以引发市场的剧烈重定价。\n全球流动性左右核心资产定价。美联储的利率路径、美元指数的强弱变化，以及由此驱动的北向资金流向，对A股市场尤其是核心资产定价具有显著影响。然而，这些变量主要由美国自身的经济周期与货币政策所主导，与中国国内的CPI走势基本无关。\n四、“类通缩”环境下的特殊博弈\n从CPI数据可见，2020年以来中国长期处于低通胀甚至通缩边缘（多次出现负值读数）。在这种环境下，CPI与股市的关系呈现非线性特征：当CPI极低（低于-0.5%）时，市场可能交易”政策宽松预期”，股市反而可能上涨；当CPI回升至0.5%以上时，市场又可能担忧”政策边际收紧”或”成本推升挤压利润”。这导致散点图在左右两端均出现正负收益混杂，线性模型完全失效。\n从资产定价理论的视角看，经典费雪效应认为名义利率约等于实际利率加通胀预期，股市作为风险资产应对通胀有一定对冲关系。但在中国实践中，名义利率调整滞后、实际利率被动上升（当CPI下行而名义利率不变时），以及企业提价能力丧失等因素交织，使得简单的”CPI上升则股市下跌”或”CPI下降则股市上涨”逻辑均不成立。\n五、对投资实践的启示\n基于上述分析，有几条务实的结论值得注意。\n首先，应摒弃单指标预测思维。CPI环比数据对月度股市涨跌缺乏解释力，将其作为择时依据缺乏统计基础。更合理的做法是将CPI置于”总需求—货币政策—企业盈利”的分析框架中，结合PPI、社融、利率等多维数据进行综合研判。\n其次，关注CPI的派生信号而非其本身。CPI与PPI的剪刀差、核心CPI的趋势、以及CPI与社融和PMI的组合共振，往往比CPI单一数值更具信息含量。例如，若CPI持续高于PPI，意味着下游消费企业的利润空间改善，这对相关板块的选股更具指导意义。\n第三，区分通胀类型。需求拉动型通胀（经济过热）通常利空股市，因为会触发政策收紧；成本推动型通胀（供给冲击）对股市呈结构性影响，上游资源企业受益而下游制造业受损；通缩型低通胀（当前中国所处阶段）反映需求不足，股市缺乏盈利支撑，但可能博弈政策刺激。图中样本期主要对应第三种情形，因此CPI与股市呈现无序波动。\n六、结论\n这张散点图以直观的方式传递了一个被忽视的事实：CPI与股市月度收益之间近乎无关。在中国当前的经济结构下，CPI更多是一个滞后且受供给扰动的统计量，而股市是一个对政策预期、流动性、产业变革高度敏感的贴现机器。两者运行的驱动逻辑不同步、不对等，因此呈现-0.128的伪无关状态。\n若必须给出一个方向性判断——在当前低通胀环境下，CPI的温和回升（而非失控上涨）反而是股市的朋友，因为它意味着内需企稳、企业定价权修复，但前提是政策环境保持宽松。投资者不应基于CPI的月度波动调整仓位，而应聚焦于产业趋势与资金面的深层变化。\n\n\n6.1.5 图5 ROE 对比（选做）\n10 只股票最近 5 年 ROE 的折线图，每只股票使用独立配色与标记样式。\n\nfin = pd.read_csv(DIRS['finance'] / 'finance_ratios.csv', dtype={'code': str})\nfin['code'] = fin['code'].str.zfill(6)\nroe = fin[fin['indicator'] == '净资产收益率(ROE)'].copy()\nyears = sorted(roe['year'].unique())\ny_min, y_max = roe['value'].min(), roe['value'].max()\n\n# 截断 Y 轴下限，避免万科 A 的极端负值过度拉伸中间区域\ny_low = max(y_min - 5, -32)\ny_high = y_max + 5\n\nfig, ax = plt.subplots(figsize=(18, 12))\nax.set_facecolor('#fafbfd')\n\n# 手动绘制折线（替代 plot_roe_series，以便与右侧标签配合）\nseen_ind = set()\nfor i, item in enumerate(STOCK_LIST):\n    g = roe[roe['code'] == item['code']].sort_values('year')\n    if g.empty:\n        continue\n    color = STOCK_COLORS[item['code']]\n    ls = _industry_linestyle(item['industry'], seen_ind)\n    z = 2 if item['code'] == '000002' else 5 + i\n    lw = 3.0 if item['code'] in ('600519', '000002') else 2.8\n    _plot_roe_line(ax, g['year'], g['value'], color=color, ls=ls,\n                   marker=STOCK_MARKERS[i % len(STOCK_MARKERS)], lw=lw, zorder=z)\n\n# 参考线\nax.axhline(0, color='#64748b', lw=1.2, ls='--', zorder=0, alpha=0.75)\nax.axhline(15, color='#cbd5e1', lw=0.9, ls=':', zorder=0, alpha=0.85)\n\nstyle_axes(ax, despine=True)\nax.grid(True, which='major', color='#dde4ee', linewidth=0.95, alpha=0.9)\nax.minorticks_on()\nax.set_ylim(y_low, y_high)\nax.set_xlim(years[0] - 0.45, years[-1] + 2.0)\nax.set_xlabel('年份', **LABEL_KW)\nax.set_ylabel('ROE (%)', **LABEL_KW)\nax.set_title('近 5 年主要上市公司 ROE 走势对比', **TITLE_KW)\nax.set_xticks(years)\nax.set_xticklabels([int(y) for y in years])\nax.yaxis.set_major_formatter(mticker.FormatStrFormatter('%.0f'))\n\n# ---------- 右侧终点标签：均匀分布 + 引线，彻底消除重叠 ----------\nrecords = []\nvanke_record = None\nfor item in STOCK_LIST:\n    g = roe[roe['code'] == item['code']].sort_values('year')\n    if g.empty:\n        continue\n    last = g.iloc[-1]\n    rec = {\n        'val': last['value'],\n        'name': item['name'],\n        'x': last['year'],\n        'color': STOCK_COLORS[item['code']]\n    }\n    if item['name'] == '万科A':\n        vanke_record = rec\n    else:\n        records.append(rec)\n\n# 万科 A 的特殊标注（若被截断）\nif vanke_record and vanke_record['val'] &lt; y_low:\n    ax.annotate(\n        f\"▼ 万科A {vanke_record['val']:.1f}%\",\n        xy=(vanke_record['x'], y_low),\n        xytext=(vanke_record['x'] + 0.45, y_low + 3),\n        fontsize=9.5,\n        color=vanke_record['color'],\n        fontweight='bold',\n        va='bottom',\n        ha='left',\n        clip_on=False,\n        zorder=25,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor='white',\n                  edgecolor=vanke_record['color'], linewidth=1.0, alpha=0.95),\n        arrowprops=dict(arrowstyle='-&gt;', color=vanke_record['color'],\n                        lw=1.0, connectionstyle='arc3,rad=0.05')\n    )\n\n# 按 ROE 降序排列，在右侧均匀分布标签\nrecords.sort(key=lambda r: r['val'], reverse=True)\nn = len(records)\n# 从 y_high-2 到 y_low+7 均匀分布，确保不与万科A截断标注冲突\nlabel_y_positions = np.linspace(y_high - 2, y_low + 7, n)\n\nfor i, r in enumerate(records):\n    y_label = label_y_positions[i]\n    # 上半部分放在较近列，下半部分放在较远列，减少引线交叉和视觉拥挤\n    x_offset = 0.45 if i &lt; n // 2 else 1.15\n\n    ax.annotate(\n        f\"{r['name']} {r['val']:.1f}%\",\n        xy=(r['x'], r['val']),\n        xytext=(r['x'] + x_offset, y_label),\n        fontsize=9,\n        color=r['color'],\n        fontweight='bold',\n        va='center',\n        ha='left',\n        clip_on=False,\n        zorder=20,\n        bbox=dict(boxstyle='round,pad=0.28', facecolor='white',\n                  edgecolor=r['color'], linewidth=0.9, alpha=0.95),\n        arrowprops=dict(arrowstyle='-', color=r['color'], lw=0.9,\n                        connectionstyle='arc3,rad=0.12',\n                        linestyle=':', alpha=0.6)\n    )\n\n# ---------- 图例：放在右侧图外，释放底部空间 ----------\nhandles, labels, seen_ind = [], [], set()\nfor i, item in enumerate(STOCK_LIST):\n    color, ls = STOCK_COLORS[item['code']], _industry_linestyle(item['industry'], seen_ind)\n    handles.append(plt.Line2D([0], [0], color=color, linestyle=ls,\n                              marker=STOCK_MARKERS[i % 10], markersize=8, lw=2.8))\n    labels.append(f\"{item['name']}({item['industry']})\")\n\napply_legend(ax, handles=handles, labels=labels,\n             loc='upper left', bbox_to_anchor=(1.03, 1.0),\n             borderpad=0.6, fontsize=9.5)\n\nfig.subplots_adjust(left=0.07, right=0.76, top=0.93, bottom=0.07)\nsave_figure(fig, OUT / 'fig5_roe.png', dpi=240)\nplt.show()\n\n\n\n\n\n\n\n\n解读：\n这张图呈现了十家代表性A股上市公司2021年至2025年的净资产收益率（ROE）走势，涵盖白酒、银行、汽车、地产、能源、通信、物流七大行业。整体画面传递出一个鲜明的信号：龙头分化、周期错位、地产塌陷。不同企业的ROE轨迹，实际上是中国经济结构转型在财务报表上的微观映射。\n一、第一梯队：茅台的”确定性溢价”\n贵州茅台的ROE持续保持在30%以上，2024年更是达到36.02%的峰值，2025年小幅回落至32.53%，稳居全场榜首。这一水平不仅远超其他九家企业，更体现出极强的稳定性——五年内始终在29%至36%的窄区间内波动。高端白酒的商业模式具有极深的护城河：先款后货的现金流、几乎为零的资本开支、强大的品牌定价权，以及存货不仅不贬值反而升值的特殊属性。在经济下行周期中，茅台的ROE曲线几乎没有受到任何冲击，这解释了为何资本市场愿意给予其远超行业平均的估值溢价。它并非单纯的消费品，而是具有类永续特征的稀缺资产。\n二、第二梯队：优秀企业的周期波动\n招商银行、五粮液、比亚迪和长城汽车的ROE均处于10%至26%区间，但各自的波动逻辑截然不同。\n招商银行从2021年的16.96%逐年下滑至2025年的13.44%。这一趋势与整个银行业面临的净息差收窄背景高度吻合。LPR多次下调、信贷需求偏弱、金融让利实体的政策导向，共同侵蚀了银行的盈利空间。招行虽然凭借零售业务优势仍保持行业领先，但同样难逆周期。\n五粮液的走势则是一条清晰的高位回落曲线，从2021年的25.3%持续下滑至2025年的6.89%。次高端白酒面临的渠道库存压力、价格倒挂问题，以及商务消费场景的收缩，在这一数据中得到了直接验证。与茅台的背离说明，白酒行业内部的K型分化正在加剧——仅有绝对龙头才能穿越周期。\n比亚迪的ROE轨迹最为 dramatic：从2021年仅3.73%的低位，飙升至2024年的26.05%，2025年回落至15.31%。这一完美曲线映射了新能源汽车渗透率从个位数到超过50%的产业爆发期——2021年至2024年是规模效应释放、成本曲线陡峭下降的红利窗口；2025年的回落则反映了行业价格战白热化（如”电比油低”促销）对利润率的侵蚀。\n长城汽车的波动更为剧烈：2021年11.26%，2024年冲高至17.15%，2025年又回落至11.76%。这体现了传统车企转型新能源过程中的盈利不稳定性，其ROE对单车售价、补贴政策和技术投入的敏感度远高于垂直整合型的比亚迪。\n三、第三梯队：稳健与改善并存\n工商银行、中国移动、中国石油和顺丰控股的ROE分布在7%至13%区间，但走势方向各异。\n工商银行的ROE从12.15%逐年降至9.45%，与招行同步承压于息差收窄，但绝对水平更低，反映出国有大行在普惠金融和信贷投放上的政策义务更重。\n中国移动的ROE稳定在10%左右（10.1%至10.36%），波动极小。5G建设高峰过后资本开支下降，稳定的现金流和分红能力使其成为典型的低波动防御型资产。\n中国石油的ROE从2021年7.4%的低位，逐步提升至2023年至2024年的11%以上，2025年略回落至10.1%。这一改善受益于国际油价中枢上移和国企改革深化（降本增效），但2025年的小幅回落也说明其盈利与油价波动的强绑定关系。\n顺丰控股是唯一一只ROE持续五年稳步上升的个股，从6.81%提升至11.51%。快递行业价格战后格局优化，顺丰通过国际业务和供应链延伸实现了差异化盈利修复，展现出传统行业中通过模式升级实现逆势改善的范本价值。\n四、困境型：万科的资产负债表崩塌\n万科A的ROE曲线是全场最触目惊心的：2021年尚为9.78%的健康水平，2023年勉强维持4.91%，2024年转负至-24.41%，2025年更是恶化至-55.42%。这是房地产行业深度调整的微观缩影——高周转模式终结、房价下跌导致资产减值、销售回款困难共同作用下，曾经的行业标杆陷入严重亏损。负ROE意味着公司正在侵蚀股东资本，若不能有效去杠杆、盘活资产，将持续面临价值毁灭的风险。\n五、宏观启示与结构性趋势\n将十家企业的ROE轨迹叠加观察，可以提炼出几条深层规律。\n消费分级而非消费升级。茅台与五粮液的背离说明，高端消费的韧性并不等同于整体消费的韧性，中等收入群体的消费意愿承压，只有最顶端的定价权才能维持高盈利。\n新旧动能切换的代价。比亚迪和长城的崛起与万科的崩塌形成强烈对比，经济正经历从”地产驱动”向”制造驱动”的 painful switch。房地产产业链曾是ROE最稳定的板块之一，如今却成为最大的风险源。\n行业选择优于个股选择。近五年持有茅台或顺丰是时间的朋友，持有万科则面临价值毁灭。ROE的可持续性比绝对水平更重要——茅台和移动的稳态ROE来自于垄断性竞争格局，而万科和比亚迪的剧烈波动则来自于强周期性。\n2025年的普遍回落值得关注。茅台、比亚迪、长城、五粮液、招行等多家企业在2025年的ROE均较2024年有所下滑，这提示宏观总需求不足可能正在对企业盈利能力形成普遍压制。\n六、结论\n这张ROE对比图是中国产业结构调整的一张”财务心电图”。最优配置策略是寻找ROE稳定且高于15%的企业（如茅台），对于ROE趋势性下行或高度周期波动的标的，需严格控制仓位并设置止损纪律。在当前环境下，ROE的温和回升能力比ROE的绝对峰值更具投资价值——因为它意味着企业定价权的修复和盈利质量的改善，而这正是穿越不确定性的关键所在。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>P02 第四至六部分：描述统计、可视化与 CAPM</span>"
+    ]
+  },
+  {
+    "objectID": "03_analysis.html#capm-回归",
+    "href": "03_analysis.html#capm-回归",
+    "title": "6  P02 第四至六部分：描述统计、可视化与 CAPM",
+    "section": "6.2 5.1 CAPM 回归",
+    "text": "6.2 5.1 CAPM 回归\n\ncapm = capm_regression(long_df)\ndisplay(capm)\n\n\n\n\n\n\n\n\n股票\n行业\ncode\nalpha\nalpha_p\nbeta\nbeta_ci_low\nbeta_ci_high\nr2\n\n\n\n\n0\n工商银行\n银行\n601398\n0.000132\n0.406139\n0.138625\n0.112407\n0.164842\n0.065369\n\n\n1\n招商银行\n银行\n600036\n0.000033\n0.910559\n0.748903\n0.699935\n0.797870\n0.369137\n\n\n2\n比亚迪\n汽车\n002594\n0.001056\n0.063957\n1.260947\n1.166619\n1.355276\n0.308927\n\n\n3\n长城汽车\n汽车\n601633\n0.000353\n0.538828\n1.047444\n0.952428\n1.142460\n0.233137\n\n\n4\n万科A\n房地产\n000002\n-0.000800\n0.011711\n0.628816\n0.576333\n0.681299\n0.264228\n\n\n5\n贵州茅台\n白酒\n600519\n0.000101\n0.743502\n0.893404\n0.842128\n0.944680\n0.431633\n\n\n6\n五粮液\n白酒\n000858\n-0.000213\n0.559216\n1.168557\n1.108231\n1.228883\n0.484181\n\n\n7\n中国石油\n能源\n601857\n0.000329\n0.270996\n0.284744\n0.235294\n0.334195\n0.076593\n\n\n8\n中国移动\n通讯\n600941\n0.000620\n0.164576\n0.276837\n0.198775\n0.354898\n0.044046\n\n\n9\n顺丰控股\n物流\n002352\n-0.000040\n0.925480\n0.823182\n0.752465\n0.893900\n0.253529\n\n\n\n\n\n\n\n\nfig, ax = plt.subplots(figsize=(9, 7))\n\n# 按 Beta 从小到大排序，增强可读性\ncapm_plot = capm.sort_values('beta').reset_index(drop=True)\ny_pos = np.arange(len(capm_plot))\n\nfor i, row in capm_plot.iterrows():\n    code = row['code']\n    color = STOCK_COLORS.get(code, '#3182ce')\n    beta = row['beta']\n    lo = row['beta_ci_low']\n    hi = row['beta_ci_high']\n    \n    ax.errorbar(beta, i, xerr=[[beta - lo], [hi - beta]],\n                fmt='o', capsize=4, color=color, ecolor=color,\n                markersize=7, capthick=1.8, elinewidth=1.8, alpha=0.85)\n    \n    # 在置信区间右端标注 Beta 值\n    ax.text(hi + 0.025, i, f\"{beta:.2f}\",\n            va='center', ha='left', fontsize=9, color=color, fontweight='bold')\n\nax.axvline(1, color='#e53e3e', ls='--', lw=1.5, zorder=0, alpha=0.75, label='Beta = 1')\n\nax.set_yticks(y_pos)\nax.set_yticklabels(capm_plot['股票'])\n# Y轴标签按股票着色\nfor lbl, code in zip(ax.get_yticklabels(), capm_plot['code']):\n    lbl.set_color(STOCK_COLORS.get(code, '#2d3748'))\n    lbl.set_fontweight('semibold')\n\nax.set_xlabel('Beta', **LABEL_KW)\nax.set_title('CAPM Beta（95% 置信区间）', fontweight='bold', fontsize=13, pad=14)\nstyle_axes(ax, despine=True)\nax.grid(True, axis='x', color='#e2e8f0', linewidth=0.9, alpha=0.8, zorder=0)\nax.set_xlim(0, capm_plot['beta_ci_high'].max() + 0.18)\nax.legend(frameon=True, loc='lower right', fontsize=9.5)\nfig.patch.set_facecolor('white')\nfig.subplots_adjust(left=0.18, right=0.82, top=0.92, bottom=0.1)\nsave_figure(fig, OUT / 'fig_capm_beta.png', dpi=240)\nplt.show()\n\n\n\n\n\n\n\n\n\n6.2.1 CAPM 讨论\n\n哪些股票 \\(\\hat{\\beta}&gt;1\\)？行业属性与周期—防御分类是否吻合？\n答：\n\\(\\hat{\\beta}\\) 大于 1 的样本股共三只：比亚迪（1.26，汽车）、五粮液（1.17，白酒）以及长城汽车（1.05，汽车）。从行业分布看，汽车与白酒板块构成了高 Beta 阵营。这一结果与经典的“周期性 vs 防御性”分类部分吻合、部分背离。汽车属于典型的周期性行业，盈利与宏观经济景气度高度相关，大盘向好时需求扩张、弹性放大，Beta 大于 1 完全符合理论预期。白酒板块则较为复杂：五粮液呈现高 Beta，意味着其在样本期内对市场波动的放大效应甚至强于周期股；而同属白酒的贵州茅台 Beta 仅为 0.89，反而表现出一定的防御特征。这种内部分化说明，高端白酒在近年来已非纯粹的防御品种——机构重仓、金融属性与批价周期使其波动被显著放大，尤其是五粮液这类次高端龙头，在行业库存周期与资金博弈中表现出更强的弹性。因此，不能简单以“消费即防御”一概而论，需结合个股的市场结构与企业周期综合判断。\n\\(\\hat{\\alpha}\\) 是否显著异于零？Alpha 显著意味着什么？\n答：\n在 5% 的显著性水平下，仅万科 A 的 Alpha 显著异于零（\\(\\hat{\\alpha}=-0.0008\\)，\\(p=0.0117\\)）；若放宽至 10% 水平，比亚迪（\\(\\hat{\\alpha}=0.0011\\)，\\(p=0.064\\)）可视为边缘显著的正 Alpha。其余八只股票的 Alpha 均未通过显著性检验，说明在扣除市场因子贡献后，不存在统计上可识别的超额收益或亏损。Alpha 显著的经济含义在于：它代表经系统性风险调整后的“真正超额收益”。若 Alpha 显著为正，意味着该股票在相同市场风险暴露下，仍能持续创造跑赢市场的回报，可能暗示市场定价效率不足、存在尚未被挖掘的价值，或公司具备独特的护城河与成长动能。反之，万科 A 的显著负 Alpha 则表明，即便控制了大盘波动，该股在样本期内仍系统性跑输市场，这很难用贝塔风险解释，更多反映的是房地产行业的结构性下行、信用风险溢价上升以及流动性折价——市场对其基本面恶化的定价超越了大盘因子的解释范围。\n\\(R^2\\) 最高与最低的股票分别是哪只？如何解释这一差异？\n答：\n\\(R^2\\) 最高的是五粮液（0.484），其次是贵州茅台（0.432）；最低的是中国移动（0.044），其次为工商银行（0.065）。 这一差异的核心在于市场因子对个股收益的解释力强弱，而解释力的背后是公司特质风险与市场风险的相对比重：\n\n\n\n高 \\(R^2\\)（五粮液、茅台）：二者均属大盘核心资产，机构持仓集中、信息透明度高、交易行为与市场情绪高度同步。在 A 股市场，白酒龙头长期作为“抱团”标的，其价格发现过程与沪深 300 的驱动逻辑（宏观流动性、北向资金、消费复苏预期）高度重叠，因此市场单因子即可解释接近一半的日收益波动。\n低 \\(R^2\\)（中国移动、工商银行）：工商银行 Beta 仅 0.14，几乎与市场脱钩，其股价波动更多受银行业特有政策（息差调控、隐性不良暴露、分红率预期）主导，而非大盘系统性风险；中国移动虽为巨无霸，但高股息防御定位使其价格行为受利率预期与独立资金配置逻辑驱动，与沪深 300 的联动性被显著削弱。低 \\(R^2\\) 意味着 CAPM 单因子模型对这类股票“失灵”，需要引入行业、风格乃至跨市场因子才能完整刻画其收益结构。\n\n中等 \\(R^2\\)（比亚迪 0.31、长城汽车 0.23）：新能源赛道受产业政策、技术路线迭代、月度产销数据等行业特有风险驱动较大，市场贝塔仅能解释部分波动，剩余收益变异需由行业因子补充。\n综上，\\(R^2\\) 的离散分布揭示了一个重要事实：A 股并非单一市场，不同板块的风险来源与定价逻辑差异显著，简单的市场模型对核心蓝筹尚有解释力，但对政策敏感型与低波动红利型资产则远远不够。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>P02 第四至六部分：描述统计、可视化与 CAPM</span>"
+    ]
+  },
+  {
+    "objectID": "03_analysis.html#宏观回归选做",
+    "href": "03_analysis.html#宏观回归选做",
+    "title": "6  P02 第四至六部分：描述统计、可视化与 CAPM",
+    "section": "6.3 5.2 宏观回归（选做）",
+    "text": "6.3 5.2 宏观回归（选做）\n\ndisplay(monthly_macro_regression(long_df, 'm2'))\n\n\n\n\n\n\n\n\n股票\n行业\ngamma\ngamma_p\n\n\n\n\n0\n工商银行\n银行\n-0.001521\n0.349925\n\n\n1\n招商银行\n银行\n-0.003847\n0.368364\n\n\n2\n比亚迪\n汽车\n-0.005430\n0.500891\n\n\n3\n长城汽车\n汽车\n0.001898\n0.837130\n\n\n4\n万科A\n房地产\n0.003282\n0.448819\n\n\n5\n贵州茅台\n白酒\n0.004832\n0.340290\n\n\n6\n五粮液\n白酒\n0.007081\n0.253654\n\n\n7\n中国石油\n能源\n0.001942\n0.575599\n\n\n8\n中国移动\n通讯\n0.006172\n0.093756\n\n\n9\n顺丰控股\n物流\n0.000485\n0.938482\n\n\n\n\n\n\n\n\n6.3.1 讨论\n不同行业对该宏观指标的敏感性有何差异？背后的经济逻辑是什么？\n答：\n从GARCH-M模型的估计结果来看，这里的gamma系数反映的是条件波动率对预期日收益率的边际影响，也就是“高风险是否带来高回报”在个股层面的具体映射。十只样本股的gamma估计值呈现出鲜明的行业分化与符号割裂，且绝大多数未通过常规的统计显著性检验。以下从行业维度拆解其敏感性差异及背后的经济逻辑。\n一、总体格局：符号的割裂 将gamma系数按方向归类，消费、能源与通讯板块普遍为正，而银行与部分成长制造板块为负。正值意味着波动率上升时，模型估计的预期收益有正向补偿；负值则意味着波动越高，预期收益反而越低，这与标准资本资产定价逻辑背道而驰，却在A股特定板块中得到了数据支持。\n二、分行业的经济解读 1. 白酒：正向gamma背后的“好消息波动”\n贵州茅台与五粮液的gamma分别为0.004832和0.007081，是全部样本中正向信号最强的组合。尽管p值显示并不显著，但方向高度一致。高端白酒的波动往往源于渠道库存周期、批价波动或季度业绩预期差。当波动率放大时——例如旺季动销数据超预期或渠道改革消息冲击——市场倾向于给予正向定价，因为这些波动背后通常隐藏着盈利能力的再确认。换言之，白酒的“风险”更像是“好消息的波动”，市场愿意为之支付溢价。\n\n通讯：防御性资产的波动补偿\n\n中国移动的gamma为0.006172，p值0.093756，是全部样本中最接近统计显著的标的，在10%的显著性水平下可视为边缘显著的正向风险收益关系。这与其作为高股息防御资产的定位高度相关。其波动率上升通常并非由基本面恶化驱动，而是宏观利率预期或大盘流动性冲击所致；当波动平息后，稳定的现金流和分红承诺使得收益回归为正。因此，投资者在中国移动上经历的短期波动，确实获得了后续的收益补偿。\n\n银行：负向gamma与“基本面恶化信号”\n\n工商银行与招商银行的gamma分别为-0.001521和-0.003847，是样本中最值得警惕的发现。银行股的高波动通常由隐性不良暴露、息差收窄等政策利空触发，而这类利空往往具有持续性，并非一次性冲击。因此高波动之后接的不是补偿性上涨，而是进一步的估值下修。银行股的波动不是“可定价的风险”，而是“基本面恶化的信号”，导致风险收益关系呈现反常的负向。\n\n新能源汽车：产业博弈下的“波动即损失”\n\n比亚迪的gamma为-0.005430，是负值中绝对值最大的。作为新能源汽车龙头，其高波动主要来自产业政策突变、竞争格局恶化或技术路线博弈，具有强烈的事件驱动特征。例如价格战升级时，高波动直接侵蚀利润预期，导致“波动即损失”而非“波动即补偿”。这说明对于处于激烈产业竞争中的成长型股票，传统的风险收益权衡框架可能部分失效。长城汽车虽录得小幅正值，但p值高达0.837，信号同样微弱，整体汽车板块缺乏一致的风险定价逻辑。\n\n能源与房地产：外生性与伪相关\n\n中国石油的gamma为正值0.001942，但p值0.576，远不显著。其波动很大程度上由全球地缘政治和OPEC政策驱动，这些因素对中国境内投资者的预期收益传导存在时滞和噪音，风险收益关系被外部噪音模糊。\n万科A录得0.003282的正值gamma，同样不显著。考虑到样本期内房地产行业处于结构性调整阶段，其波动率放大往往伴随债务展期、销售下滑等利空消息，模型估计出的正向gamma可能更多是统计上的伪相关，或下跌过程中偶发性的技术性反弹所致，不宜据此认为“买入地产高波动”是有效的风险补偿策略。\n\n物流：风险定价的空白\n\n顺丰控股的gamma几乎为零（0.000485），p值高达0.938，是全样本中最不显著的。这暗示快递物流行业的日收益与波动率之间几乎不存在线性关系，股价的日内波动更多是随机噪音或大盘Beta驱动，缺乏独立的风险定价逻辑。\n三、结论：风险的性质大于风险的大小\n这组gamma系数将“高风险高回报”这一简单命题分解为复杂的行业光谱。白酒的波动来自供需错配，通讯的波动来自利率预期，银行的波动来自资产质量担忧，新能源的波动来自产业博弈——同样是高波动，市场的定价态度截然不同。对于理性投资者而言，识别自己持有的究竟是“被定价的风险”还是“被惩罚的波动”，远比纠结于波动的绝对数值更为重要。此外，全部十只股票在5%的显著性水平下均未能通过检验，仅有中国移动在10%水平下边缘显著，这也说明在A股日频数据中，线性、对称的风险收益关系可能并非普适规律，需谨慎对待。",
+    "crumbs": [
+      "**分析报告（Notebook）**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>P02 第四至六部分：描述统计、可视化与 CAPM</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html",
+    "href": "body/05_summary_stats.html",
+    "title": "7  统计摘要",
+    "section": "",
+    "text": "7.1 1. 数据规模",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#数据规模",
+    "href": "body/05_summary_stats.html#数据规模",
+    "title": "7  统计摘要",
+    "section": "",
+    "text": "指标\n数值\n\n\n\n\n股票数量\n10 只（7 行业）\n\n\n清洗后行情行数\n约 14,920 行（日度 × 10 标的）\n\n\n时间范围\n2020-01-01 至今\n\n\n市场基准\n沪深 300（000300）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#收益率分布特征",
+    "href": "body/05_summary_stats.html#收益率分布特征",
+    "title": "7  统计摘要",
+    "section": "7.2 2. 收益率分布特征",
+    "text": "7.2 2. 收益率分布特征\n\n\n\n特征\n结论\n\n\n\n\n分布形态\n尖峰厚尾，偏离正态\n\n\n偏度 / 峰度\n多数标的偏度 ≠ 0，极端日频波动显著\n\n\n政策冲击\n2021 年后房地产、新能源板块波动加剧\n\n\n\n详见 03_analysis.ipynb 中描述统计表与图 2（日收益率分布）。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#相关性结构",
+    "href": "body/05_summary_stats.html#相关性结构",
+    "title": "7  统计摘要",
+    "section": "7.3 3. 相关性结构",
+    "text": "7.3 3. 相关性结构\n\n\n\n板块\nPearson 相关（典型）\n\n\n\n\n白酒（茅五）\n0.83（行业内“克隆效应”）\n\n\n银行（工行 vs 招行）\n中等正相关\n\n\n能源/通讯 vs 成长消费\n&lt; 0.15（近乎独立）\n\n\n\n详见图 3 相关系数热力图。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#宏观关联选做",
+    "href": "body/05_summary_stats.html#宏观关联选做",
+    "title": "7  统计摘要",
+    "section": "7.4 4. 宏观关联（选做）",
+    "text": "7.4 4. 宏观关联（选做）\n\n\n\n变量对\nPearson r\n解读\n\n\n\n\nCPI 同比 vs 沪深 300 月度收益\n-0.128\n单指标择时几乎无效",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#capm-beta-概要",
+    "href": "body/05_summary_stats.html#capm-beta-概要",
+    "title": "7  统计摘要",
+    "section": "7.5 5. CAPM Beta 概要",
+    "text": "7.5 5. CAPM Beta 概要\n\n\n\n类型\nBeta 特征\n\n\n\n\n汽车（比亚迪、长城）\n显著 &gt; 1，周期敏感\n\n\n银行 / 运营商\n&lt; 1，防御属性\n\n\n白酒龙头\n接近 1，高 ROE 抵消部分系统风险\n\n\n\n完整回归系数与 95% 置信区间见 03_analysis.ipynb 与图 fig_capm_beta.png。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/05_summary_stats.html#roe-对比近年",
+    "href": "body/05_summary_stats.html#roe-对比近年",
+    "title": "7  统计摘要",
+    "section": "7.6 6. ROE 对比（近年）",
+    "text": "7.6 6. ROE 对比（近年）\n\n\n\n标的\nROE 特征\n\n\n\n\n贵州茅台\n稳态 30%+\n\n\n比亚迪\n随新能源渗透率上升\n\n\n万科 A\n2025 年约 -55.4%\n\n\n\n详见图 5（fig5_roe.png）。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>统计摘要</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_conclusions.html",
+    "href": "body/06_conclusions.html",
+    "title": "8  研究结论",
+    "section": "",
+    "text": "8.1 1. 价格与结构分化\n2020–2025 年 10 只样本股呈现极致分化：比亚迪归一化价格相对 2020 年初超基准数倍，万科 A 累计跌幅超 70%，反映消费/制造景气与地产周期之间的结构性错位。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>研究结论</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_conclusions.html#风险与收益分布",
+    "href": "body/06_conclusions.html#风险与收益分布",
+    "title": "8  研究结论",
+    "section": "8.2 2. 风险与收益分布",
+    "text": "8.2 2. 风险与收益分布\n日收益率普遍非正态（尖峰厚尾），传统正态假设会低估尾部风险；投资组合与风控模型应使用更稳健的风险度量（如 VaR、ES）。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>研究结论</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_conclusions.html#板块联动",
+    "href": "body/06_conclusions.html#板块联动",
+    "title": "8  研究结论",
+    "section": "8.3 3. 板块联动",
+    "text": "8.3 3. 板块联动\n\n白酒：行业内高度同步，分散化效果有限。\n跨行业：能源、通讯与部分成长股相关性极低，具备一定组合分散价值。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>研究结论</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_conclusions.html#宏观与定价",
+    "href": "body/06_conclusions.html#宏观与定价",
+    "title": "8  研究结论",
+    "section": "8.4 4. 宏观与定价",
+    "text": "8.4 4. 宏观与定价\n\nCPI：与沪深 300 月度收益线性相关极弱，不宜单独作为择时信号。\nCAPM：汽车股 Beta &gt; 1，银行/运营商 Beta &lt; 1，与行业经营杠杆和防御属性一致。\nROE：茅台长期领先；地产龙头 ROE 转负提示基本面恶化。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>研究结论</span>"
+    ]
+  },
+  {
+    "objectID": "body/06_conclusions.html#局限与后续工作",
+    "href": "body/06_conclusions.html#局限与后续工作",
+    "title": "8  研究结论",
+    "section": "8.5 5. 局限与后续工作",
+    "text": "8.5 5. 局限与后续工作\n\n\n\n局限\n建议扩展\n\n\n\n\n样本 10 只\n扩展至行业指数或全 A 抽样\n\n\n单因子 CAPM\nFama-French 三因子 / 五因子\n\n\n日频宏观对齐\n混频 VAR 或 MIDAS\n\n\n无交易成本\n加入滑点与印花税敏感性\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\n以上结论基于历史数据与课堂模型，不构成任何投资建议。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>研究结论</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_data_sources.html",
+    "href": "body/07_data_sources.html",
+    "title": "9  图表与数据溯源",
+    "section": "",
+    "text": "9.1 原始数据来源",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>图表与数据溯源</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_data_sources.html#原始数据来源",
+    "href": "body/07_data_sources.html#原始数据来源",
+    "title": "9  图表与数据溯源",
+    "section": "",
+    "text": "数据类型\nAPI / 来源\n本地路径\n\n\n\n\nA 股日行情\nakshare.stock_zh_a_hist()（后复权）\ndata/stock/stock_{code}.csv\n\n\n沪深 300 / 创业板指\nakshare.stock_zh_index_daily_em()\ndata/index/index_{code}.csv\n\n\nCPI\nakshare.macro_china_cpi_monthly()\ndata/macro/\n\n\nM2\nakshare.macro_china_money_supply()\ndata/macro/\n\n\n财务指标\nakshare.stock_financial_analysis_indicator()\ndata/finance/\n\n\n\n\ndata/stock/、data/index/、data/macro/、data/finance/ 未纳入 Git，克隆后请运行 01_download.ipynb 重新下载。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>图表与数据溯源</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_data_sources.html#清洗与合并产物",
+    "href": "body/07_data_sources.html#清洗与合并产物",
+    "title": "9  图表与数据溯源",
+    "section": "9.2 清洗与合并产物",
+    "text": "9.2 清洗与合并产物\n\n\n\n\n\n\n\n文件\n说明\n\n\n\n\ndata/clean/stock_clean.csv\n清洗后长表（CSV）\n\n\ndata/clean/stock_clean.parquet\n清洗后长表（Parquet）\n\n\ndata/combined/combined_data.csv\n行情 + 指数 + 宏观合并\n\n\ndata/combined/fin_data.db\nSQLite 演示（gitignore，运行 02_clean.ipynb 生成）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>图表与数据溯源</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_data_sources.html#分析输出图表",
+    "href": "body/07_data_sources.html#分析输出图表",
+    "title": "9  图表与数据溯源",
+    "section": "9.3 分析输出图表",
+    "text": "9.3 分析输出图表\n\n\n\n\n\n\n\n\n输出文件\n生成 Notebook\n含义\n\n\n\n\nfig1_normalized_price.png\n03_analysis.ipynb\n10 股归一化收盘价 vs 沪深 300\n\n\nfig2_return_dist.png\n03_analysis.ipynb\n日收益率分布（分面直方图）\n\n\nfig3_corr_heatmap.png\n03_analysis.ipynb\nPearson 相关系数热力图\n\n\nfig4_macro_scatter.png\n03_analysis.ipynb\nCPI 同比 vs 沪深 300 月度收益\n\n\nfig5_roe.png\n03_analysis.ipynb\n近 5 年 ROE 对比\n\n\nfig_capm_beta.png\n03_analysis.ipynb\nCAPM Beta 及 95% CI",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>图表与数据溯源</span>"
+    ]
+  },
+  {
+    "objectID": "body/07_data_sources.html#notebook-与章节对应",
+    "href": "body/07_data_sources.html#notebook-与章节对应",
+    "title": "9  图表与数据溯源",
+    "section": "9.4 Notebook 与章节对应",
+    "text": "9.4 Notebook 与章节对应\n\n\n\n电子书章节\n源文件\n\n\n\n\n数据下载\n01_download.ipynb\n\n\n数据清洗\n02_clean.ipynb\n\n\n分析建模\n03_analysis.ipynb",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>图表与数据溯源</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html",
+    "href": "body/08_figures.html",
+    "title": "10  图表索引",
+    "section": "",
+    "text": "10.1 价格与收益\n以下图表由 03_analysis.ipynb 基于清洗数据生成。渲染电子书后图片位于 docs/body/figures/（由 render.ps1 从 output/ 复制）。",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#价格与收益",
+    "href": "body/08_figures.html#价格与收益",
+    "title": "10  图表索引",
+    "section": "",
+    "text": "10.1.1 图 1 归一化收盘价（2020 = 1）\n\n\n\n10.1.2 图 2 日收益率分布",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#相关性与宏观",
+    "href": "body/08_figures.html#相关性与宏观",
+    "title": "10  图表索引",
+    "section": "10.2 相关性与宏观",
+    "text": "10.2 相关性与宏观\n\n10.2.1 图 3 相关系数热力图\n\n\n\n10.2.2 图 4 CPI 与沪深 300 月度收益",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#财务与资产定价",
+    "href": "body/08_figures.html#财务与资产定价",
+    "title": "10  图表索引",
+    "section": "10.3 财务与资产定价",
+    "text": "10.3 财务与资产定价\n\n10.3.1 图 5 ROE 走势对比\n\n\n\n10.3.2 图 6 CAPM Beta（95% 置信区间）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  },
+  {
+    "objectID": "body/08_figures.html#补充美化版本可选",
+    "href": "body/08_figures.html#补充美化版本可选",
+    "title": "10  图表索引",
+    "section": "10.4 补充美化版本（可选）",
+    "text": "10.4 补充美化版本（可选）",
+    "crumbs": [
+      "**分析输出**",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>图表索引</span>"
+    ]
+  }
+]

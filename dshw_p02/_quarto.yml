@@ -1,0 +1,69 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "P02：金融数据获取、管理与初步分析"
+  reader-mode: true
+  author: "dshw_p02"
+  date: today
+  date-format: iso
+
+  sidebar:
+    title: "A股金融数据分析"
+    style: floating
+    search: true
+    tools:
+      - icon: github
+        href: https://github.com/ganlijie-code/ganlijie-code.github.io/tree/main/dshw_p02
+
+  site-url: https://ganlijie-code.github.io/dshw_p02/docs
+  editor: source
+
+  chapters:
+    - index.qmd
+
+    - part: "**摘要与导读**"
+      chapters:
+        - body/00_abstract.md
+        - body/09_project_readme.md
+
+    - part: "**分析报告（Notebook）**"
+      chapters:
+        - 01_download.ipynb
+        - 02_clean.ipynb
+        - 03_analysis.ipynb
+
+    - part: "**分析输出**"
+      chapters:
+        - body/05_summary_stats.md
+        - body/06_conclusions.md
+        - body/07_data_sources.md
+        - body/08_figures.md
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    linestretch: 1.6
+    fontsize: 11.5pt
+    number-sections: true
+    link-external-newwindow: true
+    highlight: true
+    highlight-style: atom-one
+    code-fold: false
+    code-line-numbers: false
+    code-overflow: wrap
+    css: styles.css
+    callout-appearance: default
+    md-extensions:
+      - callout
+
+execute:
+  enabled: false
+  echo: true
+  warning: false
+  message: false
+
+editor: visual

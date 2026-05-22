@@ -1,0 +1,23 @@
+---
+title: "首页"
+author: "dshw_p02"
+numbered: false
+---
+
+## P02：金融数据获取、管理与初步分析
+
+本电子书由 **课程作业项目 dshw_p02** 编译而成，基于 [akshare](https://github.com/akfamily/akshare) 获取 10 家 A 股代表性公司 2020 年至今的行情、财务与宏观数据，完成 **自动采集 → 清洗存储 → 统计描述 → 可视化 → CAPM 建模** 全流程。
+
+| 模块 | 说明 |
+|------|------|
+| 摘要 | 研究目标、数据来源与核心发现 |
+| Notebook 01–03 | 数据下载、清洗、分析建模 |
+| 分析输出 | 统计摘要、结论、图表索引 |
+
+**在线访问**：[https://ganlijie-code.github.io/dshw_p02/docs](https://ganlijie-code.github.io/dshw_p02/docs)
+
+**源码目录**：[ganlijie-code.github.io/dshw_p02](https://github.com/ganlijie-code/ganlijie-code.github.io/tree/main/dshw_p02)
+
+::: {.callout-note}
+本报告仅供课程/研究交流，不构成投资建议。数据截至项目生成日，请以交易所及公司最新披露为准。
+:::
